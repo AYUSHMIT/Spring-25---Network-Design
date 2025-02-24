@@ -1,0 +1,3510 @@
+Packet Log - Server Side
+Timestamp | Packet # | Action | Checksum | Status
+Packet Log - Client Side
+Timestamp | Packet # | Action | Checksum | Status
+1740361041.034399 | 0 | Sent | 115 | Success
+1740361041.034559 | 0 | Received | 115 | Success
+1740361041.03482 | 1 | Sent | 193 | Success
+1740361041.0349061 | 1 | Received | 193 | Success
+1740361041.034979 | 1 | Corrupt ACK | 193 | Resent ACK
+1740361041.03507 | 1 | Resent | 193 | Incorrect ACK
+1740361041.035129 | 1 | Sent | 193 | Success
+1740361041.0351958 | 1 | Corrupt Packet | 193 | Resent ACK
+1740361041.035326 | 0 | Sent | 14 | Success
+1740361041.0353842 | 0 | Received | 14 | Success
+1740361041.035508 | 1 | Sent | 205 | Success
+1740361041.0355682 | 1 | Received | 205 | Success
+1740361041.0356858 | 0 | Sent | 7 | Success
+1740361041.035743 | 0 | Received | 7 | Success
+1740361041.0357811 | 0 | Corrupt ACK | 7 | Resent ACK
+1740361041.03586 | 0 | Resent | 7 | Incorrect ACK
+1740361041.0358999 | 0 | Sent | 7 | Success
+1740361041.035962 | 0 | Corrupt Packet | 7 | Resent ACK
+1740361041.036082 | 1 | Sent | 119 | Success
+1740361041.0361412 | 1 | Received | 119 | Success
+1740361041.036172 | 1 | Corrupt ACK | 119 | Resent ACK
+1740361041.036244 | 1 | Resent | 119 | Incorrect ACK
+1740361041.036295 | 1 | Sent | 119 | Success
+1740361041.0363588 | 1 | Corrupt Packet | 119 | Resent ACK
+1740361041.036465 | 0 | Sent | 220 | Success
+1740361041.036543 | 0 | Received | 220 | Success
+1740361041.036587 | 0 | Corrupt ACK | 220 | Resent ACK
+1740361041.03666 | 0 | Resent | 220 | Incorrect ACK
+1740361041.036698 | 0 | Sent | 220 | Success
+1740361041.0367491 | 0 | Corrupt Packet | 220 | Resent ACK
+1740361041.0368881 | 1 | Sent | 75 | Success
+1740361041.03695 | 1 | Received | 75 | Success
+1740361041.036989 | 1 | Corrupt ACK | 75 | Resent ACK
+1740361041.037056 | 1 | Resent | 75 | Incorrect ACK
+1740361041.0370948 | 1 | Sent | 75 | Success
+1740361041.037148 | 1 | Corrupt Packet | 75 | Resent ACK
+1740361041.0372522 | 0 | Sent | 67 | Success
+1740361041.03731 | 0 | Received | 67 | Success
+1740361041.0373418 | 0 | Corrupt ACK | 67 | Resent ACK
+1740361041.037411 | 0 | Resent | 67 | Incorrect ACK
+1740361041.0374558 | 0 | Sent | 67 | Success
+1740361041.037507 | 0 | Corrupt Packet | 67 | Resent ACK
+1740361041.037611 | 1 | Sent | 100 | Success
+1740361041.037668 | 1 | Received | 100 | Success
+1740361041.0377028 | 1 | Corrupt ACK | 100 | Resent ACK
+1740361041.037767 | 1 | Resent | 100 | Incorrect ACK
+1740361041.0378098 | 1 | Sent | 100 | Success
+1740361041.037875 | 1 | Corrupt Packet | 100 | Resent ACK
+1740361041.0379891 | 0 | Sent | 49 | Success
+1740361041.038053 | 0 | Received | 49 | Success
+1740361041.0380878 | 0 | Corrupt ACK | 49 | Resent ACK
+1740361041.0381598 | 0 | Resent | 49 | Incorrect ACK
+1740361041.0382059 | 0 | Sent | 49 | Success
+1740361041.03826 | 0 | Corrupt Packet | 49 | Resent ACK
+1740361041.038371 | 1 | Sent | 19 | Success
+1740361041.0384572 | 1 | Received | 19 | Success
+1740361041.038552 | 0 | Sent | 80 | Success
+1740361041.0386 | 0 | Received | 80 | Success
+1740361041.038642 | 0 | Corrupt ACK | 80 | Resent ACK
+1740361041.038696 | 0 | Resent | 80 | Incorrect ACK
+1740361041.038732 | 0 | Sent | 80 | Success
+1740361041.0387762 | 0 | Corrupt Packet | 80 | Resent ACK
+1740361041.0388649 | 1 | Sent | 24 | Success
+1740361041.038913 | 1 | Received | 24 | Success
+1740361041.0389462 | 1 | Corrupt ACK | 24 | Resent ACK
+1740361041.038999 | 1 | Resent | 24 | Incorrect ACK
+1740361041.0390341 | 1 | Sent | 24 | Success
+1740361041.039078 | 1 | Corrupt Packet | 24 | Resent ACK
+1740361041.039187 | 0 | Sent | 139 | Success
+1740361041.039244 | 0 | Received | 139 | Success
+1740361041.039281 | 0 | Corrupt ACK | 139 | Resent ACK
+1740361041.039381 | 0 | Resent | 139 | Incorrect ACK
+1740361041.039436 | 0 | Sent | 139 | Success
+1740361041.0395808 | 0 | Corrupt Packet | 139 | Resent ACK
+1740361041.039833 | 1 | Sent | 131 | Success
+1740361041.040001 | 1 | Received | 131 | Success
+1740361041.040042 | 1 | Corrupt ACK | 131 | Resent ACK
+1740361041.040149 | 1 | Resent | 131 | Incorrect ACK
+1740361041.0402932 | 1 | Corrupt Packet | 131 | Resent ACK
+1740361041.040266 | 1 | Sent | 131 | Success
+1740361041.040488 | 0 | Sent | 17 | Success
+1740361041.0405319 | 0 | Received | 17 | Success
+1740361041.040566 | 0 | Corrupt ACK | 17 | Resent ACK
+1740361041.040622 | 0 | Resent | 17 | Incorrect ACK
+1740361041.040666 | 0 | Sent | 17 | Success
+1740361041.040738 | 0 | Corrupt Packet | 17 | Resent ACK
+1740361041.040873 | 1 | Sent | 126 | Success
+1740361041.0409138 | 1 | Received | 126 | Success
+1740361041.040947 | 1 | Corrupt ACK | 126 | Resent ACK
+1740361041.041 | 1 | Resent | 126 | Incorrect ACK
+1740361041.04107 | 1 | Sent | 126 | Success
+1740361041.041116 | 1 | Corrupt Packet | 126 | Resent ACK
+1740361041.041235 | 0 | Sent | 251 | Success
+1740361041.041278 | 0 | Received | 251 | Success
+1740361041.041313 | 0 | Corrupt ACK | 251 | Resent ACK
+1740361041.041366 | 0 | Resent | 251 | Incorrect ACK
+1740361041.041406 | 0 | Sent | 251 | Success
+1740361041.041447 | 0 | Corrupt Packet | 251 | Resent ACK
+1740361041.0415459 | 1 | Sent | 91 | Success
+1740361041.0415921 | 1 | Received | 91 | Success
+1740361041.041628 | 1 | Corrupt ACK | 91 | Resent ACK
+1740361041.0416782 | 1 | Resent | 91 | Incorrect ACK
+1740361041.041715 | 1 | Sent | 91 | Success
+1740361041.041758 | 1 | Corrupt Packet | 91 | Resent ACK
+1740361041.0418482 | 0 | Sent | 116 | Success
+1740361041.041916 | 0 | Received | 116 | Success
+1740361041.041949 | 0 | Corrupt ACK | 116 | Resent ACK
+1740361041.042001 | 0 | Resent | 116 | Incorrect ACK
+1740361041.042042 | 0 | Sent | 116 | Success
+1740361041.042142 | 0 | Corrupt Packet | 116 | Resent ACK
+1740361041.0426629 | 1 | Sent | 79 | Success
+1740361041.042969 | 1 | Received | 79 | Success
+1740361041.043277 | 1 | Corrupt ACK | 79 | Resent ACK
+1740361041.0434911 | 1 | Resent | 79 | Incorrect ACK
+1740361041.0440152 | 1 | Sent | 79 | Success
+1740361041.04416 | 1 | Corrupt Packet | 79 | Resent ACK
+1740361041.044526 | 0 | Sent | 116 | Success
+1740361041.044738 | 0 | Received | 116 | Success
+1740361041.04488 | 1 | Sent | 250 | Success
+1740361041.0449438 | 1 | Received | 250 | Success
+1740361041.044987 | 1 | Corrupt ACK | 250 | Resent ACK
+1740361041.045044 | 1 | Resent | 250 | Incorrect ACK
+1740361041.045088 | 1 | Sent | 250 | Success
+1740361041.0451672 | 1 | Corrupt Packet | 250 | Resent ACK
+1740361041.0452769 | 0 | Sent | 151 | Success
+1740361041.045325 | 0 | Received | 151 | Success
+1740361041.045446 | 1 | Sent | 175 | Success
+1740361041.045488 | 1 | Received | 175 | Success
+1740361041.045584 | 1 | Corrupt ACK | 175 | Resent ACK
+1740361041.045654 | 1 | Resent | 175 | Incorrect ACK
+1740361041.0456939 | 1 | Sent | 175 | Success
+1740361041.045749 | 1 | Corrupt Packet | 175 | Resent ACK
+1740361041.045918 | 0 | Sent | 173 | Success
+1740361041.045967 | 0 | Received | 173 | Success
+1740361041.046004 | 0 | Corrupt ACK | 173 | Resent ACK
+1740361041.0460632 | 0 | Resent | 173 | Incorrect ACK
+1740361041.046116 | 0 | Sent | 173 | Success
+1740361041.0461571 | 0 | Corrupt Packet | 173 | Resent ACK
+1740361041.046253 | 1 | Sent | 166 | Success
+1740361041.046301 | 1 | Received | 166 | Success
+1740361041.046411 | 0 | Sent | 183 | Success
+1740361041.046452 | 0 | Received | 183 | Success
+1740361041.0464919 | 0 | Corrupt ACK | 183 | Resent ACK
+1740361041.0465438 | 0 | Resent | 183 | Incorrect ACK
+1740361041.0466108 | 0 | Sent | 183 | Success
+1740361041.046651 | 0 | Corrupt Packet | 183 | Resent ACK
+1740361041.04675 | 1 | Sent | 1 | Success
+1740361041.04679 | 1 | Received | 1 | Success
+1740361041.046823 | 1 | Corrupt ACK | 1 | Resent ACK
+1740361041.0468748 | 1 | Resent | 1 | Incorrect ACK
+1740361041.046913 | 1 | Sent | 1 | Success
+1740361041.046953 | 1 | Corrupt Packet | 1 | Resent ACK
+1740361041.047046 | 0 | Sent | 169 | Success
+1740361041.0470982 | 0 | Received | 169 | Success
+1740361041.047213 | 1 | Sent | 252 | Success
+1740361041.0472682 | 1 | Received | 252 | Success
+1740361041.0473092 | 1 | Corrupt ACK | 252 | Resent ACK
+1740361041.0473778 | 1 | Resent | 252 | Incorrect ACK
+1740361041.047418 | 1 | Sent | 252 | Success
+1740361041.0474691 | 1 | Corrupt Packet | 252 | Resent ACK
+1740361041.0475829 | 0 | Sent | 27 | Success
+1740361041.047629 | 0 | Received | 27 | Success
+1740361041.0477529 | 1 | Sent | 75 | Success
+1740361041.047806 | 1 | Received | 75 | Success
+1740361041.047839 | 1 | Corrupt ACK | 75 | Resent ACK
+1740361041.0479062 | 1 | Resent | 75 | Incorrect ACK
+1740361041.047947 | 1 | Sent | 75 | Success
+1740361041.047992 | 1 | Corrupt Packet | 75 | Resent ACK
+1740361041.048102 | 0 | Sent | 107 | Success
+1740361041.0481448 | 0 | Received | 107 | Success
+1740361041.048185 | 0 | Corrupt ACK | 107 | Resent ACK
+1740361041.048262 | 0 | Resent | 107 | Incorrect ACK
+1740361041.0483031 | 0 | Sent | 107 | Success
+1740361041.048357 | 0 | Corrupt Packet | 107 | Resent ACK
+1740361041.048469 | 1 | Sent | 162 | Success
+1740361041.048548 | 1 | Received | 162 | Success
+1740361041.048774 | 0 | Sent | 10 | Success
+1740361041.048863 | 0 | Received | 10 | Success
+1740361041.048932 | 0 | Corrupt ACK | 10 | Resent ACK
+1740361041.049031 | 0 | Resent | 10 | Incorrect ACK
+1740361041.049075 | 0 | Sent | 10 | Success
+1740361041.0491672 | 0 | Corrupt Packet | 10 | Resent ACK
+1740361041.049398 | 1 | Sent | 130 | Success
+1740361041.049443 | 1 | Received | 130 | Success
+1740361041.0495412 | 0 | Sent | 38 | Success
+1740361041.0495832 | 0 | Received | 38 | Success
+1740361041.049618 | 0 | Corrupt ACK | 38 | Resent ACK
+1740361041.0496671 | 0 | Resent | 38 | Incorrect ACK
+1740361041.0497122 | 0 | Sent | 38 | Success
+1740361041.0497751 | 0 | Corrupt Packet | 38 | Resent ACK
+1740361041.049896 | 1 | Sent | 232 | Success
+1740361041.049974 | 1 | Received | 232 | Success
+1740361041.050009 | 1 | Corrupt ACK | 232 | Resent ACK
+1740361041.0500622 | 1 | Resent | 232 | Incorrect ACK
+1740361041.0501099 | 1 | Sent | 232 | Success
+1740361041.0501509 | 1 | Corrupt Packet | 232 | Resent ACK
+1740361041.050252 | 0 | Sent | 31 | Success
+1740361041.050294 | 0 | Received | 31 | Success
+1740361041.0503821 | 1 | Sent | 193 | Success
+1740361041.050424 | 1 | Received | 193 | Success
+1740361041.0504599 | 1 | Corrupt ACK | 193 | Resent ACK
+1740361041.0505111 | 1 | Resent | 193 | Incorrect ACK
+1740361041.050553 | 1 | Sent | 193 | Success
+1740361041.050604 | 1 | Corrupt Packet | 193 | Resent ACK
+1740361041.050693 | 0 | Sent | 15 | Success
+1740361041.050735 | 0 | Received | 15 | Success
+1740361041.050768 | 0 | Corrupt ACK | 15 | Resent ACK
+1740361041.050817 | 0 | Resent | 15 | Incorrect ACK
+1740361041.0508611 | 0 | Sent | 15 | Success
+1740361041.050904 | 0 | Corrupt Packet | 15 | Resent ACK
+1740361041.051011 | 1 | Sent | 207 | Success
+1740361041.051112 | 1 | Received | 207 | Success
+1740361041.051569 | 0 | Received | 188 | Success
+1740361041.05146 | 0 | Sent | 188 | Success
+1740361041.051729 | 1 | Sent | 222 | Success
+1740361041.05181 | 1 | Received | 222 | Success
+1740361041.05191 | 0 | Sent | 54 | Success
+1740361041.051959 | 0 | Received | 54 | Success
+1740361041.052015 | 0 | Corrupt ACK | 54 | Resent ACK
+1740361041.052073 | 0 | Resent | 54 | Incorrect ACK
+1740361041.0521128 | 0 | Sent | 54 | Success
+1740361041.052167 | 0 | Corrupt Packet | 54 | Resent ACK
+1740361041.052266 | 1 | Sent | 176 | Success
+1740361041.0523221 | 1 | Received | 176 | Success
+1740361041.052363 | 1 | Corrupt ACK | 176 | Resent ACK
+1740361041.0524201 | 1 | Resent | 176 | Incorrect ACK
+1740361041.05246 | 1 | Sent | 176 | Success
+1740361041.05251 | 1 | Corrupt Packet | 176 | Resent ACK
+1740361041.052604 | 0 | Sent | 51 | Success
+1740361041.0526478 | 0 | Received | 51 | Success
+1740361041.052683 | 0 | Corrupt ACK | 51 | Resent ACK
+1740361041.052734 | 0 | Resent | 51 | Incorrect ACK
+1740361041.052772 | 0 | Sent | 51 | Success
+1740361041.052816 | 0 | Corrupt Packet | 51 | Resent ACK
+1740361041.052918 | 1 | Sent | 105 | Success
+1740361041.05296 | 1 | Received | 105 | Success
+1740361041.053055 | 0 | Sent | 152 | Success
+1740361041.053097 | 0 | Received | 152 | Success
+1740361041.0531352 | 0 | Corrupt ACK | 152 | Resent ACK
+1740361041.053184 | 0 | Resent | 152 | Incorrect ACK
+1740361041.053223 | 0 | Sent | 152 | Success
+1740361041.053268 | 0 | Corrupt Packet | 152 | Resent ACK
+1740361041.053369 | 1 | Sent | 108 | Success
+1740361041.053418 | 1 | Received | 108 | Success
+1740361041.0535219 | 0 | Sent | 251 | Success
+1740361041.0535638 | 0 | Received | 251 | Success
+1740361041.053602 | 0 | Corrupt ACK | 251 | Resent ACK
+1740361041.0536609 | 0 | Resent | 251 | Incorrect ACK
+1740361041.053704 | 0 | Sent | 251 | Success
+1740361041.0537431 | 0 | Corrupt Packet | 251 | Resent ACK
+1740361041.053834 | 1 | Sent | 15 | Success
+1740361041.053875 | 1 | Received | 15 | Success
+1740361041.053969 | 0 | Sent | 8 | Success
+1740361041.0540109 | 0 | Received | 8 | Success
+1740361041.054106 | 1 | Sent | 18 | Success
+1740361041.054145 | 1 | Received | 18 | Success
+1740361041.054241 | 0 | Sent | 244 | Success
+1740361041.054326 | 0 | Received | 244 | Success
+1740361041.0543659 | 0 | Corrupt ACK | 244 | Resent ACK
+1740361041.0544262 | 0 | Resent | 244 | Incorrect ACK
+1740361041.054483 | 0 | Sent | 244 | Success
+1740361041.0545752 | 0 | Corrupt Packet | 244 | Resent ACK
+1740361041.05468 | 1 | Sent | 31 | Success
+1740361041.0547252 | 1 | Received | 31 | Success
+1740361041.054794 | 1 | Corrupt ACK | 31 | Resent ACK
+1740361041.0548532 | 1 | Resent | 31 | Incorrect ACK
+1740361041.054898 | 1 | Sent | 31 | Success
+1740361041.054945 | 1 | Corrupt Packet | 31 | Resent ACK
+1740361041.055043 | 0 | Sent | 172 | Success
+1740361041.0550861 | 0 | Received | 172 | Success
+1740361041.055124 | 0 | Corrupt ACK | 172 | Resent ACK
+1740361041.05518 | 0 | Resent | 172 | Incorrect ACK
+1740361041.055229 | 0 | Sent | 172 | Success
+1740361041.055281 | 0 | Corrupt Packet | 172 | Resent ACK
+1740361041.055378 | 1 | Sent | 212 | Success
+1740361041.055419 | 1 | Received | 212 | Success
+1740361041.055509 | 0 | Sent | 193 | Success
+1740361041.055551 | 0 | Received | 193 | Success
+1740361041.0555892 | 0 | Corrupt ACK | 193 | Resent ACK
+1740361041.055645 | 0 | Resent | 193 | Incorrect ACK
+1740361041.05569 | 0 | Sent | 193 | Success
+1740361041.055737 | 0 | Corrupt Packet | 193 | Resent ACK
+1740361041.0558321 | 1 | Sent | 232 | Success
+1740361041.055874 | 1 | Received | 232 | Success
+1740361041.0559301 | 1 | Corrupt ACK | 232 | Resent ACK
+1740361041.055994 | 1 | Resent | 232 | Incorrect ACK
+1740361041.0560389 | 1 | Sent | 232 | Success
+1740361041.0560782 | 1 | Corrupt Packet | 232 | Resent ACK
+1740361041.056175 | 0 | Sent | 123 | Success
+1740361041.0562181 | 0 | Received | 123 | Success
+1740361041.056316 | 1 | Sent | 169 | Success
+1740361041.0563579 | 1 | Received | 169 | Success
+1740361041.056395 | 1 | Corrupt ACK | 169 | Resent ACK
+1740361041.056451 | 1 | Resent | 169 | Incorrect ACK
+1740361041.056493 | 1 | Sent | 169 | Success
+1740361041.056534 | 1 | Corrupt Packet | 169 | Resent ACK
+1740361041.056632 | 0 | Sent | 201 | Success
+1740361041.056673 | 0 | Received | 201 | Success
+1740361041.056767 | 1 | Sent | 13 | Success
+1740361041.05681 | 1 | Received | 13 | Success
+1740361041.0569038 | 0 | Sent | 105 | Success
+1740361041.056951 | 0 | Received | 105 | Success
+1740361041.0570009 | 0 | Corrupt ACK | 105 | Resent ACK
+1740361041.057056 | 0 | Resent | 105 | Incorrect ACK
+1740361041.0571 | 0 | Sent | 105 | Success
+1740361041.057142 | 0 | Corrupt Packet | 105 | Resent ACK
+1740361041.057235 | 1 | Sent | 126 | Success
+1740361041.057277 | 1 | Received | 126 | Success
+1740361041.057374 | 0 | Sent | 183 | Success
+1740361041.057417 | 0 | Received | 183 | Success
+1740361041.057454 | 0 | Corrupt ACK | 183 | Resent ACK
+1740361041.057508 | 0 | Resent | 183 | Incorrect ACK
+1740361041.057575 | 0 | Sent | 183 | Success
+1740361041.05763 | 0 | Corrupt Packet | 183 | Resent ACK
+1740361041.05773 | 1 | Sent | 38 | Success
+1740361041.05777 | 1 | Received | 38 | Success
+1740361041.057805 | 1 | Corrupt ACK | 38 | Resent ACK
+1740361041.0578592 | 1 | Resent | 38 | Incorrect ACK
+1740361041.057902 | 1 | Sent | 38 | Success
+1740361041.05794 | 1 | Corrupt Packet | 38 | Resent ACK
+1740361041.0580401 | 0 | Sent | 178 | Success
+1740361041.0580869 | 0 | Received | 178 | Success
+1740361041.058125 | 0 | Corrupt ACK | 178 | Resent ACK
+1740361041.058194 | 0 | Resent | 178 | Incorrect ACK
+1740361041.058246 | 0 | Sent | 178 | Success
+1740361041.058283 | 0 | Corrupt Packet | 178 | Resent ACK
+1740361041.058408 | 1 | Sent | 41 | Success
+1740361041.0584462 | 1 | Received | 41 | Success
+1740361041.058476 | 1 | Corrupt ACK | 41 | Resent ACK
+1740361041.058521 | 1 | Resent | 41 | Incorrect ACK
+1740361041.058559 | 1 | Sent | 41 | Success
+1740361041.058608 | 1 | Corrupt Packet | 41 | Resent ACK
+1740361041.058707 | 0 | Sent | 231 | Success
+1740361041.058748 | 0 | Received | 231 | Success
+1740361041.058835 | 1 | Sent | 108 | Success
+1740361041.058879 | 1 | Received | 108 | Success
+1740361041.058909 | 1 | Corrupt ACK | 108 | Resent ACK
+1740361041.05896 | 1 | Resent | 108 | Incorrect ACK
+1740361041.058998 | 1 | Sent | 108 | Success
+1740361041.059041 | 1 | Corrupt Packet | 108 | Resent ACK
+1740361041.05915 | 0 | Sent | 75 | Success
+1740361041.059199 | 0 | Received | 75 | Success
+1740361041.059243 | 0 | Corrupt ACK | 75 | Resent ACK
+1740361041.059327 | 0 | Resent | 75 | Incorrect ACK
+1740361041.059367 | 0 | Sent | 75 | Success
+1740361041.059408 | 0 | Corrupt Packet | 75 | Resent ACK
+1740361041.0595179 | 1 | Sent | 143 | Success
+1740361041.059635 | 1 | Received | 143 | Success
+1740361041.059665 | 1 | Corrupt ACK | 143 | Resent ACK
+1740361041.059766 | 1 | Resent | 143 | Incorrect ACK
+1740361041.05985 | 1 | Sent | 143 | Success
+1740361041.0599492 | 1 | Corrupt Packet | 143 | Resent ACK
+1740361041.060051 | 0 | Sent | 22 | Success
+1740361041.060147 | 0 | Received | 22 | Success
+1740361041.0602958 | 0 | Corrupt ACK | 22 | Resent ACK
+1740361041.060362 | 0 | Resent | 22 | Incorrect ACK
+1740361041.0604 | 0 | Sent | 22 | Success
+1740361041.06048 | 0 | Corrupt Packet | 22 | Resent ACK
+1740361041.060611 | 1 | Sent | 224 | Success
+1740361041.0607429 | 1 | Received | 224 | Success
+1740361041.060843 | 0 | Sent | 224 | Success
+1740361041.060915 | 0 | Received | 224 | Success
+1740361041.061048 | 1 | Sent | 193 | Success
+1740361041.061097 | 1 | Received | 193 | Success
+1740361041.061135 | 1 | Corrupt ACK | 193 | Resent ACK
+1740361041.0611851 | 1 | Resent | 193 | Incorrect ACK
+1740361041.061223 | 1 | Sent | 193 | Success
+1740361041.061267 | 1 | Corrupt Packet | 193 | Resent ACK
+1740361041.061357 | 0 | Sent | 80 | Success
+1740361041.061397 | 0 | Received | 80 | Success
+1740361041.0614269 | 0 | Corrupt ACK | 80 | Resent ACK
+1740361041.06148 | 0 | Resent | 80 | Incorrect ACK
+1740361041.0615191 | 0 | Sent | 80 | Success
+1740361041.061561 | 0 | Corrupt Packet | 80 | Resent ACK
+1740361041.061654 | 1 | Sent | 115 | Success
+1740361041.0617018 | 1 | Received | 115 | Success
+1740361041.061733 | 1 | Corrupt ACK | 115 | Resent ACK
+1740361041.061781 | 1 | Resent | 115 | Incorrect ACK
+1740361041.061825 | 1 | Sent | 115 | Success
+1740361041.0618649 | 1 | Corrupt Packet | 115 | Resent ACK
+1740361041.061959 | 0 | Sent | 149 | Success
+1740361041.062001 | 0 | Received | 149 | Success
+1740361041.062033 | 0 | Corrupt ACK | 149 | Resent ACK
+1740361041.06208 | 0 | Resent | 149 | Incorrect ACK
+1740361041.06212 | 0 | Sent | 149 | Success
+1740361041.062167 | 0 | Corrupt Packet | 149 | Resent ACK
+1740361041.0622551 | 1 | Sent | 231 | Success
+1740361041.062301 | 1 | Received | 231 | Success
+1740361041.062335 | 1 | Corrupt ACK | 231 | Resent ACK
+1740361041.0623832 | 1 | Resent | 231 | Incorrect ACK
+1740361041.06242 | 1 | Sent | 231 | Success
+1740361041.0624819 | 1 | Corrupt Packet | 231 | Resent ACK
+1740361041.062567 | 0 | Sent | 92 | Success
+1740361041.062607 | 0 | Received | 92 | Success
+1740361041.062649 | 0 | Corrupt ACK | 92 | Resent ACK
+1740361041.062712 | 0 | Resent | 92 | Incorrect ACK
+1740361041.062762 | 0 | Sent | 92 | Success
+1740361041.062825 | 0 | Corrupt Packet | 92 | Resent ACK
+1740361041.0629702 | 1 | Sent | 2 | Success
+1740361041.063027 | 1 | Received | 2 | Success
+1740361041.06307 | 1 | Corrupt ACK | 2 | Resent ACK
+1740361041.063134 | 1 | Resent | 2 | Incorrect ACK
+1740361041.0632021 | 1 | Sent | 2 | Success
+1740361041.063257 | 1 | Corrupt Packet | 2 | Resent ACK
+1740361041.063377 | 0 | Sent | 254 | Success
+1740361041.063434 | 0 | Received | 254 | Success
+1740361041.063475 | 0 | Corrupt ACK | 254 | Resent ACK
+1740361041.0635872 | 0 | Resent | 254 | Incorrect ACK
+1740361041.063643 | 0 | Sent | 254 | Success
+1740361041.063704 | 0 | Corrupt Packet | 254 | Resent ACK
+1740361041.063828 | 1 | Sent | 218 | Success
+1740361041.063914 | 1 | Received | 218 | Success
+1740361041.064053 | 0 | Sent | 23 | Success
+1740361041.0641081 | 0 | Received | 23 | Success
+1740361041.064152 | 0 | Corrupt ACK | 23 | Resent ACK
+1740361041.064218 | 0 | Resent | 23 | Incorrect ACK
+1740361041.0643158 | 0 | Sent | 23 | Success
+1740361041.064405 | 0 | Corrupt Packet | 23 | Resent ACK
+1740361041.064567 | 1 | Sent | 13 | Success
+1740361041.0647528 | 1 | Received | 13 | Success
+1740361041.0648909 | 1 | Corrupt ACK | 13 | Resent ACK
+1740361041.065033 | 1 | Resent | 13 | Incorrect ACK
+1740361041.065095 | 1 | Sent | 13 | Success
+1740361041.065321 | 1 | Corrupt Packet | 13 | Resent ACK
+1740361041.0655 | 0 | Sent | 244 | Success
+1740361041.0656939 | 0 | Received | 244 | Success
+1740361041.065902 | 0 | Corrupt ACK | 244 | Resent ACK
+1740361041.0660648 | 0 | Resent | 244 | Incorrect ACK
+1740361041.066182 | 0 | Sent | 244 | Success
+1740361041.0662699 | 0 | Corrupt Packet | 244 | Resent ACK
+1740361041.066426 | 1 | Sent | 144 | Success
+1740361041.0665321 | 1 | Received | 144 | Success
+1740361041.066732 | 0 | Sent | 172 | Success
+1740361041.066802 | 0 | Received | 172 | Success
+1740361041.066853 | 0 | Corrupt ACK | 172 | Resent ACK
+1740361041.0669188 | 0 | Resent | 172 | Incorrect ACK
+1740361041.0669749 | 0 | Sent | 172 | Success
+1740361041.067041 | 0 | Corrupt Packet | 172 | Resent ACK
+1740361041.067172 | 1 | Sent | 35 | Success
+1740361041.067229 | 1 | Received | 35 | Success
+1740361041.067351 | 0 | Sent | 100 | Success
+1740361041.0674088 | 0 | Received | 100 | Success
+1740361041.067532 | 1 | Sent | 252 | Success
+1740361041.067588 | 1 | Received | 252 | Success
+1740361041.0676322 | 1 | Corrupt ACK | 252 | Resent ACK
+1740361041.067699 | 1 | Resent | 252 | Incorrect ACK
+1740361041.067761 | 1 | Sent | 252 | Success
+1740361041.067831 | 1 | Corrupt Packet | 252 | Resent ACK
+1740361041.067938 | 0 | Sent | 244 | Success
+1740361041.068056 | 0 | Received | 244 | Success
+1740361041.068135 | 0 | Corrupt ACK | 244 | Resent ACK
+1740361041.068272 | 0 | Resent | 244 | Incorrect ACK
+1740361041.0683331 | 0 | Sent | 244 | Success
+1740361041.068374 | 0 | Corrupt Packet | 244 | Resent ACK
+1740361041.0685 | 1 | Sent | 105 | Success
+1740361041.068543 | 1 | Received | 105 | Success
+1740361041.068577 | 1 | Corrupt ACK | 105 | Resent ACK
+1740361041.068633 | 1 | Resent | 105 | Incorrect ACK
+1740361041.068672 | 1 | Sent | 105 | Success
+1740361041.068716 | 1 | Corrupt Packet | 105 | Resent ACK
+1740361041.0688179 | 0 | Sent | 124 | Success
+1740361041.0688581 | 0 | Received | 124 | Success
+1740361041.068956 | 1 | Sent | 3 | Success
+1740361041.0689962 | 1 | Received | 3 | Success
+1740361041.0690298 | 1 | Corrupt ACK | 3 | Resent ACK
+1740361041.069082 | 1 | Resent | 3 | Incorrect ACK
+1740361041.0691211 | 1 | Sent | 3 | Success
+1740361041.069163 | 1 | Corrupt Packet | 3 | Resent ACK
+1740361041.069301 | 0 | Sent | 215 | Success
+1740361041.069345 | 0 | Received | 215 | Success
+1740361041.0693781 | 0 | Corrupt ACK | 215 | Resent ACK
+1740361041.069427 | 0 | Resent | 215 | Incorrect ACK
+1740361041.069468 | 0 | Sent | 215 | Success
+1740361041.0695198 | 0 | Corrupt Packet | 215 | Resent ACK
+1740361041.069613 | 1 | Sent | 138 | Success
+1740361041.069663 | 1 | Received | 138 | Success
+1740361041.0697 | 1 | Corrupt ACK | 138 | Resent ACK
+1740361041.069751 | 1 | Resent | 138 | Incorrect ACK
+1740361041.06979 | 1 | Sent | 138 | Success
+1740361041.06983 | 1 | Corrupt Packet | 138 | Resent ACK
+1740361041.069918 | 0 | Sent | 16 | Success
+1740361041.069959 | 0 | Received | 16 | Success
+1740361041.070045 | 1 | Sent | 52 | Success
+1740361041.070086 | 1 | Received | 52 | Success
+1740361041.070116 | 1 | Corrupt ACK | 52 | Resent ACK
+1740361041.070165 | 1 | Resent | 52 | Incorrect ACK
+1740361041.0702028 | 1 | Sent | 52 | Success
+1740361041.070245 | 1 | Corrupt Packet | 52 | Resent ACK
+1740361041.070336 | 0 | Sent | 163 | Success
+1740361041.0703812 | 0 | Received | 163 | Success
+1740361041.070435 | 0 | Corrupt ACK | 163 | Resent ACK
+1740361041.070495 | 0 | Resent | 163 | Incorrect ACK
+1740361041.070534 | 0 | Sent | 163 | Success
+1740361041.070573 | 0 | Corrupt Packet | 163 | Resent ACK
+1740361041.070663 | 1 | Sent | 14 | Success
+1740361041.070703 | 1 | Received | 14 | Success
+1740361041.070736 | 1 | Corrupt ACK | 14 | Resent ACK
+1740361041.070787 | 1 | Resent | 14 | Incorrect ACK
+1740361041.0708249 | 1 | Sent | 14 | Success
+1740361041.070864 | 1 | Corrupt Packet | 14 | Resent ACK
+1740361041.070951 | 0 | Sent | 178 | Success
+1740361041.070991 | 0 | Received | 178 | Success
+1740361041.071023 | 0 | Corrupt ACK | 178 | Resent ACK
+1740361041.071074 | 0 | Resent | 178 | Incorrect ACK
+1740361041.071112 | 0 | Sent | 178 | Success
+1740361041.0711522 | 0 | Corrupt Packet | 178 | Resent ACK
+1740361041.071241 | 1 | Sent | 161 | Success
+1740361041.071281 | 1 | Received | 161 | Success
+1740361041.071315 | 1 | Corrupt ACK | 161 | Resent ACK
+1740361041.0713742 | 1 | Resent | 161 | Incorrect ACK
+1740361041.071412 | 1 | Sent | 161 | Success
+1740361041.071454 | 1 | Corrupt Packet | 161 | Resent ACK
+1740361041.0715442 | 0 | Sent | 97 | Success
+1740361041.0715861 | 0 | Received | 97 | Success
+1740361041.071681 | 1 | Sent | 252 | Success
+1740361041.071721 | 1 | Received | 252 | Success
+1740361041.071753 | 1 | Corrupt ACK | 252 | Resent ACK
+1740361041.0718038 | 1 | Resent | 252 | Incorrect ACK
+1740361041.0718431 | 1 | Sent | 252 | Success
+1740361041.071882 | 1 | Corrupt Packet | 252 | Resent ACK
+1740361041.0719738 | 0 | Sent | 246 | Success
+1740361041.0720158 | 0 | Received | 246 | Success
+1740361041.072108 | 1 | Sent | 240 | Success
+1740361041.072149 | 1 | Received | 240 | Success
+1740361041.072181 | 1 | Corrupt ACK | 240 | Resent ACK
+1740361041.072234 | 1 | Resent | 240 | Incorrect ACK
+1740361041.0722718 | 1 | Sent | 240 | Success
+1740361041.072317 | 1 | Corrupt Packet | 240 | Resent ACK
+1740361041.0724108 | 0 | Sent | 153 | Success
+1740361041.072451 | 0 | Received | 153 | Success
+1740361041.072482 | 0 | Corrupt ACK | 153 | Resent ACK
+1740361041.072531 | 0 | Resent | 153 | Incorrect ACK
+1740361041.07258 | 0 | Sent | 153 | Success
+1740361041.072621 | 0 | Corrupt Packet | 153 | Resent ACK
+1740361041.072713 | 1 | Sent | 234 | Success
+1740361041.072756 | 1 | Received | 234 | Success
+1740361041.072791 | 1 | Corrupt ACK | 234 | Resent ACK
+1740361041.0728471 | 1 | Resent | 234 | Incorrect ACK
+1740361041.072884 | 1 | Sent | 234 | Success
+1740361041.072929 | 1 | Corrupt Packet | 234 | Resent ACK
+1740361041.073021 | 0 | Sent | 99 | Success
+1740361041.073063 | 0 | Received | 99 | Success
+1740361041.073094 | 0 | Corrupt ACK | 99 | Resent ACK
+1740361041.073148 | 0 | Resent | 99 | Incorrect ACK
+1740361041.0731862 | 0 | Sent | 99 | Success
+1740361041.073226 | 0 | Corrupt Packet | 99 | Resent ACK
+1740361041.073322 | 1 | Sent | 147 | Success
+1740361041.073365 | 1 | Received | 147 | Success
+1740361041.0734599 | 0 | Sent | 86 | Success
+1740361041.0735009 | 0 | Received | 86 | Success
+1740361041.0735328 | 0 | Corrupt ACK | 86 | Resent ACK
+1740361041.073587 | 0 | Resent | 86 | Incorrect ACK
+1740361041.073625 | 0 | Sent | 86 | Success
+1740361041.073666 | 0 | Corrupt Packet | 86 | Resent ACK
+1740361041.073754 | 1 | Sent | 170 | Success
+1740361041.073795 | 1 | Received | 170 | Success
+1740361041.0738292 | 1 | Corrupt ACK | 170 | Resent ACK
+1740361041.073884 | 1 | Resent | 170 | Incorrect ACK
+1740361041.0739279 | 1 | Sent | 170 | Success
+1740361041.073973 | 1 | Corrupt Packet | 170 | Resent ACK
+1740361041.074062 | 0 | Sent | 255 | Success
+1740361041.074103 | 0 | Received | 255 | Success
+1740361041.074135 | 0 | Corrupt ACK | 255 | Resent ACK
+1740361041.074188 | 0 | Resent | 255 | Incorrect ACK
+1740361041.074241 | 0 | Sent | 255 | Success
+1740361041.074284 | 0 | Corrupt Packet | 255 | Resent ACK
+1740361041.074476 | 1 | Sent | 75 | Success
+1740361041.074678 | 1 | Received | 75 | Success
+1740361041.0748239 | 1 | Corrupt ACK | 75 | Resent ACK
+1740361041.075011 | 1 | Resent | 75 | Incorrect ACK
+1740361041.0752141 | 1 | Corrupt Packet | 75 | Resent ACK
+1740361041.075181 | 1 | Sent | 75 | Success
+1740361041.075549 | 0 | Sent | 130 | Success
+1740361041.075616 | 0 | Received | 130 | Success
+1740361041.075714 | 0 | Corrupt ACK | 130 | Resent ACK
+1740361041.075833 | 0 | Resent | 130 | Incorrect ACK
+1740361041.075901 | 0 | Sent | 130 | Success
+1740361041.0760388 | 0 | Corrupt Packet | 130 | Resent ACK
+1740361041.0763881 | 1 | Sent | 85 | Success
+1740361041.076458 | 1 | Received | 85 | Success
+1740361041.0767019 | 1 | Corrupt ACK | 85 | Resent ACK
+1740361041.0768452 | 1 | Resent | 85 | Incorrect ACK
+1740361041.076902 | 1 | Sent | 85 | Success
+1740361041.0769742 | 1 | Corrupt Packet | 85 | Resent ACK
+1740361041.0770948 | 0 | Sent | 167 | Success
+1740361041.077163 | 0 | Received | 167 | Success
+1740361041.07729 | 1 | Sent | 42 | Success
+1740361041.0773609 | 1 | Received | 42 | Success
+1740361041.0776992 | 1 | Corrupt ACK | 42 | Resent ACK
+1740361041.077972 | 1 | Resent | 42 | Incorrect ACK
+1740361041.078225 | 1 | Sent | 42 | Success
+1740361041.07843 | 1 | Corrupt Packet | 42 | Resent ACK
+1740361041.078607 | 0 | Sent | 89 | Success
+1740361041.078688 | 0 | Received | 89 | Success
+1740361041.0787709 | 0 | Corrupt ACK | 89 | Resent ACK
+1740361041.0788438 | 0 | Resent | 89 | Incorrect ACK
+1740361041.0789042 | 0 | Sent | 89 | Success
+1740361041.0789518 | 0 | Corrupt Packet | 89 | Resent ACK
+1740361041.079076 | 1 | Sent | 0 | Success
+1740361041.0791218 | 1 | Received | 0 | Success
+1740361041.079208 | 1 | Corrupt ACK | 0 | Resent ACK
+1740361041.079376 | 1 | Resent | 0 | Incorrect ACK
+1740361041.079424 | 1 | Sent | 0 | Success
+1740361041.07949 | 1 | Corrupt Packet | 0 | Resent ACK
+1740361041.0796008 | 0 | Sent | 135 | Success
+1740361041.07967 | 0 | Received | 135 | Success
+1740361041.0797188 | 0 | Corrupt ACK | 135 | Resent ACK
+1740361041.079778 | 0 | Resent | 135 | Incorrect ACK
+1740361041.079823 | 0 | Sent | 135 | Success
+1740361041.07987 | 0 | Corrupt Packet | 135 | Resent ACK
+1740361041.0799701 | 1 | Sent | 113 | Success
+1740361041.080061 | 1 | Received | 113 | Success
+1740361041.080159 | 0 | Sent | 108 | Success
+1740361041.0802372 | 0 | Received | 108 | Success
+1740361041.080506 | 1 | Sent | 74 | Success
+1740361041.080724 | 1 | Received | 74 | Success
+1740361041.080789 | 1 | Corrupt ACK | 74 | Resent ACK
+1740361041.080999 | 1 | Resent | 74 | Incorrect ACK
+1740361041.081193 | 1 | Sent | 74 | Success
+1740361041.081291 | 1 | Corrupt Packet | 74 | Resent ACK
+1740361041.0815082 | 0 | Sent | 102 | Success
+1740361041.081707 | 0 | Received | 102 | Success
+1740361041.0818188 | 0 | Corrupt ACK | 102 | Resent ACK
+1740361041.081921 | 0 | Resent | 102 | Incorrect ACK
+1740361041.081994 | 0 | Sent | 102 | Success
+1740361041.0820968 | 0 | Corrupt Packet | 102 | Resent ACK
+1740361041.0822122 | 1 | Sent | 60 | Success
+1740361041.082287 | 1 | Received | 60 | Success
+1740361041.082349 | 1 | Corrupt ACK | 60 | Resent ACK
+1740361041.082489 | 1 | Resent | 60 | Incorrect ACK
+1740361041.082552 | 1 | Sent | 60 | Success
+1740361041.082637 | 1 | Corrupt Packet | 60 | Resent ACK
+1740361041.082756 | 0 | Sent | 15 | Success
+1740361041.0828018 | 0 | Received | 15 | Success
+1740361041.082865 | 0 | Corrupt ACK | 15 | Resent ACK
+1740361041.0829282 | 0 | Resent | 15 | Incorrect ACK
+1740361041.082981 | 0 | Sent | 15 | Success
+1740361041.083025 | 0 | Corrupt Packet | 15 | Resent ACK
+1740361041.0831301 | 1 | Sent | 184 | Success
+1740361041.083179 | 1 | Received | 184 | Success
+1740361041.083282 | 0 | Sent | 189 | Success
+1740361041.083324 | 0 | Received | 189 | Success
+1740361041.0834188 | 1 | Sent | 129 | Success
+1740361041.083462 | 1 | Received | 129 | Success
+1740361041.083499 | 1 | Corrupt ACK | 129 | Resent ACK
+1740361041.083555 | 1 | Resent | 129 | Incorrect ACK
+1740361041.0835981 | 1 | Sent | 129 | Success
+1740361041.08364 | 1 | Corrupt Packet | 129 | Resent ACK
+1740361041.0837362 | 0 | Sent | 27 | Success
+1740361041.083783 | 0 | Received | 27 | Success
+1740361041.0838778 | 1 | Sent | 150 | Success
+1740361041.083919 | 1 | Received | 150 | Success
+1740361041.084054 | 0 | Sent | 118 | Success
+1740361041.084096 | 0 | Received | 118 | Success
+1740361041.084238 | 1 | Received | 88 | Success
+1740361041.0841851 | 1 | Sent | 88 | Success
+1740361041.084359 | 0 | Sent | 219 | Success
+1740361041.0844102 | 0 | Received | 219 | Success
+1740361041.0844421 | 0 | Corrupt ACK | 219 | Resent ACK
+1740361041.084503 | 0 | Resent | 219 | Incorrect ACK
+1740361041.0845509 | 0 | Sent | 219 | Success
+1740361041.084636 | 0 | Corrupt Packet | 219 | Resent ACK
+1740361041.0847301 | 1 | Sent | 234 | Success
+1740361041.084773 | 1 | Received | 234 | Success
+1740361041.084804 | 1 | Corrupt ACK | 234 | Resent ACK
+1740361041.084851 | 1 | Resent | 234 | Incorrect ACK
+1740361041.084887 | 1 | Sent | 234 | Success
+1740361041.084926 | 1 | Corrupt Packet | 234 | Resent ACK
+1740361041.085016 | 0 | Sent | 168 | Success
+1740361041.0850592 | 0 | Received | 168 | Success
+1740361041.0850902 | 0 | Corrupt ACK | 168 | Resent ACK
+1740361041.0851378 | 0 | Resent | 168 | Incorrect ACK
+1740361041.085181 | 0 | Sent | 168 | Success
+1740361041.0852191 | 0 | Corrupt Packet | 168 | Resent ACK
+1740361041.085312 | 1 | Sent | 62 | Success
+1740361041.085352 | 1 | Received | 62 | Success
+1740361041.085384 | 1 | Corrupt ACK | 62 | Resent ACK
+1740361041.085432 | 1 | Resent | 62 | Incorrect ACK
+1740361041.085471 | 1 | Sent | 62 | Success
+1740361041.085535 | 1 | Corrupt Packet | 62 | Resent ACK
+1740361041.085637 | 0 | Sent | 196 | Success
+1740361041.085682 | 0 | Received | 196 | Success
+1740361041.085779 | 1 | Sent | 36 | Success
+1740361041.08582 | 1 | Received | 36 | Success
+1740361041.085849 | 1 | Corrupt ACK | 36 | Resent ACK
+1740361041.08591 | 1 | Resent | 36 | Incorrect ACK
+1740361041.0859468 | 1 | Sent | 36 | Success
+1740361041.086018 | 1 | Corrupt Packet | 36 | Resent ACK
+1740361041.08612 | 0 | Sent | 232 | Success
+1740361041.086161 | 0 | Received | 232 | Success
+1740361041.0861921 | 0 | Corrupt ACK | 232 | Resent ACK
+1740361041.0862458 | 0 | Resent | 232 | Incorrect ACK
+1740361041.086282 | 0 | Sent | 232 | Success
+1740361041.086359 | 0 | Corrupt Packet | 232 | Resent ACK
+1740361041.086546 | 1 | Sent | 65 | Success
+1740361041.086667 | 1 | Received | 65 | Success
+1740361041.0868359 | 0 | Sent | 106 | Success
+1740361041.0869389 | 0 | Received | 106 | Success
+1740361041.0870342 | 1 | Sent | 75 | Success
+1740361041.087103 | 1 | Received | 75 | Success
+1740361041.0871449 | 1 | Corrupt ACK | 75 | Resent ACK
+1740361041.08719 | 1 | Resent | 75 | Incorrect ACK
+1740361041.087241 | 1 | Sent | 75 | Success
+1740361041.087269 | 1 | Corrupt Packet | 75 | Resent ACK
+1740361041.087358 | 0 | Sent | 53 | Success
+1740361041.087392 | 0 | Received | 53 | Success
+1740361041.087423 | 0 | Corrupt ACK | 53 | Resent ACK
+1740361041.0874612 | 0 | Resent | 53 | Incorrect ACK
+1740361041.0875032 | 0 | Sent | 53 | Success
+1740361041.087554 | 0 | Corrupt Packet | 53 | Resent ACK
+1740361041.087641 | 1 | Sent | 152 | Success
+1740361041.0876758 | 1 | Received | 152 | Success
+1740361041.08771 | 1 | Corrupt ACK | 152 | Resent ACK
+1740361041.0877519 | 1 | Resent | 152 | Incorrect ACK
+1740361041.0877912 | 1 | Sent | 152 | Success
+1740361041.0878289 | 1 | Corrupt Packet | 152 | Resent ACK
+1740361041.08791 | 0 | Sent | 166 | Success
+1740361041.087944 | 0 | Received | 166 | Success
+1740361041.0879738 | 0 | Corrupt ACK | 166 | Resent ACK
+1740361041.088011 | 0 | Resent | 166 | Incorrect ACK
+1740361041.088047 | 0 | Sent | 166 | Success
+1740361041.088081 | 0 | Corrupt Packet | 166 | Resent ACK
+1740361041.088154 | 1 | Sent | 90 | Success
+1740361041.088189 | 1 | Received | 90 | Success
+1740361041.088269 | 0 | Sent | 165 | Success
+1740361041.0883021 | 0 | Received | 165 | Success
+1740361041.0883782 | 1 | Sent | 183 | Success
+1740361041.0884109 | 1 | Received | 183 | Success
+1740361041.088442 | 1 | Corrupt ACK | 183 | Resent ACK
+1740361041.088479 | 1 | Resent | 183 | Incorrect ACK
+1740361041.088515 | 1 | Sent | 183 | Success
+1740361041.088554 | 1 | Corrupt Packet | 183 | Resent ACK
+1740361041.088771 | 0 | Sent | 212 | Success
+1740361041.088804 | 0 | Received | 212 | Success
+1740361041.088938 | 1 | Sent | 67 | Success
+1740361041.088971 | 1 | Received | 67 | Success
+1740361041.089003 | 1 | Corrupt ACK | 67 | Resent ACK
+1740361041.089046 | 1 | Resent | 67 | Incorrect ACK
+1740361041.089087 | 1 | Sent | 67 | Success
+1740361041.089122 | 1 | Corrupt Packet | 67 | Resent ACK
+1740361041.0892181 | 0 | Sent | 74 | Success
+1740361041.0892942 | 0 | Received | 74 | Success
+1740361041.0893261 | 0 | Corrupt ACK | 74 | Resent ACK
+1740361041.089368 | 0 | Resent | 74 | Incorrect ACK
+1740361041.089406 | 0 | Sent | 74 | Success
+1740361041.0894651 | 0 | Corrupt Packet | 74 | Resent ACK
+1740361041.089565 | 1 | Sent | 74 | Success
+1740361041.089643 | 1 | Received | 74 | Success
+1740361041.089735 | 0 | Sent | 132 | Success
+1740361041.089771 | 0 | Received | 132 | Success
+1740361041.089857 | 1 | Sent | 69 | Success
+1740361041.089889 | 1 | Received | 69 | Success
+1740361041.089924 | 1 | Corrupt ACK | 69 | Resent ACK
+1740361041.089963 | 1 | Resent | 69 | Incorrect ACK
+1740361041.090003 | 1 | Sent | 69 | Success
+1740361041.090035 | 1 | Corrupt Packet | 69 | Resent ACK
+1740361041.090112 | 0 | Sent | 96 | Success
+1740361041.090145 | 0 | Received | 96 | Success
+1740361041.090177 | 0 | Corrupt ACK | 96 | Resent ACK
+1740361041.090218 | 0 | Resent | 96 | Incorrect ACK
+1740361041.09026 | 0 | Sent | 96 | Success
+1740361041.090291 | 0 | Corrupt Packet | 96 | Resent ACK
+1740361041.090369 | 1 | Sent | 37 | Success
+1740361041.0904021 | 1 | Received | 37 | Success
+1740361041.090477 | 0 | Sent | 197 | Success
+1740361041.0905118 | 0 | Received | 197 | Success
+1740361041.090545 | 0 | Corrupt ACK | 197 | Resent ACK
+1740361041.0905821 | 0 | Resent | 197 | Incorrect ACK
+1740361041.0906198 | 0 | Sent | 197 | Success
+1740361041.090653 | 0 | Corrupt Packet | 197 | Resent ACK
+1740361041.090728 | 1 | Sent | 198 | Success
+1740361041.0907588 | 1 | Received | 198 | Success
+1740361041.090792 | 1 | Corrupt ACK | 198 | Resent ACK
+1740361041.090834 | 1 | Resent | 198 | Incorrect ACK
+1740361041.090875 | 1 | Sent | 198 | Success
+1740361041.0909069 | 1 | Corrupt Packet | 198 | Resent ACK
+1740361041.090986 | 0 | Sent | 174 | Success
+1740361041.091018 | 0 | Received | 174 | Success
+1740361041.091053 | 0 | Corrupt ACK | 174 | Resent ACK
+1740361041.091091 | 0 | Resent | 174 | Incorrect ACK
+1740361041.09113 | 0 | Sent | 174 | Success
+1740361041.091166 | 0 | Corrupt Packet | 174 | Resent ACK
+1740361041.091253 | 1 | Sent | 42 | Success
+1740361041.091286 | 1 | Received | 42 | Success
+1740361041.091368 | 0 | Sent | 85 | Success
+1740361041.0914009 | 0 | Received | 85 | Success
+1740361041.091434 | 0 | Corrupt ACK | 85 | Resent ACK
+1740361041.091478 | 0 | Resent | 85 | Incorrect ACK
+1740361041.0915148 | 0 | Sent | 85 | Success
+1740361041.091551 | 0 | Corrupt Packet | 85 | Resent ACK
+1740361041.091629 | 1 | Sent | 49 | Success
+1740361041.091661 | 1 | Received | 49 | Success
+1740361041.091692 | 1 | Corrupt ACK | 49 | Resent ACK
+1740361041.0917308 | 1 | Resent | 49 | Incorrect ACK
+1740361041.091771 | 1 | Sent | 49 | Success
+1740361041.091805 | 1 | Corrupt Packet | 49 | Resent ACK
+1740361041.091886 | 0 | Sent | 143 | Success
+1740361041.0919209 | 0 | Received | 143 | Success
+1740361041.091952 | 0 | Corrupt ACK | 143 | Resent ACK
+1740361041.091989 | 0 | Resent | 143 | Incorrect ACK
+1740361041.092025 | 0 | Sent | 143 | Success
+1740361041.0920599 | 0 | Corrupt Packet | 143 | Resent ACK
+1740361041.092138 | 1 | Sent | 217 | Success
+1740361041.0921721 | 1 | Received | 217 | Success
+1740361041.092248 | 0 | Sent | 14 | Success
+1740361041.0922828 | 0 | Received | 14 | Success
+1740361041.092315 | 0 | Corrupt ACK | 14 | Resent ACK
+1740361041.092355 | 0 | Resent | 14 | Incorrect ACK
+1740361041.0923898 | 0 | Sent | 14 | Success
+1740361041.092423 | 0 | Corrupt Packet | 14 | Resent ACK
+1740361041.0924978 | 1 | Sent | 136 | Success
+1740361041.09253 | 1 | Received | 136 | Success
+1740361041.0925598 | 1 | Corrupt ACK | 136 | Resent ACK
+1740361041.092597 | 1 | Resent | 136 | Incorrect ACK
+1740361041.0926342 | 1 | Sent | 136 | Success
+1740361041.092669 | 1 | Corrupt Packet | 136 | Resent ACK
+1740361041.09277 | 0 | Sent | 154 | Success
+1740361041.0928051 | 0 | Received | 154 | Success
+1740361041.0928361 | 0 | Corrupt ACK | 154 | Resent ACK
+1740361041.092878 | 0 | Resent | 154 | Incorrect ACK
+1740361041.092921 | 0 | Sent | 154 | Success
+1740361041.092952 | 0 | Corrupt Packet | 154 | Resent ACK
+1740361041.0930429 | 1 | Sent | 57 | Success
+1740361041.093078 | 1 | Received | 57 | Success
+1740361041.093109 | 1 | Corrupt ACK | 57 | Resent ACK
+1740361041.09315 | 1 | Resent | 57 | Incorrect ACK
+1740361041.09319 | 1 | Sent | 57 | Success
+1740361041.0932229 | 1 | Corrupt Packet | 57 | Resent ACK
+1740361041.093306 | 0 | Sent | 213 | Success
+1740361041.093338 | 0 | Received | 213 | Success
+1740361041.093371 | 0 | Corrupt ACK | 213 | Resent ACK
+1740361041.093417 | 0 | Resent | 213 | Incorrect ACK
+1740361041.0934541 | 0 | Sent | 213 | Success
+1740361041.0934882 | 0 | Corrupt Packet | 213 | Resent ACK
+1740361041.093569 | 1 | Sent | 125 | Success
+1740361041.093602 | 1 | Received | 125 | Success
+1740361041.0936809 | 0 | Sent | 117 | Success
+1740361041.093714 | 0 | Received | 117 | Success
+1740361041.093745 | 0 | Corrupt ACK | 117 | Resent ACK
+1740361041.093786 | 0 | Resent | 117 | Incorrect ACK
+1740361041.093824 | 0 | Sent | 117 | Success
+1740361041.093856 | 0 | Corrupt Packet | 117 | Resent ACK
+1740361041.093933 | 1 | Sent | 213 | Success
+1740361041.093966 | 1 | Received | 213 | Success
+1740361041.094048 | 0 | Sent | 204 | Success
+1740361041.094079 | 0 | Received | 204 | Success
+1740361041.094115 | 0 | Corrupt ACK | 204 | Resent ACK
+1740361041.094153 | 0 | Resent | 204 | Incorrect ACK
+1740361041.094194 | 0 | Sent | 204 | Success
+1740361041.094305 | 0 | Corrupt Packet | 204 | Resent ACK
+1740361041.094387 | 1 | Sent | 113 | Success
+1740361041.0944252 | 1 | Received | 113 | Success
+1740361041.094461 | 1 | Corrupt ACK | 113 | Resent ACK
+1740361041.0945039 | 1 | Resent | 113 | Incorrect ACK
+1740361041.094544 | 1 | Sent | 113 | Success
+1740361041.0945761 | 1 | Corrupt Packet | 113 | Resent ACK
+1740361041.094707 | 0 | Sent | 90 | Success
+1740361041.094717 | 0 | Received | 90 | Success
+1740361041.094781 | 0 | Corrupt ACK | 90 | Resent ACK
+1740361041.094826 | 0 | Resent | 90 | Incorrect ACK
+1740361041.094887 | 0 | Sent | 90 | Success
+1740361041.094924 | 0 | Corrupt Packet | 90 | Resent ACK
+1740361041.0951538 | 1 | Sent | 110 | Success
+1740361041.095307 | 1 | Received | 110 | Success
+1740361041.095348 | 1 | Corrupt ACK | 110 | Resent ACK
+1740361041.09542 | 1 | Resent | 110 | Incorrect ACK
+1740361041.095499 | 1 | Sent | 110 | Success
+1740361041.095523 | 1 | Corrupt Packet | 110 | Resent ACK
+1740361041.0957172 | 0 | Received | 199 | Success
+1740361041.095686 | 0 | Sent | 199 | Success
+1740361041.095878 | 1 | Sent | 69 | Success
+1740361041.0959702 | 1 | Received | 69 | Success
+1740361041.0960279 | 1 | Corrupt ACK | 69 | Resent ACK
+1740361041.096096 | 1 | Resent | 69 | Incorrect ACK
+1740361041.0961611 | 1 | Sent | 69 | Success
+1740361041.0962062 | 1 | Corrupt Packet | 69 | Resent ACK
+1740361041.096344 | 0 | Sent | 27 | Success
+1740361041.096555 | 0 | Received | 27 | Success
+1740361041.096673 | 0 | Corrupt ACK | 27 | Resent ACK
+1740361041.09676 | 0 | Resent | 27 | Incorrect ACK
+1740361041.096828 | 0 | Sent | 27 | Success
+1740361041.096888 | 0 | Corrupt Packet | 27 | Resent ACK
+1740361041.097054 | 1 | Sent | 139 | Success
+1740361041.097103 | 1 | Received | 139 | Success
+1740361041.0972302 | 0 | Sent | 198 | Success
+1740361041.097279 | 0 | Received | 198 | Success
+1740361041.097333 | 0 | Corrupt ACK | 198 | Resent ACK
+1740361041.0973902 | 0 | Resent | 198 | Incorrect ACK
+1740361041.097449 | 0 | Sent | 198 | Success
+1740361041.0974982 | 0 | Corrupt Packet | 198 | Resent ACK
+1740361041.097619 | 1 | Sent | 35 | Success
+1740361041.097664 | 1 | Received | 35 | Success
+1740361041.097781 | 0 | Sent | 93 | Success
+1740361041.097826 | 0 | Received | 93 | Success
+1740361041.097876 | 0 | Corrupt ACK | 93 | Resent ACK
+1740361041.097934 | 0 | Resent | 93 | Incorrect ACK
+1740361041.097991 | 0 | Sent | 93 | Success
+1740361041.098034 | 0 | Corrupt Packet | 93 | Resent ACK
+1740361041.098187 | 1 | Sent | 91 | Success
+1740361041.098232 | 1 | Received | 91 | Success
+1740361041.098294 | 1 | Corrupt ACK | 91 | Resent ACK
+1740361041.098358 | 1 | Resent | 91 | Incorrect ACK
+1740361041.09842 | 1 | Sent | 91 | Success
+1740361041.098464 | 1 | Corrupt Packet | 91 | Resent ACK
+1740361041.098583 | 0 | Sent | 60 | Success
+1740361041.0986292 | 0 | Received | 60 | Success
+1740361041.098685 | 0 | Corrupt ACK | 60 | Resent ACK
+1740361041.098752 | 0 | Resent | 60 | Incorrect ACK
+1740361041.098815 | 0 | Sent | 60 | Success
+1740361041.0988648 | 0 | Corrupt Packet | 60 | Resent ACK
+1740361041.098994 | 1 | Sent | 200 | Success
+1740361041.09904 | 1 | Received | 200 | Success
+1740361041.0991879 | 0 | Sent | 18 | Success
+1740361041.099334 | 0 | Received | 18 | Success
+1740361041.099524 | 0 | Corrupt ACK | 18 | Resent ACK
+1740361041.099606 | 0 | Resent | 18 | Incorrect ACK
+1740361041.099673 | 0 | Sent | 18 | Success
+1740361041.099769 | 0 | Corrupt Packet | 18 | Resent ACK
+1740361041.0999649 | 1 | Sent | 176 | Success
+1740361041.100041 | 1 | Received | 176 | Success
+1740361041.100161 | 0 | Sent | 105 | Success
+1740361041.100209 | 0 | Received | 105 | Success
+1740361041.1002638 | 0 | Corrupt ACK | 105 | Resent ACK
+1740361041.100329 | 0 | Resent | 105 | Incorrect ACK
+1740361041.100389 | 0 | Sent | 105 | Success
+1740361041.1004338 | 0 | Corrupt Packet | 105 | Resent ACK
+1740361041.100551 | 1 | Sent | 237 | Success
+1740361041.100597 | 1 | Received | 237 | Success
+1740361041.100744 | 0 | Sent | 220 | Success
+1740361041.1007922 | 0 | Received | 220 | Success
+1740361041.1009111 | 1 | Sent | 132 | Success
+1740361041.10096 | 1 | Received | 132 | Success
+1740361041.101017 | 1 | Corrupt ACK | 132 | Resent ACK
+1740361041.101077 | 1 | Resent | 132 | Incorrect ACK
+1740361041.1011431 | 1 | Sent | 132 | Success
+1740361041.101197 | 1 | Corrupt Packet | 132 | Resent ACK
+1740361041.101301 | 0 | Sent | 95 | Success
+1740361041.101332 | 0 | Received | 95 | Success
+1740361041.101413 | 1 | Sent | 245 | Success
+1740361041.1014469 | 1 | Received | 245 | Success
+1740361041.1015282 | 0 | Sent | 184 | Success
+1740361041.101561 | 0 | Received | 184 | Success
+1740361041.101598 | 0 | Corrupt ACK | 184 | Resent ACK
+1740361041.101642 | 0 | Resent | 184 | Incorrect ACK
+1740361041.101683 | 0 | Sent | 184 | Success
+1740361041.1017148 | 0 | Corrupt Packet | 184 | Resent ACK
+1740361041.101799 | 1 | Sent | 44 | Success
+1740361041.101831 | 1 | Received | 44 | Success
+1740361041.101868 | 1 | Corrupt ACK | 44 | Resent ACK
+1740361041.101911 | 1 | Resent | 44 | Incorrect ACK
+1740361041.101954 | 1 | Sent | 44 | Success
+1740361041.101985 | 1 | Corrupt Packet | 44 | Resent ACK
+1740361041.1020658 | 0 | Sent | 183 | Success
+1740361041.102099 | 0 | Received | 183 | Success
+1740361041.102137 | 0 | Corrupt ACK | 183 | Resent ACK
+1740361041.1021812 | 0 | Resent | 183 | Incorrect ACK
+1740361041.10223 | 0 | Sent | 183 | Success
+1740361041.102263 | 0 | Corrupt Packet | 183 | Resent ACK
+1740361041.102345 | 1 | Sent | 165 | Success
+1740361041.102378 | 1 | Received | 165 | Success
+1740361041.1024141 | 1 | Corrupt ACK | 165 | Resent ACK
+1740361041.102458 | 1 | Resent | 165 | Incorrect ACK
+1740361041.1025019 | 1 | Sent | 165 | Success
+1740361041.102535 | 1 | Corrupt Packet | 165 | Resent ACK
+1740361041.102619 | 0 | Sent | 218 | Success
+1740361041.102653 | 0 | Received | 218 | Success
+1740361041.1026912 | 0 | Corrupt ACK | 218 | Resent ACK
+1740361041.1027389 | 0 | Resent | 218 | Incorrect ACK
+1740361041.102783 | 0 | Sent | 218 | Success
+1740361041.102816 | 0 | Corrupt Packet | 218 | Resent ACK
+1740361041.102902 | 1 | Sent | 111 | Success
+1740361041.1029382 | 1 | Received | 111 | Success
+1740361041.1030211 | 0 | Sent | 117 | Success
+1740361041.103057 | 0 | Received | 117 | Success
+1740361041.1030972 | 0 | Corrupt ACK | 117 | Resent ACK
+1740361041.103148 | 0 | Resent | 117 | Incorrect ACK
+1740361041.1031911 | 0 | Sent | 117 | Success
+1740361041.103224 | 0 | Corrupt Packet | 117 | Resent ACK
+1740361041.1033049 | 1 | Sent | 237 | Success
+1740361041.103338 | 1 | Received | 237 | Success
+1740361041.103456 | 0 | Sent | 217 | Success
+1740361041.103487 | 0 | Received | 217 | Success
+1740361041.103519 | 0 | Corrupt ACK | 217 | Resent ACK
+1740361041.1035578 | 0 | Resent | 217 | Incorrect ACK
+1740361041.103595 | 0 | Sent | 217 | Success
+1740361041.103627 | 0 | Corrupt Packet | 217 | Resent ACK
+1740361041.1037078 | 1 | Sent | 1 | Success
+1740361041.103741 | 1 | Received | 1 | Success
+1740361041.103837 | 0 | Sent | 18 | Success
+1740361041.1038668 | 0 | Received | 18 | Success
+1740361041.103977 | 0 | Corrupt ACK | 18 | Resent ACK
+1740361041.1040351 | 0 | Resent | 18 | Incorrect ACK
+1740361041.1040819 | 0 | Sent | 18 | Success
+1740361041.104158 | 0 | Corrupt Packet | 18 | Resent ACK
+1740361041.104346 | 1 | Received | 50 | Success
+1740361041.104376 | 1 | Corrupt ACK | 50 | Resent ACK
+1740361041.104384 | 1 | Sent | 50 | Success
+1740361041.1044931 | 1 | Resent | 50 | Incorrect ACK
+1740361041.104534 | 1 | Sent | 50 | Success
+1740361041.104586 | 1 | Corrupt Packet | 50 | Resent ACK
+1740361041.1046982 | 0 | Sent | 154 | Success
+1740361041.1048388 | 0 | Received | 154 | Success
+1740361041.1050298 | 1 | Sent | 150 | Success
+1740361041.1052291 | 1 | Received | 150 | Success
+1740361041.105365 | 0 | Sent | 79 | Success
+1740361041.1054442 | 0 | Received | 79 | Success
+1740361041.105552 | 1 | Sent | 97 | Success
+1740361041.1055841 | 1 | Received | 97 | Success
+1740361041.105678 | 0 | Sent | 112 | Success
+1740361041.105717 | 0 | Received | 112 | Success
+1740361041.105802 | 1 | Sent | 83 | Success
+1740361041.105835 | 1 | Received | 83 | Success
+1740361041.105868 | 1 | Corrupt ACK | 83 | Resent ACK
+1740361041.1059048 | 1 | Resent | 83 | Incorrect ACK
+1740361041.105942 | 1 | Sent | 83 | Success
+1740361041.105977 | 1 | Corrupt Packet | 83 | Resent ACK
+1740361041.106053 | 0 | Sent | 95 | Success
+1740361041.106088 | 0 | Received | 95 | Success
+1740361041.106164 | 1 | Sent | 142 | Success
+1740361041.106199 | 1 | Received | 142 | Success
+1740361041.10623 | 1 | Corrupt ACK | 142 | Resent ACK
+1740361041.106266 | 1 | Resent | 142 | Incorrect ACK
+1740361041.106304 | 1 | Sent | 142 | Success
+1740361041.106336 | 1 | Corrupt Packet | 142 | Resent ACK
+1740361041.106409 | 0 | Sent | 233 | Success
+1740361041.1064441 | 0 | Received | 233 | Success
+1740361041.106482 | 0 | Corrupt ACK | 233 | Resent ACK
+1740361041.106522 | 0 | Resent | 233 | Incorrect ACK
+1740361041.106557 | 0 | Sent | 233 | Success
+1740361041.106592 | 0 | Corrupt Packet | 233 | Resent ACK
+1740361041.1066701 | 1 | Sent | 211 | Success
+1740361041.106702 | 1 | Received | 211 | Success
+1740361041.106733 | 1 | Corrupt ACK | 211 | Resent ACK
+1740361041.106771 | 1 | Resent | 211 | Incorrect ACK
+1740361041.10681 | 1 | Sent | 211 | Success
+1740361041.1068459 | 1 | Corrupt Packet | 211 | Resent ACK
+1740361041.106925 | 0 | Sent | 102 | Success
+1740361041.106957 | 0 | Received | 102 | Success
+1740361041.107032 | 1 | Sent | 76 | Success
+1740361041.1070652 | 1 | Received | 76 | Success
+1740361041.107137 | 0 | Sent | 135 | Success
+1740361041.107169 | 0 | Received | 135 | Success
+1740361041.107198 | 0 | Corrupt ACK | 135 | Resent ACK
+1740361041.107233 | 0 | Resent | 135 | Incorrect ACK
+1740361041.1072671 | 0 | Sent | 135 | Success
+1740361041.1072981 | 0 | Corrupt Packet | 135 | Resent ACK
+1740361041.107372 | 1 | Sent | 3 | Success
+1740361041.107405 | 1 | Received | 3 | Success
+1740361041.1074822 | 0 | Sent | 81 | Success
+1740361041.1075141 | 0 | Received | 81 | Success
+1740361041.107585 | 1 | Sent | 84 | Success
+1740361041.1076171 | 1 | Received | 84 | Success
+1740361041.10769 | 0 | Sent | 217 | Success
+1740361041.107723 | 0 | Received | 217 | Success
+1740361041.107759 | 0 | Corrupt ACK | 217 | Resent ACK
+1740361041.107796 | 0 | Resent | 217 | Incorrect ACK
+1740361041.1078348 | 0 | Sent | 217 | Success
+1740361041.107866 | 0 | Corrupt Packet | 217 | Resent ACK
+1740361041.107939 | 1 | Sent | 215 | Success
+1740361041.10797 | 1 | Received | 215 | Success
+1740361041.107999 | 1 | Corrupt ACK | 215 | Resent ACK
+1740361041.108036 | 1 | Resent | 215 | Incorrect ACK
+1740361041.1081011 | 1 | Sent | 215 | Success
+1740361041.108165 | 1 | Corrupt Packet | 215 | Resent ACK
+1740361041.108277 | 0 | Sent | 38 | Success
+1740361041.1083221 | 0 | Received | 38 | Success
+1740361041.108428 | 1 | Sent | 195 | Success
+1740361041.108474 | 1 | Received | 195 | Success
+1740361041.1085188 | 1 | Corrupt ACK | 195 | Resent ACK
+1740361041.108574 | 1 | Resent | 195 | Incorrect ACK
+1740361041.108628 | 1 | Sent | 195 | Success
+1740361041.108675 | 1 | Corrupt Packet | 195 | Resent ACK
+1740361041.108798 | 0 | Sent | 239 | Success
+1740361041.108844 | 0 | Received | 239 | Success
+1740361041.108895 | 0 | Corrupt ACK | 239 | Resent ACK
+1740361041.1089559 | 0 | Resent | 239 | Incorrect ACK
+1740361041.1090162 | 0 | Sent | 239 | Success
+1740361041.109063 | 0 | Corrupt Packet | 239 | Resent ACK
+1740361041.10917 | 1 | Sent | 180 | Success
+1740361041.109216 | 1 | Received | 180 | Success
+1740361041.109397 | 0 | Sent | 182 | Success
+1740361041.109441 | 0 | Received | 182 | Success
+1740361041.109476 | 0 | Corrupt ACK | 182 | Resent ACK
+1740361041.109518 | 0 | Resent | 182 | Incorrect ACK
+1740361041.1095731 | 0 | Sent | 182 | Success
+1740361041.109608 | 0 | Corrupt Packet | 182 | Resent ACK
+1740361041.109736 | 1 | Sent | 97 | Success
+1740361041.109801 | 1 | Received | 97 | Success
+1740361041.1098502 | 1 | Corrupt ACK | 97 | Resent ACK
+1740361041.1098921 | 1 | Resent | 97 | Incorrect ACK
+1740361041.1099331 | 1 | Sent | 97 | Success
+1740361041.110007 | 1 | Corrupt Packet | 97 | Resent ACK
+1740361041.110095 | 0 | Sent | 103 | Success
+1740361041.110135 | 0 | Received | 103 | Success
+1740361041.110228 | 1 | Sent | 195 | Success
+1740361041.110278 | 1 | Received | 195 | Success
+1740361041.110324 | 1 | Corrupt ACK | 195 | Resent ACK
+1740361041.110368 | 1 | Resent | 195 | Incorrect ACK
+1740361041.11041 | 1 | Sent | 195 | Success
+1740361041.110442 | 1 | Corrupt Packet | 195 | Resent ACK
+1740361041.11061 | 0 | Sent | 247 | Success
+1740361041.110668 | 0 | Received | 247 | Success
+1740361041.1107461 | 0 | Corrupt ACK | 247 | Resent ACK
+1740361041.110803 | 0 | Resent | 247 | Incorrect ACK
+1740361041.1108549 | 0 | Sent | 247 | Success
+1740361041.1108859 | 0 | Corrupt Packet | 247 | Resent ACK
+1740361041.1109629 | 1 | Sent | 254 | Success
+1740361041.110996 | 1 | Received | 254 | Success
+1740361041.111027 | 1 | Corrupt ACK | 254 | Resent ACK
+1740361041.111064 | 1 | Resent | 254 | Incorrect ACK
+1740361041.1111019 | 1 | Sent | 254 | Success
+1740361041.111134 | 1 | Corrupt Packet | 254 | Resent ACK
+1740361041.1112099 | 0 | Sent | 133 | Success
+1740361041.111242 | 0 | Received | 133 | Success
+1740361041.111273 | 0 | Corrupt ACK | 133 | Resent ACK
+1740361041.11131 | 0 | Resent | 133 | Incorrect ACK
+1740361041.111348 | 0 | Sent | 133 | Success
+1740361041.111379 | 0 | Corrupt Packet | 133 | Resent ACK
+1740361041.1114528 | 1 | Sent | 191 | Success
+1740361041.111486 | 1 | Received | 191 | Success
+1740361041.1115189 | 1 | Corrupt ACK | 191 | Resent ACK
+1740361041.1115599 | 1 | Resent | 191 | Incorrect ACK
+1740361041.111597 | 1 | Sent | 191 | Success
+1740361041.111628 | 1 | Corrupt Packet | 191 | Resent ACK
+1740361041.111701 | 0 | Sent | 242 | Success
+1740361041.111733 | 0 | Received | 242 | Success
+1740361041.1118112 | 1 | Sent | 113 | Success
+1740361041.1118422 | 1 | Received | 113 | Success
+1740361041.1119192 | 0 | Sent | 143 | Success
+1740361041.1119502 | 0 | Received | 143 | Success
+1740361041.1119812 | 0 | Corrupt ACK | 143 | Resent ACK
+1740361041.112036 | 0 | Resent | 143 | Incorrect ACK
+1740361041.112075 | 0 | Sent | 143 | Success
+1740361041.112106 | 0 | Corrupt Packet | 143 | Resent ACK
+1740361041.112191 | 1 | Sent | 141 | Success
+1740361041.112223 | 1 | Received | 141 | Success
+1740361041.1122591 | 1 | Corrupt ACK | 141 | Resent ACK
+1740361041.112297 | 1 | Resent | 141 | Incorrect ACK
+1740361041.112334 | 1 | Sent | 141 | Success
+1740361041.112366 | 1 | Corrupt Packet | 141 | Resent ACK
+1740361041.11244 | 0 | Sent | 36 | Success
+1740361041.11247 | 0 | Received | 36 | Success
+1740361041.112504 | 0 | Corrupt ACK | 36 | Resent ACK
+1740361041.112545 | 0 | Resent | 36 | Incorrect ACK
+1740361041.112609 | 0 | Sent | 36 | Success
+1740361041.112642 | 0 | Corrupt Packet | 36 | Resent ACK
+1740361041.1127198 | 1 | Sent | 54 | Success
+1740361041.112755 | 1 | Received | 54 | Success
+1740361041.1128378 | 0 | Sent | 214 | Success
+1740361041.112874 | 0 | Received | 214 | Success
+1740361041.112913 | 0 | Corrupt ACK | 214 | Resent ACK
+1740361041.113015 | 0 | Resent | 214 | Incorrect ACK
+1740361041.113075 | 0 | Sent | 214 | Success
+1740361041.113096 | 0 | Corrupt Packet | 214 | Resent ACK
+1740361041.113218 | 1 | Sent | 18 | Success
+1740361041.113284 | 1 | Received | 18 | Success
+1740361041.113317 | 1 | Corrupt ACK | 18 | Resent ACK
+1740361041.113371 | 1 | Resent | 18 | Incorrect ACK
+1740361041.113416 | 1 | Sent | 18 | Success
+1740361041.113495 | 1 | Corrupt Packet | 18 | Resent ACK
+1740361041.113652 | 0 | Received | 76 | Success
+1740361041.1136189 | 0 | Sent | 76 | Success
+1740361041.113712 | 0 | Corrupt ACK | 76 | Resent ACK
+1740361041.1137779 | 0 | Resent | 76 | Incorrect ACK
+1740361041.113887 | 0 | Sent | 76 | Success
+1740361041.113961 | 0 | Corrupt Packet | 76 | Resent ACK
+1740361041.114111 | 1 | Sent | 196 | Success
+1740361041.114172 | 1 | Received | 196 | Success
+1740361041.114211 | 1 | Corrupt ACK | 196 | Resent ACK
+1740361041.114347 | 1 | Resent | 196 | Incorrect ACK
+1740361041.1143959 | 1 | Sent | 196 | Success
+1740361041.1144571 | 1 | Corrupt Packet | 196 | Resent ACK
+1740361041.1145458 | 0 | Sent | 146 | Success
+1740361041.11458 | 0 | Received | 146 | Success
+1740361041.114665 | 1 | Sent | 141 | Success
+1740361041.114698 | 1 | Received | 141 | Success
+1740361041.114788 | 0 | Sent | 175 | Success
+1740361041.114827 | 0 | Received | 175 | Success
+1740361041.114868 | 0 | Corrupt ACK | 175 | Resent ACK
+1740361041.11491 | 0 | Resent | 175 | Incorrect ACK
+1740361041.114955 | 0 | Sent | 175 | Success
+1740361041.114999 | 0 | Corrupt Packet | 175 | Resent ACK
+1740361041.115115 | 1 | Sent | 91 | Success
+1740361041.115147 | 1 | Received | 91 | Success
+1740361041.11518 | 1 | Corrupt ACK | 91 | Resent ACK
+1740361041.115223 | 1 | Resent | 91 | Incorrect ACK
+1740361041.115263 | 1 | Sent | 91 | Success
+1740361041.115294 | 1 | Corrupt Packet | 91 | Resent ACK
+1740361041.115372 | 0 | Sent | 252 | Success
+1740361041.115405 | 0 | Received | 252 | Success
+1740361041.115446 | 0 | Corrupt ACK | 252 | Resent ACK
+1740361041.115489 | 0 | Resent | 252 | Incorrect ACK
+1740361041.115526 | 0 | Sent | 252 | Success
+1740361041.1155589 | 0 | Corrupt Packet | 252 | Resent ACK
+1740361041.115641 | 1 | Sent | 243 | Success
+1740361041.115673 | 1 | Received | 243 | Success
+1740361041.115752 | 0 | Sent | 134 | Success
+1740361041.115785 | 0 | Received | 134 | Success
+1740361041.1158662 | 1 | Sent | 180 | Success
+1740361041.1158988 | 1 | Received | 180 | Success
+1740361041.1159801 | 0 | Sent | 72 | Success
+1740361041.116013 | 0 | Received | 72 | Success
+1740361041.116045 | 0 | Corrupt ACK | 72 | Resent ACK
+1740361041.116089 | 0 | Resent | 72 | Incorrect ACK
+1740361041.116129 | 0 | Sent | 72 | Success
+1740361041.116161 | 0 | Corrupt Packet | 72 | Resent ACK
+1740361041.1162581 | 1 | Sent | 6 | Success
+1740361041.116287 | 1 | Received | 6 | Success
+1740361041.1163251 | 1 | Corrupt ACK | 6 | Resent ACK
+1740361041.116375 | 1 | Resent | 6 | Incorrect ACK
+1740361041.116416 | 1 | Sent | 6 | Success
+1740361041.116448 | 1 | Corrupt Packet | 6 | Resent ACK
+1740361041.116543 | 0 | Sent | 49 | Success
+1740361041.116577 | 0 | Received | 49 | Success
+1740361041.1166122 | 0 | Corrupt ACK | 49 | Resent ACK
+1740361041.1166542 | 0 | Resent | 49 | Incorrect ACK
+1740361041.116692 | 0 | Sent | 49 | Success
+1740361041.11674 | 0 | Corrupt Packet | 49 | Resent ACK
+1740361041.116823 | 1 | Sent | 200 | Success
+1740361041.1168551 | 1 | Received | 200 | Success
+1740361041.116891 | 1 | Corrupt ACK | 200 | Resent ACK
+1740361041.11693 | 1 | Resent | 200 | Incorrect ACK
+1740361041.116972 | 1 | Sent | 200 | Success
+1740361041.117005 | 1 | Corrupt Packet | 200 | Resent ACK
+1740361041.1170828 | 0 | Sent | 137 | Success
+1740361041.1171148 | 0 | Received | 137 | Success
+1740361041.1171808 | 0 | Corrupt ACK | 137 | Resent ACK
+1740361041.117223 | 0 | Resent | 137 | Incorrect ACK
+1740361041.117266 | 0 | Sent | 137 | Success
+1740361041.1172962 | 0 | Corrupt Packet | 137 | Resent ACK
+1740361041.117374 | 1 | Sent | 103 | Success
+1740361041.117407 | 1 | Received | 103 | Success
+1740361041.117486 | 0 | Sent | 135 | Success
+1740361041.1175191 | 0 | Received | 135 | Success
+1740361041.117603 | 1 | Sent | 158 | Success
+1740361041.1176372 | 1 | Received | 158 | Success
+1740361041.1176698 | 1 | Corrupt ACK | 158 | Resent ACK
+1740361041.11771 | 1 | Resent | 158 | Incorrect ACK
+1740361041.117748 | 1 | Sent | 158 | Success
+1740361041.1178 | 1 | Corrupt Packet | 158 | Resent ACK
+1740361041.11788 | 0 | Sent | 57 | Success
+1740361041.117909 | 0 | Received | 57 | Success
+1740361041.1179898 | 1 | Sent | 68 | Success
+1740361041.118023 | 1 | Received | 68 | Success
+1740361041.1181068 | 0 | Sent | 89 | Success
+1740361041.118138 | 0 | Received | 89 | Success
+1740361041.118218 | 1 | Sent | 208 | Success
+1740361041.118252 | 1 | Received | 208 | Success
+1740361041.1183271 | 0 | Sent | 79 | Success
+1740361041.118358 | 0 | Received | 79 | Success
+1740361041.11839 | 0 | Corrupt ACK | 79 | Resent ACK
+1740361041.118429 | 0 | Resent | 79 | Incorrect ACK
+1740361041.118468 | 0 | Sent | 79 | Success
+1740361041.1185238 | 0 | Corrupt Packet | 79 | Resent ACK
+1740361041.118603 | 1 | Sent | 21 | Success
+1740361041.118637 | 1 | Received | 21 | Success
+1740361041.1186728 | 1 | Corrupt ACK | 21 | Resent ACK
+1740361041.118718 | 1 | Resent | 21 | Incorrect ACK
+1740361041.118756 | 1 | Sent | 21 | Success
+1740361041.118793 | 1 | Corrupt Packet | 21 | Resent ACK
+1740361041.11887 | 0 | Sent | 197 | Success
+1740361041.118901 | 0 | Received | 197 | Success
+1740361041.118934 | 0 | Corrupt ACK | 197 | Resent ACK
+1740361041.118974 | 0 | Resent | 197 | Incorrect ACK
+1740361041.119012 | 0 | Sent | 197 | Success
+1740361041.119065 | 0 | Corrupt Packet | 197 | Resent ACK
+1740361041.1191459 | 1 | Sent | 178 | Success
+1740361041.1191769 | 1 | Received | 178 | Success
+1740361041.119221 | 1 | Corrupt ACK | 178 | Resent ACK
+1740361041.119282 | 1 | Resent | 178 | Incorrect ACK
+1740361041.119321 | 1 | Sent | 178 | Success
+1740361041.119369 | 1 | Corrupt Packet | 178 | Resent ACK
+1740361041.11945 | 0 | Sent | 11 | Success
+1740361041.119483 | 0 | Received | 11 | Success
+1740361041.1195168 | 0 | Corrupt ACK | 11 | Resent ACK
+1740361041.1195571 | 0 | Resent | 11 | Incorrect ACK
+1740361041.1196 | 0 | Sent | 11 | Success
+1740361041.1196349 | 0 | Corrupt Packet | 11 | Resent ACK
+1740361041.119714 | 1 | Sent | 28 | Success
+1740361041.119746 | 1 | Received | 28 | Success
+1740361041.1198342 | 0 | Sent | 47 | Success
+1740361041.1198668 | 0 | Received | 47 | Success
+1740361041.1199071 | 0 | Corrupt ACK | 47 | Resent ACK
+1740361041.119949 | 0 | Resent | 47 | Incorrect ACK
+1740361041.11999 | 0 | Sent | 47 | Success
+1740361041.120022 | 0 | Corrupt Packet | 47 | Resent ACK
+1740361041.120097 | 1 | Sent | 135 | Success
+1740361041.120128 | 1 | Received | 135 | Success
+1740361041.12016 | 1 | Corrupt ACK | 135 | Resent ACK
+1740361041.1201978 | 1 | Resent | 135 | Incorrect ACK
+1740361041.1202419 | 1 | Sent | 135 | Success
+1740361041.1202822 | 1 | Corrupt Packet | 135 | Resent ACK
+1740361041.120362 | 0 | Sent | 77 | Success
+1740361041.120395 | 0 | Received | 77 | Success
+1740361041.120427 | 0 | Corrupt ACK | 77 | Resent ACK
+1740361041.120467 | 0 | Resent | 77 | Incorrect ACK
+1740361041.120506 | 0 | Sent | 77 | Success
+1740361041.120539 | 0 | Corrupt Packet | 77 | Resent ACK
+1740361041.120615 | 1 | Sent | 27 | Success
+1740361041.120648 | 1 | Received | 27 | Success
+1740361041.1206841 | 1 | Corrupt ACK | 27 | Resent ACK
+1740361041.120725 | 1 | Resent | 27 | Incorrect ACK
+1740361041.120765 | 1 | Sent | 27 | Success
+1740361041.1207979 | 1 | Corrupt Packet | 27 | Resent ACK
+1740361041.120877 | 0 | Sent | 19 | Success
+1740361041.1209111 | 0 | Received | 19 | Success
+1740361041.1210299 | 1 | Received | 237 | Success
+1740361041.121067 | 1 | Corrupt ACK | 237 | Resent ACK
+1740361041.121006 | 1 | Sent | 237 | Success
+1740361041.121184 | 1 | Resent | 237 | Incorrect ACK
+1740361041.121259 | 1 | Corrupt Packet | 237 | Resent ACK
+1740361041.121234 | 1 | Sent | 237 | Success
+1740361041.121422 | 0 | Sent | 252 | Success
+1740361041.121451 | 0 | Received | 252 | Success
+1740361041.121495 | 0 | Corrupt ACK | 252 | Resent ACK
+1740361041.121537 | 0 | Resent | 252 | Incorrect ACK
+1740361041.1216252 | 0 | Corrupt Packet | 252 | Resent ACK
+1740361041.1215732 | 0 | Sent | 252 | Success
+1740361041.121734 | 1 | Sent | 63 | Success
+1740361041.121773 | 1 | Received | 63 | Success
+1740361041.121805 | 1 | Corrupt ACK | 63 | Resent ACK
+1740361041.121901 | 1 | Resent | 63 | Incorrect ACK
+1740361041.121939 | 1 | Sent | 63 | Success
+1740361041.121978 | 1 | Corrupt Packet | 63 | Resent ACK
+1740361041.122071 | 0 | Sent | 2 | Success
+1740361041.122138 | 0 | Received | 2 | Success
+1740361041.122241 | 1 | Sent | 54 | Success
+1740361041.122273 | 1 | Received | 54 | Success
+1740361041.1223528 | 0 | Sent | 14 | Success
+1740361041.1223848 | 0 | Received | 14 | Success
+1740361041.122416 | 0 | Corrupt ACK | 14 | Resent ACK
+1740361041.1224508 | 0 | Resent | 14 | Incorrect ACK
+1740361041.122487 | 0 | Sent | 14 | Success
+1740361041.122519 | 0 | Corrupt Packet | 14 | Resent ACK
+1740361041.122595 | 1 | Sent | 224 | Success
+1740361041.1226282 | 1 | Received | 224 | Success
+1740361041.122659 | 1 | Corrupt ACK | 224 | Resent ACK
+1740361041.1227 | 1 | Resent | 224 | Incorrect ACK
+1740361041.1227362 | 1 | Sent | 224 | Success
+1740361041.1227689 | 1 | Corrupt Packet | 224 | Resent ACK
+1740361041.122845 | 0 | Sent | 163 | Success
+1740361041.122876 | 0 | Received | 163 | Success
+1740361041.122905 | 0 | Corrupt ACK | 163 | Resent ACK
+1740361041.1229398 | 0 | Resent | 163 | Incorrect ACK
+1740361041.122974 | 0 | Sent | 163 | Success
+1740361041.1230059 | 0 | Corrupt Packet | 163 | Resent ACK
+1740361041.12308 | 1 | Sent | 40 | Success
+1740361041.123112 | 1 | Received | 40 | Success
+1740361041.1231449 | 1 | Corrupt ACK | 40 | Resent ACK
+1740361041.123179 | 1 | Resent | 40 | Incorrect ACK
+1740361041.123213 | 1 | Sent | 40 | Success
+1740361041.123245 | 1 | Corrupt Packet | 40 | Resent ACK
+1740361041.123317 | 0 | Sent | 39 | Success
+1740361041.123349 | 0 | Received | 39 | Success
+1740361041.1233768 | 0 | Corrupt ACK | 39 | Resent ACK
+1740361041.12341 | 0 | Resent | 39 | Incorrect ACK
+1740361041.123444 | 0 | Sent | 39 | Success
+1740361041.123474 | 0 | Corrupt Packet | 39 | Resent ACK
+1740361041.1235452 | 1 | Sent | 24 | Success
+1740361041.123578 | 1 | Received | 24 | Success
+1740361041.123609 | 1 | Corrupt ACK | 24 | Resent ACK
+1740361041.1236448 | 1 | Resent | 24 | Incorrect ACK
+1740361041.12368 | 1 | Sent | 24 | Success
+1740361041.123713 | 1 | Corrupt Packet | 24 | Resent ACK
+1740361041.123785 | 0 | Sent | 183 | Success
+1740361041.123818 | 0 | Received | 183 | Success
+1740361041.12389 | 1 | Sent | 30 | Success
+1740361041.123926 | 1 | Received | 30 | Success
+1740361041.123959 | 1 | Corrupt ACK | 30 | Resent ACK
+1740361041.123997 | 1 | Resent | 30 | Incorrect ACK
+1740361041.124031 | 1 | Sent | 30 | Success
+1740361041.124064 | 1 | Corrupt Packet | 30 | Resent ACK
+1740361041.1241338 | 0 | Sent | 132 | Success
+1740361041.124165 | 0 | Received | 132 | Success
+1740361041.124193 | 0 | Corrupt ACK | 132 | Resent ACK
+1740361041.124256 | 0 | Resent | 132 | Incorrect ACK
+1740361041.124306 | 0 | Sent | 132 | Success
+1740361041.124352 | 0 | Corrupt Packet | 132 | Resent ACK
+1740361041.124439 | 1 | Sent | 132 | Success
+1740361041.1244721 | 1 | Received | 132 | Success
+1740361041.1245031 | 1 | Corrupt ACK | 132 | Resent ACK
+1740361041.1245382 | 1 | Resent | 132 | Incorrect ACK
+1740361041.124573 | 1 | Sent | 132 | Success
+1740361041.124606 | 1 | Corrupt Packet | 132 | Resent ACK
+1740361041.124683 | 0 | Sent | 213 | Success
+1740361041.124715 | 0 | Received | 213 | Success
+1740361041.124795 | 1 | Sent | 244 | Success
+1740361041.124835 | 1 | Received | 244 | Success
+1740361041.1249301 | 0 | Sent | 21 | Success
+1740361041.124963 | 0 | Received | 21 | Success
+1740361041.125034 | 0 | Corrupt ACK | 21 | Resent ACK
+1740361041.125076 | 0 | Resent | 21 | Incorrect ACK
+1740361041.125112 | 0 | Sent | 21 | Success
+1740361041.125144 | 0 | Corrupt Packet | 21 | Resent ACK
+1740361041.12522 | 1 | Sent | 121 | Success
+1740361041.125252 | 1 | Received | 121 | Success
+1740361041.125283 | 1 | Corrupt ACK | 121 | Resent ACK
+1740361041.125321 | 1 | Resent | 121 | Incorrect ACK
+1740361041.125359 | 1 | Sent | 121 | Success
+1740361041.125389 | 1 | Corrupt Packet | 121 | Resent ACK
+1740361041.125466 | 0 | Sent | 85 | Success
+1740361041.1255 | 0 | Received | 85 | Success
+1740361041.125578 | 1 | Sent | 144 | Success
+1740361041.125611 | 1 | Received | 144 | Success
+1740361041.125646 | 1 | Corrupt ACK | 144 | Resent ACK
+1740361041.125686 | 1 | Resent | 144 | Incorrect ACK
+1740361041.125723 | 1 | Sent | 144 | Success
+1740361041.1257558 | 1 | Corrupt Packet | 144 | Resent ACK
+1740361041.1258318 | 0 | Sent | 198 | Success
+1740361041.125864 | 0 | Received | 198 | Success
+1740361041.125895 | 0 | Corrupt ACK | 198 | Resent ACK
+1740361041.1259332 | 0 | Resent | 198 | Incorrect ACK
+1740361041.125973 | 0 | Sent | 198 | Success
+1740361041.126009 | 0 | Corrupt Packet | 198 | Resent ACK
+1740361041.126086 | 1 | Sent | 88 | Success
+1740361041.126118 | 1 | Received | 88 | Success
+1740361041.126204 | 0 | Sent | 25 | Success
+1740361041.126237 | 0 | Received | 25 | Success
+1740361041.126322 | 1 | Sent | 203 | Success
+1740361041.126354 | 1 | Received | 203 | Success
+1740361041.126431 | 0 | Sent | 65 | Success
+1740361041.126466 | 0 | Received | 65 | Success
+1740361041.126497 | 0 | Corrupt ACK | 65 | Resent ACK
+1740361041.126533 | 0 | Resent | 65 | Incorrect ACK
+1740361041.12657 | 0 | Sent | 65 | Success
+1740361041.126605 | 0 | Corrupt Packet | 65 | Resent ACK
+1740361041.126703 | 1 | Sent | 94 | Success
+1740361041.126736 | 1 | Received | 94 | Success
+1740361041.126766 | 1 | Corrupt ACK | 94 | Resent ACK
+1740361041.126802 | 1 | Resent | 94 | Incorrect ACK
+1740361041.12684 | 1 | Sent | 94 | Success
+1740361041.126871 | 1 | Corrupt Packet | 94 | Resent ACK
+1740361041.1269472 | 0 | Sent | 196 | Success
+1740361041.12698 | 0 | Received | 196 | Success
+1740361041.127054 | 1 | Sent | 105 | Success
+1740361041.127087 | 1 | Received | 105 | Success
+1740361041.127116 | 1 | Corrupt ACK | 105 | Resent ACK
+1740361041.1271539 | 1 | Resent | 105 | Incorrect ACK
+1740361041.12719 | 1 | Sent | 105 | Success
+1740361041.127221 | 1 | Corrupt Packet | 105 | Resent ACK
+1740361041.127296 | 0 | Sent | 66 | Success
+1740361041.12733 | 0 | Received | 66 | Success
+1740361041.127407 | 1 | Sent | 120 | Success
+1740361041.12744 | 1 | Received | 120 | Success
+1740361041.1275132 | 0 | Sent | 45 | Success
+1740361041.127545 | 0 | Received | 45 | Success
+1740361041.1275818 | 0 | Corrupt ACK | 45 | Resent ACK
+1740361041.127624 | 0 | Resent | 45 | Incorrect ACK
+1740361041.12766 | 0 | Sent | 45 | Success
+1740361041.127699 | 0 | Corrupt Packet | 45 | Resent ACK
+1740361041.1277802 | 1 | Sent | 210 | Success
+1740361041.1278138 | 1 | Received | 210 | Success
+1740361041.127845 | 1 | Corrupt ACK | 210 | Resent ACK
+1740361041.127882 | 1 | Resent | 210 | Incorrect ACK
+1740361041.127918 | 1 | Sent | 210 | Success
+1740361041.1279519 | 1 | Corrupt Packet | 210 | Resent ACK
+1740361041.12803 | 0 | Sent | 25 | Success
+1740361041.128062 | 0 | Received | 25 | Success
+1740361041.1280909 | 0 | Corrupt ACK | 25 | Resent ACK
+1740361041.1281269 | 0 | Resent | 25 | Incorrect ACK
+1740361041.128164 | 0 | Sent | 25 | Success
+1740361041.128198 | 0 | Corrupt Packet | 25 | Resent ACK
+1740361041.128273 | 1 | Sent | 137 | Success
+1740361041.128306 | 1 | Received | 137 | Success
+1740361041.128337 | 1 | Corrupt ACK | 137 | Resent ACK
+1740361041.128373 | 1 | Resent | 137 | Incorrect ACK
+1740361041.1284091 | 1 | Sent | 137 | Success
+1740361041.128441 | 1 | Corrupt Packet | 137 | Resent ACK
+1740361041.128515 | 0 | Sent | 139 | Success
+1740361041.1285481 | 0 | Received | 139 | Success
+1740361041.128628 | 1 | Sent | 180 | Success
+1740361041.12866 | 1 | Received | 180 | Success
+1740361041.128694 | 1 | Corrupt ACK | 180 | Resent ACK
+1740361041.128741 | 1 | Resent | 180 | Incorrect ACK
+1740361041.128777 | 1 | Sent | 180 | Success
+1740361041.12881 | 1 | Corrupt Packet | 180 | Resent ACK
+1740361041.128889 | 0 | Sent | 226 | Success
+1740361041.1289222 | 0 | Received | 226 | Success
+1740361041.128952 | 0 | Corrupt ACK | 226 | Resent ACK
+1740361041.128994 | 0 | Resent | 226 | Incorrect ACK
+1740361041.129042 | 0 | Sent | 226 | Success
+1740361041.129094 | 0 | Corrupt Packet | 226 | Resent ACK
+1740361041.129169 | 1 | Sent | 210 | Success
+1740361041.129226 | 1 | Received | 210 | Success
+1740361041.12935 | 0 | Sent | 251 | Success
+1740361041.129397 | 0 | Received | 251 | Success
+1740361041.129546 | 1 | Sent | 3 | Success
+1740361041.129579 | 1 | Received | 3 | Success
+1740361041.129725 | 0 | Sent | 155 | Success
+1740361041.1298292 | 0 | Received | 155 | Success
+1740361041.1299431 | 1 | Sent | 0 | Success
+1740361041.129992 | 1 | Received | 0 | Success
+1740361041.1301062 | 0 | Sent | 236 | Success
+1740361041.130173 | 0 | Received | 236 | Success
+1740361041.130292 | 0 | Corrupt ACK | 236 | Resent ACK
+1740361041.130393 | 0 | Resent | 236 | Incorrect ACK
+1740361041.1304572 | 0 | Sent | 236 | Success
+1740361041.130555 | 0 | Corrupt Packet | 236 | Resent ACK
+1740361041.130723 | 1 | Sent | 249 | Success
+1740361041.130808 | 1 | Received | 249 | Success
+1740361041.130857 | 1 | Corrupt ACK | 249 | Resent ACK
+1740361041.130955 | 1 | Resent | 249 | Incorrect ACK
+1740361041.131053 | 1 | Sent | 249 | Success
+1740361041.131104 | 1 | Corrupt Packet | 249 | Resent ACK
+1740361041.131263 | 0 | Sent | 237 | Success
+1740361041.1313112 | 0 | Received | 237 | Success
+1740361041.131357 | 0 | Corrupt ACK | 237 | Resent ACK
+1740361041.1314108 | 0 | Resent | 237 | Incorrect ACK
+1740361041.131464 | 0 | Sent | 237 | Success
+1740361041.1315231 | 0 | Corrupt Packet | 237 | Resent ACK
+1740361041.131685 | 1 | Received | 241 | Success
+1740361041.131639 | 1 | Sent | 241 | Success
+1740361041.131831 | 0 | Sent | 230 | Success
+1740361041.131882 | 0 | Received | 230 | Success
+1740361041.131928 | 0 | Corrupt ACK | 230 | Resent ACK
+1740361041.131998 | 0 | Resent | 230 | Incorrect ACK
+1740361041.132051 | 0 | Sent | 230 | Success
+1740361041.1321018 | 0 | Corrupt Packet | 230 | Resent ACK
+1740361041.132237 | 1 | Sent | 250 | Success
+1740361041.132289 | 1 | Received | 250 | Success
+1740361041.1323898 | 1 | Corrupt ACK | 250 | Resent ACK
+1740361041.1324759 | 1 | Resent | 250 | Incorrect ACK
+1740361041.132538 | 1 | Sent | 250 | Success
+1740361041.1325939 | 1 | Corrupt Packet | 250 | Resent ACK
+1740361041.132736 | 0 | Sent | 97 | Success
+1740361041.1328168 | 0 | Received | 97 | Success
+1740361041.132871 | 0 | Corrupt ACK | 97 | Resent ACK
+1740361041.1329322 | 0 | Resent | 97 | Incorrect ACK
+1740361041.132994 | 0 | Sent | 97 | Success
+1740361041.133055 | 0 | Corrupt Packet | 97 | Resent ACK
+1740361041.133186 | 1 | Sent | 159 | Success
+1740361041.133236 | 1 | Received | 159 | Success
+1740361041.1332831 | 1 | Corrupt ACK | 159 | Resent ACK
+1740361041.1333382 | 1 | Resent | 159 | Incorrect ACK
+1740361041.1333919 | 1 | Sent | 159 | Success
+1740361041.1334379 | 1 | Corrupt Packet | 159 | Resent ACK
+1740361041.133568 | 0 | Sent | 142 | Success
+1740361041.133615 | 0 | Received | 142 | Success
+1740361041.133661 | 0 | Corrupt ACK | 142 | Resent ACK
+1740361041.133718 | 0 | Resent | 142 | Incorrect ACK
+1740361041.133775 | 0 | Sent | 142 | Success
+1740361041.133821 | 0 | Corrupt Packet | 142 | Resent ACK
+1740361041.133933 | 1 | Sent | 172 | Success
+1740361041.133983 | 1 | Received | 172 | Success
+1740361041.134043 | 1 | Corrupt ACK | 172 | Resent ACK
+1740361041.134101 | 1 | Resent | 172 | Incorrect ACK
+1740361041.134157 | 1 | Sent | 172 | Success
+1740361041.134201 | 1 | Corrupt Packet | 172 | Resent ACK
+1740361041.134347 | 0 | Sent | 100 | Success
+1740361041.134418 | 0 | Received | 100 | Success
+1740361041.1344728 | 0 | Corrupt ACK | 100 | Resent ACK
+1740361041.134539 | 0 | Resent | 100 | Incorrect ACK
+1740361041.1346061 | 0 | Sent | 100 | Success
+1740361041.134639 | 0 | Corrupt Packet | 100 | Resent ACK
+1740361041.134763 | 1 | Sent | 55 | Success
+1740361041.134797 | 1 | Received | 55 | Success
+1740361041.134887 | 0 | Sent | 203 | Success
+1740361041.134918 | 0 | Received | 203 | Success
+1740361041.134995 | 1 | Sent | 171 | Success
+1740361041.135028 | 1 | Received | 171 | Success
+1740361041.13506 | 1 | Corrupt ACK | 171 | Resent ACK
+1740361041.135097 | 1 | Resent | 171 | Incorrect ACK
+1740361041.1351318 | 1 | Sent | 171 | Success
+1740361041.1351628 | 1 | Corrupt Packet | 171 | Resent ACK
+1740361041.135243 | 0 | Sent | 116 | Success
+1740361041.1352751 | 0 | Received | 116 | Success
+1740361041.135355 | 1 | Sent | 129 | Success
+1740361041.13539 | 1 | Received | 129 | Success
+1740361041.1354198 | 1 | Corrupt ACK | 129 | Resent ACK
+1740361041.1354601 | 1 | Resent | 129 | Incorrect ACK
+1740361041.1355 | 1 | Sent | 129 | Success
+1740361041.135533 | 1 | Corrupt Packet | 129 | Resent ACK
+1740361041.135627 | 0 | Sent | 132 | Success
+1740361041.13566 | 0 | Received | 132 | Success
+1740361041.13569 | 0 | Corrupt ACK | 132 | Resent ACK
+1740361041.135726 | 0 | Resent | 132 | Incorrect ACK
+1740361041.135763 | 0 | Sent | 132 | Success
+1740361041.135798 | 0 | Corrupt Packet | 132 | Resent ACK
+1740361041.1358771 | 1 | Sent | 159 | Success
+1740361041.1359098 | 1 | Received | 159 | Success
+1740361041.135941 | 1 | Corrupt ACK | 159 | Resent ACK
+1740361041.135985 | 1 | Resent | 159 | Incorrect ACK
+1740361041.136021 | 1 | Sent | 159 | Success
+1740361041.1360698 | 1 | Corrupt Packet | 159 | Resent ACK
+1740361041.136147 | 0 | Sent | 134 | Success
+1740361041.1361809 | 0 | Received | 134 | Success
+1740361041.136211 | 0 | Corrupt ACK | 134 | Resent ACK
+1740361041.136248 | 0 | Resent | 134 | Incorrect ACK
+1740361041.136286 | 0 | Sent | 134 | Success
+1740361041.136318 | 0 | Corrupt Packet | 134 | Resent ACK
+1740361041.136395 | 1 | Sent | 63 | Success
+1740361041.136427 | 1 | Received | 63 | Success
+1740361041.13646 | 1 | Corrupt ACK | 63 | Resent ACK
+1740361041.136498 | 1 | Resent | 63 | Incorrect ACK
+1740361041.136534 | 1 | Sent | 63 | Success
+1740361041.136565 | 1 | Corrupt Packet | 63 | Resent ACK
+1740361041.136645 | 0 | Sent | 7 | Success
+1740361041.136679 | 0 | Received | 7 | Success
+1740361041.136711 | 0 | Corrupt ACK | 7 | Resent ACK
+1740361041.1367471 | 0 | Resent | 7 | Incorrect ACK
+1740361041.136788 | 0 | Sent | 7 | Success
+1740361041.136822 | 0 | Corrupt Packet | 7 | Resent ACK
+1740361041.136904 | 1 | Sent | 36 | Success
+1740361041.136938 | 1 | Received | 36 | Success
+1740361041.136968 | 1 | Corrupt ACK | 36 | Resent ACK
+1740361041.137006 | 1 | Resent | 36 | Incorrect ACK
+1740361041.1370409 | 1 | Sent | 36 | Success
+1740361041.137074 | 1 | Corrupt Packet | 36 | Resent ACK
+1740361041.137148 | 0 | Sent | 166 | Success
+1740361041.137182 | 0 | Received | 166 | Success
+1740361041.137213 | 0 | Corrupt ACK | 166 | Resent ACK
+1740361041.13725 | 0 | Resent | 166 | Incorrect ACK
+1740361041.137289 | 0 | Sent | 166 | Success
+1740361041.137322 | 0 | Corrupt Packet | 166 | Resent ACK
+1740361041.1374028 | 1 | Sent | 84 | Success
+1740361041.137435 | 1 | Received | 84 | Success
+1740361041.1374679 | 1 | Corrupt ACK | 84 | Resent ACK
+1740361041.137507 | 1 | Resent | 84 | Incorrect ACK
+1740361041.1375449 | 1 | Sent | 84 | Success
+1740361041.137577 | 1 | Corrupt Packet | 84 | Resent ACK
+1740361041.1376588 | 0 | Sent | 217 | Success
+1740361041.137693 | 0 | Received | 217 | Success
+1740361041.137769 | 1 | Sent | 179 | Success
+1740361041.137802 | 1 | Received | 179 | Success
+1740361041.137831 | 1 | Corrupt ACK | 179 | Resent ACK
+1740361041.137872 | 1 | Resent | 179 | Incorrect ACK
+1740361041.137909 | 1 | Sent | 179 | Success
+1740361041.138009 | 1 | Corrupt Packet | 179 | Resent ACK
+1740361041.138104 | 0 | Sent | 255 | Success
+1740361041.1381361 | 0 | Received | 255 | Success
+1740361041.138273 | 1 | Sent | 94 | Success
+1740361041.13835 | 1 | Received | 94 | Success
+1740361041.138485 | 0 | Sent | 90 | Success
+1740361041.138497 | 0 | Received | 90 | Success
+1740361041.138617 | 1 | Sent | 15 | Success
+1740361041.1386938 | 1 | Received | 15 | Success
+1740361041.138806 | 1 | Corrupt ACK | 15 | Resent ACK
+1740361041.13886 | 1 | Resent | 15 | Incorrect ACK
+1740361041.138904 | 1 | Sent | 15 | Success
+1740361041.138975 | 1 | Corrupt Packet | 15 | Resent ACK
+1740361041.139115 | 0 | Sent | 195 | Success
+1740361041.139149 | 0 | Received | 195 | Success
+1740361041.139317 | 1 | Sent | 11 | Success
+1740361041.1393569 | 1 | Received | 11 | Success
+1740361041.139454 | 0 | Sent | 140 | Success
+1740361041.139549 | 0 | Received | 140 | Success
+1740361041.139584 | 0 | Corrupt ACK | 140 | Resent ACK
+1740361041.139643 | 0 | Resent | 140 | Incorrect ACK
+1740361041.139682 | 0 | Sent | 140 | Success
+1740361041.139756 | 0 | Corrupt Packet | 140 | Resent ACK
+1740361041.1398342 | 1 | Sent | 212 | Success
+1740361041.139869 | 1 | Received | 212 | Success
+1740361041.139904 | 1 | Corrupt ACK | 212 | Resent ACK
+1740361041.139943 | 1 | Resent | 212 | Incorrect ACK
+1740361041.139981 | 1 | Sent | 212 | Success
+1740361041.1400142 | 1 | Corrupt Packet | 212 | Resent ACK
+1740361041.1400902 | 0 | Sent | 74 | Success
+1740361041.14013 | 0 | Received | 74 | Success
+1740361041.14021 | 1 | Sent | 229 | Success
+1740361041.140244 | 1 | Received | 229 | Success
+1740361041.140277 | 1 | Corrupt ACK | 229 | Resent ACK
+1740361041.140318 | 1 | Resent | 229 | Incorrect ACK
+1740361041.140356 | 1 | Sent | 229 | Success
+1740361041.1404061 | 1 | Corrupt Packet | 229 | Resent ACK
+1740361041.140484 | 0 | Sent | 103 | Success
+1740361041.1405172 | 0 | Received | 103 | Success
+1740361041.1406012 | 1 | Sent | 82 | Success
+1740361041.140634 | 1 | Received | 82 | Success
+1740361041.1406631 | 1 | Corrupt ACK | 82 | Resent ACK
+1740361041.140707 | 1 | Resent | 82 | Incorrect ACK
+1740361041.140743 | 1 | Sent | 82 | Success
+1740361041.140778 | 1 | Corrupt Packet | 82 | Resent ACK
+1740361041.1408541 | 0 | Sent | 126 | Success
+1740361041.140887 | 0 | Received | 126 | Success
+1740361041.140967 | 1 | Sent | 2 | Success
+1740361041.141003 | 1 | Received | 2 | Success
+1740361041.141035 | 1 | Corrupt ACK | 2 | Resent ACK
+1740361041.141071 | 1 | Resent | 2 | Incorrect ACK
+1740361041.141105 | 1 | Sent | 2 | Success
+1740361041.141147 | 1 | Corrupt Packet | 2 | Resent ACK
+1740361041.141222 | 0 | Sent | 216 | Success
+1740361041.1412559 | 0 | Received | 216 | Success
+1740361041.141286 | 0 | Corrupt ACK | 216 | Resent ACK
+1740361041.141332 | 0 | Resent | 216 | Incorrect ACK
+1740361041.1413682 | 0 | Sent | 216 | Success
+1740361041.1414158 | 0 | Corrupt Packet | 216 | Resent ACK
+1740361041.141543 | 1 | Sent | 34 | Success
+1740361041.1416562 | 1 | Received | 34 | Success
+1740361041.141768 | 0 | Sent | 158 | Success
+1740361041.141856 | 0 | Received | 158 | Success
+1740361041.141939 | 1 | Sent | 100 | Success
+1740361041.141973 | 1 | Received | 100 | Success
+1740361041.142004 | 1 | Corrupt ACK | 100 | Resent ACK
+1740361041.142039 | 1 | Resent | 100 | Incorrect ACK
+1740361041.142074 | 1 | Sent | 100 | Success
+1740361041.142111 | 1 | Corrupt Packet | 100 | Resent ACK
+1740361041.142187 | 0 | Sent | 205 | Success
+1740361041.1422238 | 0 | Received | 205 | Success
+1740361041.142255 | 0 | Corrupt ACK | 205 | Resent ACK
+1740361041.1422899 | 0 | Resent | 205 | Incorrect ACK
+1740361041.142324 | 0 | Sent | 205 | Success
+1740361041.142365 | 0 | Corrupt Packet | 205 | Resent ACK
+1740361041.142439 | 1 | Sent | 191 | Success
+1740361041.142473 | 1 | Received | 191 | Success
+1740361041.142601 | 0 | Sent | 84 | Success
+1740361041.142616 | 0 | Received | 84 | Success
+1740361041.1426508 | 0 | Corrupt ACK | 84 | Resent ACK
+1740361041.142712 | 0 | Resent | 84 | Incorrect ACK
+1740361041.142793 | 0 | Sent | 84 | Success
+1740361041.142844 | 0 | Corrupt Packet | 84 | Resent ACK
+1740361041.1429608 | 1 | Sent | 122 | Success
+1740361041.143014 | 1 | Received | 122 | Success
+1740361041.143103 | 0 | Sent | 4 | Success
+1740361041.143138 | 0 | Received | 4 | Success
+1740361041.143171 | 0 | Corrupt ACK | 4 | Resent ACK
+1740361041.1432068 | 0 | Resent | 4 | Incorrect ACK
+1740361041.1432471 | 0 | Sent | 4 | Success
+1740361041.143285 | 0 | Corrupt Packet | 4 | Resent ACK
+1740361041.1433642 | 1 | Sent | 122 | Success
+1740361041.143397 | 1 | Received | 122 | Success
+1740361041.143488 | 0 | Sent | 68 | Success
+1740361041.143522 | 0 | Received | 68 | Success
+1740361041.1435552 | 0 | Corrupt ACK | 68 | Resent ACK
+1740361041.143594 | 0 | Resent | 68 | Incorrect ACK
+1740361041.14363 | 0 | Sent | 68 | Success
+1740361041.1436632 | 0 | Corrupt Packet | 68 | Resent ACK
+1740361041.1437461 | 1 | Sent | 43 | Success
+1740361041.143778 | 1 | Received | 43 | Success
+1740361041.143897 | 0 | Sent | 200 | Success
+1740361041.143944 | 0 | Received | 200 | Success
+1740361041.14405 | 1 | Sent | 171 | Success
+1740361041.144094 | 1 | Received | 171 | Success
+1740361041.144153 | 1 | Corrupt ACK | 171 | Resent ACK
+1740361041.14423 | 1 | Resent | 171 | Incorrect ACK
+1740361041.1443741 | 1 | Sent | 171 | Success
+1740361041.144437 | 1 | Corrupt Packet | 171 | Resent ACK
+1740361041.144576 | 0 | Sent | 244 | Success
+1740361041.144696 | 0 | Received | 244 | Success
+1740361041.1448882 | 1 | Sent | 169 | Success
+1740361041.145003 | 1 | Received | 169 | Success
+1740361041.145212 | 0 | Sent | 13 | Success
+1740361041.145319 | 0 | Received | 13 | Success
+1740361041.145408 | 0 | Corrupt ACK | 13 | Resent ACK
+1740361041.1454852 | 0 | Resent | 13 | Incorrect ACK
+1740361041.145539 | 0 | Sent | 13 | Success
+1740361041.145608 | 0 | Corrupt Packet | 13 | Resent ACK
+1740361041.145788 | 1 | Received | 12 | Success
+1740361041.1457431 | 1 | Sent | 12 | Success
+1740361041.1460538 | 0 | Sent | 99 | Success
+1740361041.1461492 | 0 | Received | 99 | Success
+1740361041.1462111 | 0 | Corrupt ACK | 99 | Resent ACK
+1740361041.146304 | 0 | Resent | 99 | Incorrect ACK
+1740361041.146373 | 0 | Sent | 99 | Success
+1740361041.146424 | 0 | Corrupt Packet | 99 | Resent ACK
+1740361041.146546 | 1 | Sent | 196 | Success
+1740361041.1465979 | 1 | Received | 196 | Success
+1740361041.146729 | 0 | Sent | 254 | Success
+1740361041.1467788 | 0 | Received | 254 | Success
+1740361041.146898 | 1 | Sent | 35 | Success
+1740361041.146979 | 1 | Received | 35 | Success
+1740361041.147129 | 0 | Sent | 224 | Success
+1740361041.1471732 | 0 | Received | 224 | Success
+1740361041.147298 | 1 | Sent | 225 | Success
+1740361041.147338 | 1 | Received | 225 | Success
+1740361041.147451 | 0 | Sent | 19 | Success
+1740361041.1474838 | 0 | Received | 19 | Success
+1740361041.147533 | 0 | Corrupt ACK | 19 | Resent ACK
+1740361041.147576 | 0 | Resent | 19 | Incorrect ACK
+1740361041.1476128 | 0 | Sent | 19 | Success
+1740361041.147653 | 0 | Corrupt Packet | 19 | Resent ACK
+1740361041.147773 | 1 | Sent | 78 | Success
+1740361041.147808 | 1 | Received | 78 | Success
+1740361041.147894 | 0 | Sent | 197 | Success
+1740361041.147948 | 0 | Received | 197 | Success
+1740361041.1481159 | 1 | Sent | 126 | Success
+1740361041.148175 | 1 | Received | 126 | Success
+1740361041.1483 | 0 | Sent | 46 | Success
+1740361041.148393 | 0 | Received | 46 | Success
+1740361041.148489 | 1 | Sent | 80 | Success
+1740361041.148522 | 1 | Received | 80 | Success
+1740361041.148553 | 1 | Corrupt ACK | 80 | Resent ACK
+1740361041.148591 | 1 | Resent | 80 | Incorrect ACK
+1740361041.14863 | 1 | Sent | 80 | Success
+1740361041.148663 | 1 | Corrupt Packet | 80 | Resent ACK
+1740361041.1487439 | 0 | Sent | 93 | Success
+1740361041.148777 | 0 | Received | 93 | Success
+1740361041.148862 | 1 | Sent | 60 | Success
+1740361041.148896 | 1 | Received | 60 | Success
+1740361041.148982 | 0 | Sent | 203 | Success
+1740361041.149013 | 0 | Received | 203 | Success
+1740361041.149089 | 1 | Sent | 179 | Success
+1740361041.1491241 | 1 | Received | 179 | Success
+1740361041.149154 | 1 | Corrupt ACK | 179 | Resent ACK
+1740361041.1491919 | 1 | Resent | 179 | Incorrect ACK
+1740361041.149267 | 1 | Sent | 179 | Success
+1740361041.149336 | 1 | Corrupt Packet | 179 | Resent ACK
+1740361041.1494122 | 0 | Sent | 242 | Success
+1740361041.1494458 | 0 | Received | 242 | Success
+1740361041.1495209 | 1 | Sent | 204 | Success
+1740361041.149558 | 1 | Received | 204 | Success
+1740361041.1495922 | 1 | Corrupt ACK | 204 | Resent ACK
+1740361041.1496289 | 1 | Resent | 204 | Incorrect ACK
+1740361041.149664 | 1 | Sent | 204 | Success
+1740361041.149701 | 1 | Corrupt Packet | 204 | Resent ACK
+1740361041.14979 | 0 | Sent | 143 | Success
+1740361041.149823 | 0 | Received | 143 | Success
+1740361041.149906 | 1 | Sent | 179 | Success
+1740361041.149939 | 1 | Received | 179 | Success
+1740361041.1499698 | 1 | Corrupt ACK | 179 | Resent ACK
+1740361041.150008 | 1 | Resent | 179 | Incorrect ACK
+1740361041.150047 | 1 | Sent | 179 | Success
+1740361041.15008 | 1 | Corrupt Packet | 179 | Resent ACK
+1740361041.150155 | 0 | Sent | 109 | Success
+1740361041.150187 | 0 | Received | 109 | Success
+1740361041.150217 | 0 | Corrupt ACK | 109 | Resent ACK
+1740361041.150253 | 0 | Resent | 109 | Incorrect ACK
+1740361041.1502879 | 0 | Sent | 109 | Success
+1740361041.150322 | 0 | Corrupt Packet | 109 | Resent ACK
+1740361041.150398 | 1 | Sent | 72 | Success
+1740361041.15043 | 1 | Received | 72 | Success
+1740361041.1505039 | 0 | Sent | 77 | Success
+1740361041.150538 | 0 | Received | 77 | Success
+1740361041.1506119 | 1 | Sent | 168 | Success
+1740361041.150645 | 1 | Received | 168 | Success
+1740361041.150717 | 0 | Sent | 142 | Success
+1740361041.1507509 | 0 | Received | 142 | Success
+1740361041.1508322 | 1 | Sent | 104 | Success
+1740361041.150877 | 1 | Received | 104 | Success
+1740361041.1509068 | 1 | Corrupt ACK | 104 | Resent ACK
+1740361041.1509461 | 1 | Resent | 104 | Incorrect ACK
+1740361041.150989 | 1 | Sent | 104 | Success
+1740361041.151024 | 1 | Corrupt Packet | 104 | Resent ACK
+1740361041.151099 | 0 | Sent | 152 | Success
+1740361041.1511319 | 0 | Received | 152 | Success
+1740361041.151208 | 1 | Sent | 123 | Success
+1740361041.151284 | 1 | Received | 123 | Success
+1740361041.151393 | 0 | Sent | 105 | Success
+1740361041.1514409 | 0 | Received | 105 | Success
+1740361041.151546 | 1 | Sent | 4 | Success
+1740361041.1515908 | 1 | Received | 4 | Success
+1740361041.151638 | 1 | Corrupt ACK | 4 | Resent ACK
+1740361041.151691 | 1 | Resent | 4 | Incorrect ACK
+1740361041.151745 | 1 | Sent | 4 | Success
+1740361041.151791 | 1 | Corrupt Packet | 4 | Resent ACK
+1740361041.1518972 | 0 | Sent | 238 | Success
+1740361041.151948 | 0 | Received | 238 | Success
+1740361041.1520572 | 1 | Sent | 29 | Success
+1740361041.152103 | 1 | Received | 29 | Success
+1740361041.1521459 | 1 | Corrupt ACK | 29 | Resent ACK
+1740361041.1521971 | 1 | Resent | 29 | Incorrect ACK
+1740361041.152249 | 1 | Sent | 29 | Success
+1740361041.1522949 | 1 | Corrupt Packet | 29 | Resent ACK
+1740361041.1524081 | 0 | Sent | 171 | Success
+1740361041.152461 | 0 | Received | 171 | Success
+1740361041.152568 | 1 | Sent | 84 | Success
+1740361041.152617 | 1 | Received | 84 | Success
+1740361041.1527371 | 0 | Sent | 73 | Success
+1740361041.152782 | 0 | Received | 73 | Success
+1740361041.1528242 | 0 | Corrupt ACK | 73 | Resent ACK
+1740361041.152874 | 0 | Resent | 73 | Incorrect ACK
+1740361041.152926 | 0 | Sent | 73 | Success
+1740361041.1529732 | 0 | Corrupt Packet | 73 | Resent ACK
+1740361041.1530821 | 1 | Sent | 132 | Success
+1740361041.153131 | 1 | Received | 132 | Success
+1740361041.153234 | 0 | Sent | 159 | Success
+1740361041.15328 | 0 | Received | 159 | Success
+1740361041.1533911 | 1 | Sent | 0 | Success
+1740361041.1534379 | 1 | Received | 0 | Success
+1740361041.1534898 | 1 | Corrupt ACK | 0 | Resent ACK
+1740361041.153548 | 1 | Resent | 0 | Incorrect ACK
+1740361041.1536078 | 1 | Sent | 0 | Success
+1740361041.153654 | 1 | Corrupt Packet | 0 | Resent ACK
+1740361041.153764 | 0 | Sent | 10 | Success
+1740361041.153822 | 0 | Received | 10 | Success
+1740361041.1538649 | 0 | Corrupt ACK | 10 | Resent ACK
+1740361041.1539168 | 0 | Resent | 10 | Incorrect ACK
+1740361041.153952 | 0 | Sent | 10 | Success
+1740361041.153985 | 0 | Corrupt Packet | 10 | Resent ACK
+1740361041.154063 | 1 | Sent | 48 | Success
+1740361041.1540952 | 1 | Received | 48 | Success
+1740361041.154124 | 1 | Corrupt ACK | 48 | Resent ACK
+1740361041.15416 | 1 | Resent | 48 | Incorrect ACK
+1740361041.154198 | 1 | Sent | 48 | Success
+1740361041.154239 | 1 | Corrupt Packet | 48 | Resent ACK
+1740361041.154335 | 0 | Sent | 21 | Success
+1740361041.154369 | 0 | Received | 21 | Success
+1740361041.1544478 | 1 | Sent | 23 | Success
+1740361041.154485 | 1 | Received | 23 | Success
+1740361041.1545138 | 1 | Corrupt ACK | 23 | Resent ACK
+1740361041.154581 | 1 | Resent | 23 | Incorrect ACK
+1740361041.1546729 | 1 | Sent | 23 | Success
+1740361041.1546721 | 1 | Corrupt Packet | 23 | Resent ACK
+1740361041.154767 | 0 | Sent | 99 | Success
+1740361041.154804 | 0 | Received | 99 | Success
+1740361041.154847 | 0 | Corrupt ACK | 99 | Resent ACK
+1740361041.1549041 | 0 | Resent | 99 | Incorrect ACK
+1740361041.1549451 | 0 | Sent | 99 | Success
+1740361041.155025 | 0 | Corrupt Packet | 99 | Resent ACK
+1740361041.155136 | 1 | Sent | 89 | Success
+1740361041.155201 | 1 | Received | 89 | Success
+1740361041.155274 | 1 | Corrupt ACK | 89 | Resent ACK
+1740361041.155326 | 1 | Resent | 89 | Incorrect ACK
+1740361041.155366 | 1 | Sent | 89 | Success
+1740361041.155401 | 1 | Corrupt Packet | 89 | Resent ACK
+1740361041.155519 | 0 | Sent | 141 | Success
+1740361041.155554 | 0 | Received | 141 | Success
+1740361041.155642 | 1 | Sent | 45 | Success
+1740361041.1556852 | 1 | Received | 45 | Success
+1740361041.155778 | 0 | Sent | 237 | Success
+1740361041.155821 | 0 | Received | 237 | Success
+1740361041.15586 | 0 | Corrupt ACK | 237 | Resent ACK
+1740361041.1559129 | 0 | Resent | 237 | Incorrect ACK
+1740361041.15595 | 0 | Sent | 237 | Success
+1740361041.155989 | 0 | Corrupt Packet | 237 | Resent ACK
+1740361041.156063 | 1 | Sent | 82 | Success
+1740361041.156096 | 1 | Received | 82 | Success
+1740361041.156172 | 0 | Sent | 246 | Success
+1740361041.156205 | 0 | Received | 246 | Success
+1740361041.156234 | 0 | Corrupt ACK | 246 | Resent ACK
+1740361041.15627 | 0 | Resent | 246 | Incorrect ACK
+1740361041.1563048 | 0 | Sent | 246 | Success
+1740361041.156336 | 0 | Corrupt Packet | 246 | Resent ACK
+1740361041.156418 | 1 | Sent | 92 | Success
+1740361041.156451 | 1 | Received | 92 | Success
+1740361041.156485 | 1 | Corrupt ACK | 92 | Resent ACK
+1740361041.156523 | 1 | Resent | 92 | Incorrect ACK
+1740361041.1565619 | 1 | Sent | 92 | Success
+1740361041.1565921 | 1 | Corrupt Packet | 92 | Resent ACK
+1740361041.156676 | 0 | Sent | 30 | Success
+1740361041.1567092 | 0 | Received | 30 | Success
+1740361041.156784 | 1 | Sent | 40 | Success
+1740361041.156815 | 1 | Received | 40 | Success
+1740361041.156846 | 1 | Corrupt ACK | 40 | Resent ACK
+1740361041.1568809 | 1 | Resent | 40 | Incorrect ACK
+1740361041.156917 | 1 | Sent | 40 | Success
+1740361041.1569479 | 1 | Corrupt Packet | 40 | Resent ACK
+1740361041.157026 | 0 | Sent | 137 | Success
+1740361041.157059 | 0 | Received | 137 | Success
+1740361041.157088 | 0 | Corrupt ACK | 137 | Resent ACK
+1740361041.157126 | 0 | Resent | 137 | Incorrect ACK
+1740361041.157166 | 0 | Sent | 137 | Success
+1740361041.1571982 | 0 | Corrupt Packet | 137 | Resent ACK
+1740361041.157272 | 1 | Sent | 0 | Success
+1740361041.157304 | 1 | Received | 0 | Success
+1740361041.157334 | 1 | Corrupt ACK | 0 | Resent ACK
+1740361041.1573691 | 1 | Resent | 0 | Incorrect ACK
+1740361041.157407 | 1 | Sent | 0 | Success
+1740361041.157439 | 1 | Corrupt Packet | 0 | Resent ACK
+1740361041.157519 | 0 | Sent | 181 | Success
+1740361041.1575522 | 0 | Received | 181 | Success
+1740361041.1576252 | 1 | Sent | 0 | Success
+1740361041.1576588 | 1 | Received | 0 | Success
+1740361041.1577458 | 0 | Sent | 133 | Success
+1740361041.157778 | 0 | Received | 133 | Success
+1740361041.157852 | 1 | Sent | 21 | Success
+1740361041.157883 | 1 | Received | 21 | Success
+1740361041.1579552 | 0 | Sent | 39 | Success
+1740361041.157988 | 0 | Received | 39 | Success
+1740361041.1580632 | 1 | Sent | 4 | Success
+1740361041.1580942 | 1 | Received | 4 | Success
+1740361041.158123 | 1 | Corrupt ACK | 4 | Resent ACK
+1740361041.158158 | 1 | Resent | 4 | Incorrect ACK
+1740361041.1581922 | 1 | Sent | 4 | Success
+1740361041.1582222 | 1 | Corrupt Packet | 4 | Resent ACK
+1740361041.158294 | 0 | Sent | 151 | Success
+1740361041.158327 | 0 | Received | 151 | Success
+1740361041.15836 | 0 | Corrupt ACK | 151 | Resent ACK
+1740361041.158398 | 0 | Resent | 151 | Incorrect ACK
+1740361041.158433 | 0 | Sent | 151 | Success
+1740361041.158468 | 0 | Corrupt Packet | 151 | Resent ACK
+1740361041.15854 | 1 | Sent | 57 | Success
+1740361041.1585732 | 1 | Received | 57 | Success
+1740361041.158647 | 0 | Sent | 131 | Success
+1740361041.15868 | 0 | Received | 131 | Success
+1740361041.1587121 | 0 | Corrupt ACK | 131 | Resent ACK
+1740361041.15875 | 0 | Resent | 131 | Incorrect ACK
+1740361041.158786 | 0 | Sent | 131 | Success
+1740361041.158818 | 0 | Corrupt Packet | 131 | Resent ACK
+1740361041.158891 | 1 | Sent | 188 | Success
+1740361041.158922 | 1 | Received | 188 | Success
+1740361041.1589508 | 1 | Corrupt ACK | 188 | Resent ACK
+1740361041.1589901 | 1 | Resent | 188 | Incorrect ACK
+1740361041.159025 | 1 | Sent | 188 | Success
+1740361041.1590579 | 1 | Corrupt Packet | 188 | Resent ACK
+1740361041.159132 | 0 | Sent | 18 | Success
+1740361041.1591659 | 0 | Received | 18 | Success
+1740361041.1592882 | 1 | Sent | 57 | Success
+1740361041.159335 | 1 | Received | 57 | Success
+1740361041.159433 | 0 | Sent | 114 | Success
+1740361041.159457 | 0 | Received | 114 | Success
+1740361041.159489 | 0 | Corrupt ACK | 114 | Resent ACK
+1740361041.159529 | 0 | Resent | 114 | Incorrect ACK
+1740361041.159564 | 0 | Sent | 114 | Success
+1740361041.159612 | 0 | Corrupt Packet | 114 | Resent ACK
+1740361041.159688 | 1 | Sent | 26 | Success
+1740361041.159719 | 1 | Received | 26 | Success
+1740361041.159768 | 1 | Corrupt ACK | 26 | Resent ACK
+1740361041.1598148 | 1 | Resent | 26 | Incorrect ACK
+1740361041.1598542 | 1 | Sent | 26 | Success
+1740361041.1598861 | 1 | Corrupt Packet | 26 | Resent ACK
+1740361041.15996 | 0 | Sent | 93 | Success
+1740361041.159992 | 0 | Received | 93 | Success
+1740361041.1600692 | 1 | Sent | 130 | Success
+1740361041.1601012 | 1 | Received | 130 | Success
+1740361041.160172 | 0 | Sent | 31 | Success
+1740361041.160203 | 0 | Received | 31 | Success
+1740361041.1602318 | 0 | Corrupt ACK | 31 | Resent ACK
+1740361041.160267 | 0 | Resent | 31 | Incorrect ACK
+1740361041.1603022 | 0 | Sent | 31 | Success
+1740361041.160334 | 0 | Corrupt Packet | 31 | Resent ACK
+1740361041.160408 | 1 | Sent | 99 | Success
+1740361041.160442 | 1 | Received | 99 | Success
+1740361041.1605172 | 0 | Sent | 50 | Success
+1740361041.1605482 | 0 | Received | 50 | Success
+1740361041.16062 | 1 | Sent | 166 | Success
+1740361041.160652 | 1 | Received | 166 | Success
+1740361041.1607249 | 0 | Sent | 108 | Success
+1740361041.1607559 | 0 | Received | 108 | Success
+1740361041.160838 | 1 | Sent | 19 | Success
+1740361041.160871 | 1 | Received | 19 | Success
+1740361041.160903 | 1 | Corrupt ACK | 19 | Resent ACK
+1740361041.160939 | 1 | Resent | 19 | Incorrect ACK
+1740361041.160972 | 1 | Sent | 19 | Success
+1740361041.161004 | 1 | Corrupt Packet | 19 | Resent ACK
+1740361041.1610749 | 0 | Sent | 191 | Success
+1740361041.1611068 | 0 | Received | 191 | Success
+1740361041.1611362 | 0 | Corrupt ACK | 191 | Resent ACK
+1740361041.161171 | 0 | Resent | 191 | Incorrect ACK
+1740361041.161205 | 0 | Sent | 191 | Success
+1740361041.1612349 | 0 | Corrupt Packet | 191 | Resent ACK
+1740361041.1613069 | 1 | Sent | 102 | Success
+1740361041.161338 | 1 | Received | 102 | Success
+1740361041.16137 | 1 | Corrupt ACK | 102 | Resent ACK
+1740361041.161416 | 1 | Resent | 102 | Incorrect ACK
+1740361041.161451 | 1 | Sent | 102 | Success
+1740361041.161484 | 1 | Corrupt Packet | 102 | Resent ACK
+1740361041.161559 | 0 | Sent | 51 | Success
+1740361041.161591 | 0 | Received | 51 | Success
+1740361041.16162 | 0 | Corrupt ACK | 51 | Resent ACK
+1740361041.161655 | 0 | Resent | 51 | Incorrect ACK
+1740361041.161689 | 0 | Sent | 51 | Success
+1740361041.161721 | 0 | Corrupt Packet | 51 | Resent ACK
+1740361041.161797 | 1 | Sent | 36 | Success
+1740361041.161831 | 1 | Received | 36 | Success
+1740361041.161907 | 0 | Sent | 98 | Success
+1740361041.161938 | 0 | Received | 98 | Success
+1740361041.162015 | 1 | Sent | 54 | Success
+1740361041.162045 | 1 | Received | 54 | Success
+1740361041.162119 | 0 | Sent | 206 | Success
+1740361041.162152 | 0 | Received | 206 | Success
+1740361041.1621819 | 0 | Corrupt ACK | 206 | Resent ACK
+1740361041.162217 | 0 | Resent | 206 | Incorrect ACK
+1740361041.162252 | 0 | Sent | 206 | Success
+1740361041.1622841 | 0 | Corrupt Packet | 206 | Resent ACK
+1740361041.1623628 | 1 | Sent | 4 | Success
+1740361041.162394 | 1 | Received | 4 | Success
+1740361041.162426 | 1 | Corrupt ACK | 4 | Resent ACK
+1740361041.1624682 | 1 | Resent | 4 | Incorrect ACK
+1740361041.162503 | 1 | Sent | 4 | Success
+1740361041.162532 | 1 | Corrupt Packet | 4 | Resent ACK
+1740361041.1626089 | 0 | Sent | 187 | Success
+1740361041.1626399 | 0 | Received | 187 | Success
+1740361041.1627588 | 1 | Sent | 216 | Success
+1740361041.162805 | 1 | Received | 216 | Success
+1740361041.162857 | 1 | Corrupt ACK | 216 | Resent ACK
+1740361041.162915 | 1 | Resent | 216 | Incorrect ACK
+1740361041.162972 | 1 | Sent | 216 | Success
+1740361041.163019 | 1 | Corrupt Packet | 216 | Resent ACK
+1740361041.163127 | 0 | Sent | 255 | Success
+1740361041.1631732 | 0 | Received | 255 | Success
+1740361041.1632771 | 1 | Sent | 242 | Success
+1740361041.1633239 | 1 | Received | 242 | Success
+1740361041.1633668 | 1 | Corrupt ACK | 242 | Resent ACK
+1740361041.1634188 | 1 | Resent | 242 | Incorrect ACK
+1740361041.163473 | 1 | Sent | 242 | Success
+1740361041.163518 | 1 | Corrupt Packet | 242 | Resent ACK
+1740361041.163628 | 0 | Sent | 76 | Success
+1740361041.1636732 | 0 | Received | 76 | Success
+1740361041.163795 | 1 | Sent | 105 | Success
+1740361041.163837 | 1 | Received | 105 | Success
+1740361041.163973 | 0 | Sent | 179 | Success
+1740361041.164057 | 0 | Received | 179 | Success
+1740361041.164202 | 1 | Sent | 95 | Success
+1740361041.1643698 | 1 | Received | 95 | Success
+1740361041.164562 | 0 | Received | 143 | Success
+1740361041.164574 | 0 | Sent | 143 | Success
+1740361041.164806 | 1 | Sent | 54 | Success
+1740361041.1650062 | 1 | Received | 54 | Success
+1740361041.165132 | 1 | Corrupt ACK | 54 | Resent ACK
+1740361041.16525 | 1 | Resent | 54 | Incorrect ACK
+1740361041.165348 | 1 | Sent | 54 | Success
+1740361041.1654751 | 1 | Corrupt Packet | 54 | Resent ACK
+1740361041.1657221 | 0 | Sent | 72 | Success
+1740361041.165826 | 0 | Received | 72 | Success
+1740361041.165942 | 1 | Sent | 81 | Success
+1740361041.1659908 | 1 | Received | 81 | Success
+1740361041.166036 | 1 | Corrupt ACK | 81 | Resent ACK
+1740361041.166089 | 1 | Resent | 81 | Incorrect ACK
+1740361041.166145 | 1 | Sent | 81 | Success
+1740361041.1662002 | 1 | Corrupt Packet | 81 | Resent ACK
+1740361041.166309 | 0 | Sent | 150 | Success
+1740361041.166354 | 0 | Received | 150 | Success
+1740361041.166401 | 0 | Corrupt ACK | 150 | Resent ACK
+1740361041.166453 | 0 | Resent | 150 | Incorrect ACK
+1740361041.1665049 | 0 | Sent | 150 | Success
+1740361041.166551 | 0 | Corrupt Packet | 150 | Resent ACK
+1740361041.1666582 | 1 | Sent | 10 | Success
+1740361041.1667058 | 1 | Received | 10 | Success
+1740361041.166827 | 0 | Sent | 78 | Success
+1740361041.166873 | 0 | Received | 78 | Success
+1740361041.166919 | 0 | Corrupt ACK | 78 | Resent ACK
+1740361041.166976 | 0 | Resent | 78 | Incorrect ACK
+1740361041.167029 | 0 | Sent | 78 | Success
+1740361041.167074 | 0 | Corrupt Packet | 78 | Resent ACK
+1740361041.1671848 | 1 | Sent | 151 | Success
+1740361041.1672451 | 1 | Received | 151 | Success
+1740361041.167289 | 1 | Corrupt ACK | 151 | Resent ACK
+1740361041.167341 | 1 | Resent | 151 | Incorrect ACK
+1740361041.1673942 | 1 | Sent | 151 | Success
+1740361041.167441 | 1 | Corrupt Packet | 151 | Resent ACK
+1740361041.167547 | 0 | Sent | 65 | Success
+1740361041.167595 | 0 | Received | 65 | Success
+1740361041.167702 | 1 | Sent | 209 | Success
+1740361041.16775 | 1 | Received | 209 | Success
+1740361041.167799 | 1 | Corrupt ACK | 209 | Resent ACK
+1740361041.167862 | 1 | Resent | 209 | Incorrect ACK
+1740361041.167912 | 1 | Sent | 209 | Success
+1740361041.1679518 | 1 | Corrupt Packet | 209 | Resent ACK
+1740361041.168044 | 0 | Sent | 236 | Success
+1740361041.168076 | 0 | Received | 236 | Success
+1740361041.1681569 | 1 | Sent | 225 | Success
+1740361041.168191 | 1 | Received | 225 | Success
+1740361041.168267 | 0 | Sent | 84 | Success
+1740361041.168298 | 0 | Received | 84 | Success
+1740361041.168328 | 0 | Corrupt ACK | 84 | Resent ACK
+1740361041.1683671 | 0 | Resent | 84 | Incorrect ACK
+1740361041.1684082 | 0 | Sent | 84 | Success
+1740361041.1684742 | 0 | Corrupt Packet | 84 | Resent ACK
+1740361041.1685472 | 1 | Sent | 75 | Success
+1740361041.168579 | 1 | Received | 75 | Success
+1740361041.168652 | 0 | Sent | 34 | Success
+1740361041.168685 | 0 | Received | 34 | Success
+1740361041.168721 | 0 | Corrupt ACK | 34 | Resent ACK
+1740361041.16876 | 0 | Resent | 34 | Incorrect ACK
+1740361041.1687942 | 0 | Sent | 34 | Success
+1740361041.168842 | 0 | Corrupt Packet | 34 | Resent ACK
+1740361041.168916 | 1 | Sent | 198 | Success
+1740361041.16895 | 1 | Received | 198 | Success
+1740361041.168979 | 1 | Corrupt ACK | 198 | Resent ACK
+1740361041.169015 | 1 | Resent | 198 | Incorrect ACK
+1740361041.16908 | 1 | Corrupt Packet | 198 | Resent ACK
+1740361041.1690502 | 1 | Sent | 198 | Success
+1740361041.169207 | 0 | Received | 81 | Success
+1740361041.169176 | 0 | Sent | 81 | Success
+1740361041.169378 | 1 | Sent | 53 | Success
+1740361041.169444 | 1 | Received | 53 | Success
+1740361041.169578 | 0 | Sent | 107 | Success
+1740361041.169605 | 0 | Received | 107 | Success
+1740361041.169656 | 0 | Corrupt ACK | 107 | Resent ACK
+1740361041.1697018 | 0 | Resent | 107 | Incorrect ACK
+1740361041.1697412 | 0 | Sent | 107 | Success
+1740361041.169775 | 0 | Corrupt Packet | 107 | Resent ACK
+1740361041.1698508 | 1 | Sent | 251 | Success
+1740361041.169888 | 1 | Received | 251 | Success
+1740361041.169973 | 1 | Corrupt ACK | 251 | Resent ACK
+1740361041.170014 | 1 | Resent | 251 | Incorrect ACK
+1740361041.170082 | 1 | Corrupt Packet | 251 | Resent ACK
+1740361041.170052 | 1 | Sent | 251 | Success
+1740361041.170167 | 0 | Sent | 114 | Success
+1740361041.170198 | 0 | Received | 114 | Success
+1740361041.170227 | 0 | Corrupt ACK | 114 | Resent ACK
+1740361041.170263 | 0 | Resent | 114 | Incorrect ACK
+1740361041.1702988 | 0 | Sent | 114 | Success
+1740361041.170358 | 0 | Corrupt Packet | 114 | Resent ACK
+1740361041.170432 | 1 | Sent | 47 | Success
+1740361041.170464 | 1 | Received | 47 | Success
+1740361041.1705 | 1 | Corrupt ACK | 47 | Resent ACK
+1740361041.170537 | 1 | Resent | 47 | Incorrect ACK
+1740361041.170605 | 1 | Corrupt Packet | 47 | Resent ACK
+1740361041.170572 | 1 | Sent | 47 | Success
+1740361041.1706922 | 0 | Sent | 244 | Success
+1740361041.17072 | 0 | Received | 244 | Success
+1740361041.170914 | 1 | Sent | 117 | Success
+1740361041.1709492 | 1 | Received | 117 | Success
+1740361041.1710248 | 0 | Sent | 247 | Success
+1740361041.171058 | 0 | Received | 247 | Success
+1740361041.171133 | 1 | Sent | 160 | Success
+1740361041.171165 | 1 | Received | 160 | Success
+1740361041.171196 | 1 | Corrupt ACK | 160 | Resent ACK
+1740361041.171231 | 1 | Resent | 160 | Incorrect ACK
+1740361041.171264 | 1 | Sent | 160 | Success
+1740361041.171298 | 1 | Corrupt Packet | 160 | Resent ACK
+1740361041.171387 | 0 | Sent | 202 | Success
+1740361041.171419 | 0 | Received | 202 | Success
+1740361041.171496 | 0 | Corrupt ACK | 202 | Resent ACK
+1740361041.171565 | 0 | Resent | 202 | Incorrect ACK
+1740361041.1716008 | 0 | Sent | 202 | Success
+1740361041.171669 | 0 | Corrupt Packet | 202 | Resent ACK
+1740361041.171787 | 1 | Sent | 35 | Success
+1740361041.171815 | 1 | Received | 35 | Success
+1740361041.1718788 | 1 | Corrupt ACK | 35 | Resent ACK
+1740361041.171923 | 1 | Resent | 35 | Incorrect ACK
+1740361041.172024 | 1 | Corrupt Packet | 35 | Resent ACK
+1740361041.1720371 | 1 | Sent | 35 | Success
+1740361041.1722329 | 0 | Sent | 225 | Success
+1740361041.172266 | 0 | Received | 225 | Success
+1740361041.1723552 | 1 | Sent | 190 | Success
+1740361041.172385 | 1 | Received | 190 | Success
+1740361041.172417 | 1 | Corrupt ACK | 190 | Resent ACK
+1740361041.1724539 | 1 | Resent | 190 | Incorrect ACK
+1740361041.17249 | 1 | Sent | 190 | Success
+1740361041.1725209 | 1 | Corrupt Packet | 190 | Resent ACK
+1740361041.17261 | 0 | Sent | 121 | Success
+1740361041.172642 | 0 | Received | 121 | Success
+1740361041.1727161 | 1 | Sent | 176 | Success
+1740361041.1727538 | 1 | Received | 176 | Success
+1740361041.1727831 | 1 | Corrupt ACK | 176 | Resent ACK
+1740361041.1728199 | 1 | Resent | 176 | Incorrect ACK
+1740361041.172854 | 1 | Sent | 176 | Success
+1740361041.1728861 | 1 | Corrupt Packet | 176 | Resent ACK
+1740361041.1729631 | 0 | Sent | 20 | Success
+1740361041.172996 | 0 | Received | 20 | Success
+1740361041.173074 | 1 | Sent | 136 | Success
+1740361041.173104 | 1 | Received | 136 | Success
+1740361041.1731799 | 0 | Sent | 26 | Success
+1740361041.1732109 | 0 | Received | 26 | Success
+1740361041.173295 | 1 | Sent | 77 | Success
+1740361041.173353 | 1 | Received | 77 | Success
+1740361041.17347 | 0 | Sent | 131 | Success
+1740361041.173564 | 0 | Received | 131 | Success
+1740361041.1736078 | 0 | Corrupt ACK | 131 | Resent ACK
+1740361041.173651 | 0 | Resent | 131 | Incorrect ACK
+1740361041.173703 | 0 | Sent | 131 | Success
+1740361041.173771 | 0 | Corrupt Packet | 131 | Resent ACK
+1740361041.173868 | 1 | Sent | 171 | Success
+1740361041.1738958 | 1 | Received | 171 | Success
+1740361041.1739762 | 0 | Sent | 245 | Success
+1740361041.1740081 | 0 | Received | 245 | Success
+1740361041.174038 | 0 | Corrupt ACK | 245 | Resent ACK
+1740361041.174077 | 0 | Resent | 245 | Incorrect ACK
+1740361041.174128 | 0 | Sent | 245 | Success
+1740361041.174175 | 0 | Corrupt Packet | 245 | Resent ACK
+1740361041.17435 | 1 | Sent | 215 | Success
+1740361041.1743948 | 1 | Received | 215 | Success
+1740361041.174475 | 0 | Sent | 58 | Success
+1740361041.17452 | 0 | Received | 58 | Success
+1740361041.174552 | 0 | Corrupt ACK | 58 | Resent ACK
+1740361041.174593 | 0 | Resent | 58 | Incorrect ACK
+1740361041.1746309 | 0 | Sent | 58 | Success
+1740361041.17468 | 0 | Corrupt Packet | 58 | Resent ACK
+1740361041.174773 | 1 | Sent | 189 | Success
+1740361041.174805 | 1 | Received | 189 | Success
+1740361041.174835 | 1 | Corrupt ACK | 189 | Resent ACK
+1740361041.174871 | 1 | Resent | 189 | Incorrect ACK
+1740361041.174906 | 1 | Sent | 189 | Success
+1740361041.1749399 | 1 | Corrupt Packet | 189 | Resent ACK
+1740361041.175015 | 0 | Sent | 132 | Success
+1740361041.175047 | 0 | Received | 132 | Success
+1740361041.175081 | 0 | Corrupt ACK | 132 | Resent ACK
+1740361041.175118 | 0 | Resent | 132 | Incorrect ACK
+1740361041.175154 | 0 | Sent | 132 | Success
+1740361041.175185 | 0 | Corrupt Packet | 132 | Resent ACK
+1740361041.1752582 | 1 | Sent | 141 | Success
+1740361041.1752892 | 1 | Received | 141 | Success
+1740361041.175319 | 1 | Corrupt ACK | 141 | Resent ACK
+1740361041.1753569 | 1 | Resent | 141 | Incorrect ACK
+1740361041.175392 | 1 | Sent | 141 | Success
+1740361041.175432 | 1 | Corrupt Packet | 141 | Resent ACK
+1740361041.175515 | 0 | Sent | 131 | Success
+1740361041.175545 | 0 | Received | 131 | Success
+1740361041.175575 | 0 | Corrupt ACK | 131 | Resent ACK
+1740361041.175617 | 0 | Resent | 131 | Incorrect ACK
+1740361041.175654 | 0 | Sent | 131 | Success
+1740361041.175693 | 0 | Corrupt Packet | 131 | Resent ACK
+1740361041.1757681 | 1 | Sent | 249 | Success
+1740361041.175803 | 1 | Received | 249 | Success
+1740361041.1758971 | 0 | Sent | 77 | Success
+1740361041.175931 | 0 | Received | 77 | Success
+1740361041.176009 | 1 | Sent | 41 | Success
+1740361041.1760561 | 1 | Received | 41 | Success
+1740361041.1761339 | 0 | Sent | 220 | Success
+1740361041.1761658 | 0 | Received | 220 | Success
+1740361041.1762428 | 1 | Sent | 234 | Success
+1740361041.176278 | 1 | Received | 234 | Success
+1740361041.176363 | 0 | Sent | 129 | Success
+1740361041.176395 | 0 | Received | 129 | Success
+1740361041.176429 | 0 | Corrupt ACK | 129 | Resent ACK
+1740361041.1764648 | 0 | Resent | 129 | Incorrect ACK
+1740361041.176501 | 0 | Sent | 129 | Success
+1740361041.176536 | 0 | Corrupt Packet | 129 | Resent ACK
+1740361041.176616 | 1 | Sent | 4 | Success
+1740361041.176648 | 1 | Received | 4 | Success
+1740361041.176679 | 1 | Corrupt ACK | 4 | Resent ACK
+1740361041.176716 | 1 | Resent | 4 | Incorrect ACK
+1740361041.176752 | 1 | Sent | 4 | Success
+1740361041.176783 | 1 | Corrupt Packet | 4 | Resent ACK
+1740361041.176863 | 0 | Sent | 25 | Success
+1740361041.176897 | 0 | Received | 25 | Success
+1740361041.176973 | 1 | Sent | 94 | Success
+1740361041.177005 | 1 | Received | 94 | Success
+1740361041.177034 | 1 | Corrupt ACK | 94 | Resent ACK
+1740361041.177069 | 1 | Resent | 94 | Incorrect ACK
+1740361041.177105 | 1 | Sent | 94 | Success
+1740361041.17715 | 1 | Corrupt Packet | 94 | Resent ACK
+1740361041.177226 | 0 | Sent | 252 | Success
+1740361041.177257 | 0 | Received | 252 | Success
+1740361041.177332 | 1 | Sent | 208 | Success
+1740361041.177375 | 1 | Received | 208 | Success
+1740361041.177448 | 0 | Sent | 3 | Success
+1740361041.17748 | 0 | Received | 3 | Success
+1740361041.177557 | 1 | Sent | 4 | Success
+1740361041.177589 | 1 | Received | 4 | Success
+1740361041.177619 | 1 | Corrupt ACK | 4 | Resent ACK
+1740361041.177655 | 1 | Resent | 4 | Incorrect ACK
+1740361041.17769 | 1 | Sent | 4 | Success
+1740361041.1777222 | 1 | Corrupt Packet | 4 | Resent ACK
+1740361041.177797 | 0 | Sent | 173 | Success
+1740361041.1778271 | 0 | Received | 173 | Success
+1740361041.177858 | 0 | Corrupt ACK | 173 | Resent ACK
+1740361041.177898 | 0 | Resent | 173 | Incorrect ACK
+1740361041.1779358 | 0 | Sent | 173 | Success
+1740361041.177979 | 0 | Corrupt Packet | 173 | Resent ACK
+1740361041.178058 | 1 | Sent | 90 | Success
+1740361041.178087 | 1 | Received | 90 | Success
+1740361041.178139 | 1 | Corrupt ACK | 90 | Resent ACK
+1740361041.178189 | 1 | Resent | 90 | Incorrect ACK
+1740361041.178236 | 1 | Sent | 90 | Success
+1740361041.178265 | 1 | Corrupt Packet | 90 | Resent ACK
+1740361041.1783419 | 0 | Sent | 228 | Success
+1740361041.178412 | 0 | Received | 228 | Success
+1740361041.178442 | 0 | Corrupt ACK | 228 | Resent ACK
+1740361041.178478 | 0 | Resent | 228 | Incorrect ACK
+1740361041.178517 | 0 | Sent | 228 | Success
+1740361041.17855 | 0 | Corrupt Packet | 228 | Resent ACK
+1740361041.178637 | 1 | Sent | 70 | Success
+1740361041.178664 | 1 | Received | 70 | Success
+1740361041.1787 | 1 | Corrupt ACK | 70 | Resent ACK
+1740361041.1787388 | 1 | Resent | 70 | Incorrect ACK
+1740361041.178774 | 1 | Sent | 70 | Success
+1740361041.178813 | 1 | Corrupt Packet | 70 | Resent ACK
+1740361041.178891 | 0 | Sent | 61 | Success
+1740361041.178924 | 0 | Received | 61 | Success
+1740361041.178957 | 0 | Corrupt ACK | 61 | Resent ACK
+1740361041.178994 | 0 | Resent | 61 | Incorrect ACK
+1740361041.1790311 | 0 | Sent | 61 | Success
+1740361041.179073 | 0 | Corrupt Packet | 61 | Resent ACK
+1740361041.179146 | 1 | Sent | 208 | Success
+1740361041.1791759 | 1 | Received | 208 | Success
+1740361041.1792798 | 0 | Sent | 74 | Success
+1740361041.1793149 | 0 | Received | 74 | Success
+1740361041.179352 | 0 | Corrupt ACK | 74 | Resent ACK
+1740361041.17939 | 0 | Resent | 74 | Incorrect ACK
+1740361041.179429 | 0 | Sent | 74 | Success
+1740361041.1794739 | 0 | Corrupt Packet | 74 | Resent ACK
+1740361041.179563 | 1 | Sent | 192 | Success
+1740361041.17962 | 1 | Received | 192 | Success
+1740361041.179719 | 0 | Sent | 183 | Success
+1740361041.179749 | 0 | Received | 183 | Success
+1740361041.1797829 | 0 | Corrupt ACK | 183 | Resent ACK
+1740361041.179819 | 0 | Resent | 183 | Incorrect ACK
+1740361041.179855 | 0 | Sent | 183 | Success
+1740361041.179886 | 0 | Corrupt Packet | 183 | Resent ACK
+1740361041.179956 | 1 | Sent | 70 | Success
+1740361041.179987 | 1 | Received | 70 | Success
+1740361041.180018 | 1 | Corrupt ACK | 70 | Resent ACK
+1740361041.180057 | 1 | Resent | 70 | Incorrect ACK
+1740361041.1800919 | 1 | Sent | 70 | Success
+1740361041.1801229 | 1 | Corrupt Packet | 70 | Resent ACK
+1740361041.180198 | 0 | Sent | 62 | Success
+1740361041.1802292 | 0 | Received | 62 | Success
+1740361041.1802602 | 0 | Corrupt ACK | 62 | Resent ACK
+1740361041.180297 | 0 | Resent | 62 | Incorrect ACK
+1740361041.1803331 | 0 | Sent | 62 | Success
+1740361041.180362 | 0 | Corrupt Packet | 62 | Resent ACK
+1740361041.180436 | 1 | Sent | 126 | Success
+1740361041.180468 | 1 | Received | 126 | Success
+1740361041.1805499 | 0 | Sent | 129 | Success
+1740361041.180581 | 0 | Received | 129 | Success
+1740361041.180678 | 1 | Sent | 6 | Success
+1740361041.1806998 | 1 | Received | 6 | Success
+1740361041.180895 | 0 | Sent | 136 | Success
+1740361041.180923 | 0 | Received | 136 | Success
+1740361041.180987 | 0 | Corrupt ACK | 136 | Resent ACK
+1740361041.1811352 | 0 | Resent | 136 | Incorrect ACK
+1740361041.181243 | 0 | Corrupt Packet | 136 | Resent ACK
+1740361041.181201 | 0 | Sent | 136 | Success
+1740361041.181361 | 1 | Sent | 192 | Success
+1740361041.181397 | 1 | Received | 192 | Success
+1740361041.181501 | 0 | Sent | 83 | Success
+1740361041.181536 | 0 | Received | 83 | Success
+1740361041.181634 | 1 | Sent | 201 | Success
+1740361041.181664 | 1 | Received | 201 | Success
+1740361041.1816971 | 1 | Corrupt ACK | 201 | Resent ACK
+1740361041.1817348 | 1 | Resent | 201 | Incorrect ACK
+1740361041.181777 | 1 | Sent | 201 | Success
+1740361041.1818109 | 1 | Corrupt Packet | 201 | Resent ACK
+1740361041.1818979 | 0 | Sent | 147 | Success
+1740361041.181931 | 0 | Received | 147 | Success
+1740361041.181963 | 0 | Corrupt ACK | 147 | Resent ACK
+1740361041.1820018 | 0 | Resent | 147 | Incorrect ACK
+1740361041.182046 | 0 | Sent | 147 | Success
+1740361041.182101 | 0 | Corrupt Packet | 147 | Resent ACK
+1740361041.1821811 | 1 | Sent | 126 | Success
+1740361041.1822138 | 1 | Received | 126 | Success
+1740361041.182286 | 0 | Sent | 71 | Success
+1740361041.1823192 | 0 | Received | 71 | Success
+1740361041.182391 | 1 | Sent | 125 | Success
+1740361041.182422 | 1 | Received | 125 | Success
+1740361041.182452 | 1 | Corrupt ACK | 125 | Resent ACK
+1740361041.182487 | 1 | Resent | 125 | Incorrect ACK
+1740361041.182521 | 1 | Sent | 125 | Success
+1740361041.182553 | 1 | Corrupt Packet | 125 | Resent ACK
+1740361041.182626 | 0 | Sent | 48 | Success
+1740361041.182657 | 0 | Received | 48 | Success
+1740361041.182729 | 1 | Sent | 235 | Success
+1740361041.182761 | 1 | Received | 235 | Success
+1740361041.182792 | 1 | Corrupt ACK | 235 | Resent ACK
+1740361041.182827 | 1 | Resent | 235 | Incorrect ACK
+1740361041.182864 | 1 | Sent | 235 | Success
+1740361041.1828961 | 1 | Corrupt Packet | 235 | Resent ACK
+1740361041.182969 | 0 | Sent | 167 | Success
+1740361041.1829991 | 0 | Received | 167 | Success
+1740361041.183074 | 1 | Sent | 108 | Success
+1740361041.183108 | 1 | Received | 108 | Success
+1740361041.183137 | 1 | Corrupt ACK | 108 | Resent ACK
+1740361041.1831732 | 1 | Resent | 108 | Incorrect ACK
+1740361041.183219 | 1 | Sent | 108 | Success
+1740361041.18325 | 1 | Corrupt Packet | 108 | Resent ACK
+1740361041.183331 | 0 | Sent | 90 | Success
+1740361041.1833642 | 0 | Received | 90 | Success
+1740361041.183393 | 0 | Corrupt ACK | 90 | Resent ACK
+1740361041.183428 | 0 | Resent | 90 | Incorrect ACK
+1740361041.183462 | 0 | Sent | 90 | Success
+1740361041.1834922 | 0 | Corrupt Packet | 90 | Resent ACK
+1740361041.183566 | 1 | Sent | 35 | Success
+1740361041.1835961 | 1 | Received | 35 | Success
+1740361041.183626 | 1 | Corrupt ACK | 35 | Resent ACK
+1740361041.1836622 | 1 | Resent | 35 | Incorrect ACK
+1740361041.183699 | 1 | Sent | 35 | Success
+1740361041.1837308 | 1 | Corrupt Packet | 35 | Resent ACK
+1740361041.183806 | 0 | Sent | 8 | Success
+1740361041.18384 | 0 | Received | 8 | Success
+1740361041.1838698 | 0 | Corrupt ACK | 8 | Resent ACK
+1740361041.183916 | 0 | Resent | 8 | Incorrect ACK
+1740361041.1839502 | 0 | Sent | 8 | Success
+1740361041.18398 | 0 | Corrupt Packet | 8 | Resent ACK
+1740361041.184052 | 1 | Sent | 41 | Success
+1740361041.184082 | 1 | Received | 41 | Success
+1740361041.184112 | 1 | Corrupt ACK | 41 | Resent ACK
+1740361041.184148 | 1 | Resent | 41 | Incorrect ACK
+1740361041.184182 | 1 | Sent | 41 | Success
+1740361041.184225 | 1 | Corrupt Packet | 41 | Resent ACK
+1740361041.184331 | 0 | Sent | 1 | Success
+1740361041.184372 | 0 | Received | 1 | Success
+1740361041.184404 | 0 | Corrupt ACK | 1 | Resent ACK
+1740361041.1844952 | 0 | Resent | 1 | Incorrect ACK
+1740361041.184532 | 0 | Sent | 1 | Success
+1740361041.184563 | 0 | Corrupt Packet | 1 | Resent ACK
+1740361041.184638 | 1 | Sent | 197 | Success
+1740361041.184669 | 1 | Received | 197 | Success
+1740361041.184739 | 0 | Sent | 226 | Success
+1740361041.18477 | 0 | Received | 226 | Success
+1740361041.184799 | 0 | Corrupt ACK | 226 | Resent ACK
+1740361041.184833 | 0 | Resent | 226 | Incorrect ACK
+1740361041.1848671 | 0 | Sent | 226 | Success
+1740361041.184897 | 0 | Corrupt Packet | 226 | Resent ACK
+1740361041.184971 | 1 | Sent | 106 | Success
+1740361041.1850061 | 1 | Received | 106 | Success
+1740361041.185039 | 1 | Corrupt ACK | 106 | Resent ACK
+1740361041.185077 | 1 | Resent | 106 | Incorrect ACK
+1740361041.1851132 | 1 | Sent | 106 | Success
+1740361041.185143 | 1 | Corrupt Packet | 106 | Resent ACK
+1740361041.185216 | 0 | Sent | 64 | Success
+1740361041.185248 | 0 | Received | 64 | Success
+1740361041.185338 | 1 | Sent | 234 | Success
+1740361041.1853702 | 1 | Received | 234 | Success
+1740361041.185445 | 0 | Sent | 247 | Success
+1740361041.185475 | 0 | Received | 247 | Success
+1740361041.185548 | 1 | Sent | 158 | Success
+1740361041.185579 | 1 | Received | 158 | Success
+1740361041.18561 | 1 | Corrupt ACK | 158 | Resent ACK
+1740361041.185646 | 1 | Resent | 158 | Incorrect ACK
+1740361041.1856818 | 1 | Sent | 158 | Success
+1740361041.1857128 | 1 | Corrupt Packet | 158 | Resent ACK
+1740361041.185788 | 0 | Sent | 172 | Success
+1740361041.1858182 | 0 | Received | 172 | Success
+1740361041.1858492 | 0 | Corrupt ACK | 172 | Resent ACK
+1740361041.1858869 | 0 | Resent | 172 | Incorrect ACK
+1740361041.185921 | 0 | Sent | 172 | Success
+1740361041.18595 | 0 | Corrupt Packet | 172 | Resent ACK
+1740361041.186025 | 1 | Sent | 237 | Success
+1740361041.186056 | 1 | Received | 237 | Success
+1740361041.186086 | 1 | Corrupt ACK | 237 | Resent ACK
+1740361041.186123 | 1 | Resent | 237 | Incorrect ACK
+1740361041.186156 | 1 | Sent | 237 | Success
+1740361041.186193 | 1 | Corrupt Packet | 237 | Resent ACK
+1740361041.186265 | 0 | Sent | 179 | Success
+1740361041.186296 | 0 | Received | 179 | Success
+1740361041.186332 | 0 | Corrupt ACK | 179 | Resent ACK
+1740361041.186369 | 0 | Resent | 179 | Incorrect ACK
+1740361041.1864069 | 0 | Sent | 179 | Success
+1740361041.1864371 | 0 | Corrupt Packet | 179 | Resent ACK
+1740361041.186516 | 1 | Sent | 200 | Success
+1740361041.186548 | 1 | Received | 200 | Success
+1740361041.186578 | 1 | Corrupt ACK | 200 | Resent ACK
+1740361041.186613 | 1 | Resent | 200 | Incorrect ACK
+1740361041.186651 | 1 | Sent | 200 | Success
+1740361041.1866822 | 1 | Corrupt Packet | 200 | Resent ACK
+1740361041.1867552 | 0 | Sent | 121 | Success
+1740361041.186786 | 0 | Received | 121 | Success
+1740361041.186862 | 1 | Sent | 170 | Success
+1740361041.186892 | 1 | Received | 170 | Success
+1740361041.18692 | 1 | Corrupt ACK | 170 | Resent ACK
+1740361041.186954 | 1 | Resent | 170 | Incorrect ACK
+1740361041.186988 | 1 | Sent | 170 | Success
+1740361041.187016 | 1 | Corrupt Packet | 170 | Resent ACK
+1740361041.187086 | 0 | Sent | 229 | Success
+1740361041.187117 | 0 | Received | 229 | Success
+1740361041.187146 | 0 | Corrupt ACK | 229 | Resent ACK
+1740361041.187181 | 0 | Resent | 229 | Incorrect ACK
+1740361041.187215 | 0 | Sent | 229 | Success
+1740361041.18725 | 0 | Corrupt Packet | 229 | Resent ACK
+1740361041.1873221 | 1 | Sent | 125 | Success
+1740361041.1873531 | 1 | Received | 125 | Success
+1740361041.1873841 | 1 | Corrupt ACK | 125 | Resent ACK
+1740361041.18742 | 1 | Resent | 125 | Incorrect ACK
+1740361041.187456 | 1 | Sent | 125 | Success
+1740361041.187487 | 1 | Corrupt Packet | 125 | Resent ACK
+1740361041.1875598 | 0 | Sent | 222 | Success
+1740361041.18759 | 0 | Received | 222 | Success
+1740361041.18766 | 1 | Sent | 165 | Success
+1740361041.187693 | 1 | Received | 165 | Success
+1740361041.187722 | 1 | Corrupt ACK | 165 | Resent ACK
+1740361041.187757 | 1 | Resent | 165 | Incorrect ACK
+1740361041.1877918 | 1 | Sent | 165 | Success
+1740361041.187822 | 1 | Corrupt Packet | 165 | Resent ACK
+1740361041.187894 | 0 | Sent | 245 | Success
+1740361041.187924 | 0 | Received | 245 | Success
+1740361041.187994 | 1 | Sent | 95 | Success
+1740361041.188024 | 1 | Received | 95 | Success
+1740361041.188156 | 0 | Received | 101 | Success
+1740361041.188118 | 0 | Sent | 101 | Success
+1740361041.188261 | 1 | Sent | 79 | Success
+1740361041.1883168 | 1 | Received | 79 | Success
+1740361041.188555 | 0 | Received | 216 | Success
+1740361041.1885052 | 0 | Sent | 216 | Success
+1740361041.188659 | 1 | Sent | 87 | Success
+1740361041.188689 | 1 | Received | 87 | Success
+1740361041.188728 | 1 | Corrupt ACK | 87 | Resent ACK
+1740361041.188782 | 1 | Resent | 87 | Incorrect ACK
+1740361041.18883 | 1 | Sent | 87 | Success
+1740361041.188885 | 1 | Corrupt Packet | 87 | Resent ACK
+1740361041.188997 | 0 | Sent | 25 | Success
+1740361041.189028 | 0 | Received | 25 | Success
+1740361041.189066 | 0 | Corrupt ACK | 25 | Resent ACK
+1740361041.189106 | 0 | Resent | 25 | Incorrect ACK
+1740361041.189141 | 0 | Sent | 25 | Success
+1740361041.189172 | 0 | Corrupt Packet | 25 | Resent ACK
+1740361041.189263 | 1 | Sent | 228 | Success
+1740361041.189306 | 1 | Received | 228 | Success
+1740361041.189339 | 1 | Corrupt ACK | 228 | Resent ACK
+1740361041.189376 | 1 | Resent | 228 | Incorrect ACK
+1740361041.189413 | 1 | Sent | 228 | Success
+1740361041.18946 | 1 | Corrupt Packet | 228 | Resent ACK
+1740361041.1896472 | 0 | Sent | 206 | Success
+1740361041.189674 | 0 | Received | 206 | Success
+1740361041.189718 | 0 | Corrupt ACK | 206 | Resent ACK
+1740361041.189758 | 0 | Resent | 206 | Incorrect ACK
+1740361041.1898 | 0 | Sent | 206 | Success
+1740361041.189832 | 0 | Corrupt Packet | 206 | Resent ACK
+1740361041.189915 | 1 | Sent | 235 | Success
+1740361041.1899478 | 1 | Received | 235 | Success
+1740361041.1900249 | 0 | Sent | 94 | Success
+1740361041.1900558 | 0 | Received | 94 | Success
+1740361041.190091 | 0 | Corrupt ACK | 94 | Resent ACK
+1740361041.190131 | 0 | Resent | 94 | Incorrect ACK
+1740361041.190169 | 0 | Sent | 94 | Success
+1740361041.1902 | 0 | Corrupt Packet | 94 | Resent ACK
+1740361041.190274 | 1 | Sent | 89 | Success
+1740361041.190305 | 1 | Received | 89 | Success
+1740361041.190335 | 1 | Corrupt ACK | 89 | Resent ACK
+1740361041.190371 | 1 | Resent | 89 | Incorrect ACK
+1740361041.1904068 | 1 | Sent | 89 | Success
+1740361041.190439 | 1 | Corrupt Packet | 89 | Resent ACK
+1740361041.190515 | 0 | Sent | 47 | Success
+1740361041.190547 | 0 | Received | 47 | Success
+1740361041.190628 | 1 | Sent | 214 | Success
+1740361041.19066 | 1 | Received | 214 | Success
+1740361041.1907358 | 0 | Sent | 44 | Success
+1740361041.1907682 | 0 | Received | 44 | Success
+1740361041.190797 | 0 | Corrupt ACK | 44 | Resent ACK
+1740361041.1908329 | 0 | Resent | 44 | Incorrect ACK
+1740361041.190869 | 0 | Sent | 44 | Success
+1740361041.190903 | 0 | Corrupt Packet | 44 | Resent ACK
+1740361041.1909719 | 1 | Sent | 188 | Success
+1740361041.1910038 | 1 | Received | 188 | Success
+1740361041.191087 | 0 | Sent | 212 | Success
+1740361041.1911192 | 0 | Received | 212 | Success
+1740361041.191148 | 0 | Corrupt ACK | 212 | Resent ACK
+1740361041.1911838 | 0 | Resent | 212 | Incorrect ACK
+1740361041.191218 | 0 | Sent | 212 | Success
+1740361041.191249 | 0 | Corrupt Packet | 212 | Resent ACK
+1740361041.1913202 | 1 | Sent | 53 | Success
+1740361041.191351 | 1 | Received | 53 | Success
+1740361041.191424 | 0 | Sent | 137 | Success
+1740361041.191454 | 0 | Received | 137 | Success
+1740361041.191531 | 1 | Sent | 37 | Success
+1740361041.191564 | 1 | Received | 37 | Success
+1740361041.191595 | 1 | Corrupt ACK | 37 | Resent ACK
+1740361041.191636 | 1 | Resent | 37 | Incorrect ACK
+1740361041.191674 | 1 | Sent | 37 | Success
+1740361041.1917162 | 1 | Corrupt Packet | 37 | Resent ACK
+1740361041.191798 | 0 | Sent | 103 | Success
+1740361041.191829 | 0 | Received | 103 | Success
+1740361041.1918578 | 0 | Corrupt ACK | 103 | Resent ACK
+1740361041.191894 | 0 | Resent | 103 | Incorrect ACK
+1740361041.191929 | 0 | Sent | 103 | Success
+1740361041.1919591 | 0 | Corrupt Packet | 103 | Resent ACK
+1740361041.192037 | 1 | Sent | 241 | Success
+1740361041.192069 | 1 | Received | 241 | Success
+1740361041.192148 | 0 | Sent | 128 | Success
+1740361041.19218 | 0 | Received | 128 | Success
+1740361041.192209 | 0 | Corrupt ACK | 128 | Resent ACK
+1740361041.192244 | 0 | Resent | 128 | Incorrect ACK
+1740361041.192278 | 0 | Sent | 128 | Success
+1740361041.192308 | 0 | Corrupt Packet | 128 | Resent ACK
+1740361041.19238 | 1 | Sent | 162 | Success
+1740361041.192412 | 1 | Received | 162 | Success
+1740361041.1924841 | 0 | Sent | 126 | Success
+1740361041.192514 | 0 | Received | 126 | Success
+1740361041.192544 | 0 | Corrupt ACK | 126 | Resent ACK
+1740361041.192579 | 0 | Resent | 126 | Incorrect ACK
+1740361041.1926131 | 0 | Sent | 126 | Success
+1740361041.192663 | 0 | Corrupt Packet | 126 | Resent ACK
+1740361041.192746 | 1 | Sent | 24 | Success
+1740361041.192779 | 1 | Received | 24 | Success
+1740361041.192854 | 0 | Sent | 213 | Success
+1740361041.192886 | 0 | Received | 213 | Success
+1740361041.192915 | 0 | Corrupt ACK | 213 | Resent ACK
+1740361041.192957 | 0 | Resent | 213 | Incorrect ACK
+1740361041.192992 | 0 | Sent | 213 | Success
+1740361041.193027 | 0 | Corrupt Packet | 213 | Resent ACK
+1740361041.1931038 | 1 | Sent | 18 | Success
+1740361041.1931362 | 1 | Received | 18 | Success
+1740361041.193166 | 1 | Corrupt ACK | 18 | Resent ACK
+1740361041.1932 | 1 | Resent | 18 | Incorrect ACK
+1740361041.193233 | 1 | Sent | 18 | Success
+1740361041.193263 | 1 | Corrupt Packet | 18 | Resent ACK
+1740361041.193332 | 0 | Sent | 4 | Success
+1740361041.193362 | 0 | Received | 4 | Success
+1740361041.193391 | 0 | Corrupt ACK | 4 | Resent ACK
+1740361041.193425 | 0 | Resent | 4 | Incorrect ACK
+1740361041.193459 | 0 | Sent | 4 | Success
+1740361041.193491 | 0 | Corrupt Packet | 4 | Resent ACK
+1740361041.193565 | 1 | Sent | 72 | Success
+1740361041.1935968 | 1 | Received | 72 | Success
+1740361041.1936262 | 1 | Corrupt ACK | 72 | Resent ACK
+1740361041.19366 | 1 | Resent | 72 | Incorrect ACK
+1740361041.1936939 | 1 | Sent | 72 | Success
+1740361041.193723 | 1 | Corrupt Packet | 72 | Resent ACK
+1740361041.193799 | 0 | Sent | 79 | Success
+1740361041.193832 | 0 | Received | 79 | Success
+1740361041.193862 | 0 | Corrupt ACK | 79 | Resent ACK
+1740361041.1938958 | 0 | Resent | 79 | Incorrect ACK
+1740361041.19393 | 0 | Sent | 79 | Success
+1740361041.193959 | 0 | Corrupt Packet | 79 | Resent ACK
+1740361041.1940322 | 1 | Sent | 227 | Success
+1740361041.1940632 | 1 | Received | 227 | Success
+1740361041.1941462 | 0 | Sent | 200 | Success
+1740361041.194177 | 0 | Received | 200 | Success
+1740361041.194206 | 0 | Corrupt ACK | 200 | Resent ACK
+1740361041.1942751 | 0 | Resent | 200 | Incorrect ACK
+1740361041.194311 | 0 | Sent | 200 | Success
+1740361041.194348 | 0 | Corrupt Packet | 200 | Resent ACK
+1740361041.194422 | 1 | Sent | 230 | Success
+1740361041.194452 | 1 | Received | 230 | Success
+1740361041.1944818 | 1 | Corrupt ACK | 230 | Resent ACK
+1740361041.194518 | 1 | Resent | 230 | Incorrect ACK
+1740361041.194556 | 1 | Sent | 230 | Success
+1740361041.194586 | 1 | Corrupt Packet | 230 | Resent ACK
+1740361041.194656 | 0 | Sent | 113 | Success
+1740361041.194687 | 0 | Received | 113 | Success
+1740361041.194717 | 0 | Corrupt ACK | 113 | Resent ACK
+1740361041.194751 | 0 | Resent | 113 | Incorrect ACK
+1740361041.194786 | 0 | Sent | 113 | Success
+1740361041.194817 | 0 | Corrupt Packet | 113 | Resent ACK
+1740361041.194897 | 1 | Sent | 129 | Success
+1740361041.1949272 | 1 | Received | 129 | Success
+1740361041.1950002 | 0 | Sent | 93 | Success
+1740361041.19503 | 0 | Received | 93 | Success
+1740361041.19506 | 0 | Corrupt ACK | 93 | Resent ACK
+1740361041.195101 | 0 | Resent | 93 | Incorrect ACK
+1740361041.195137 | 0 | Sent | 93 | Success
+1740361041.1951659 | 0 | Corrupt Packet | 93 | Resent ACK
+1740361041.1952362 | 1 | Sent | 102 | Success
+1740361041.1952682 | 1 | Received | 102 | Success
+1740361041.195341 | 0 | Sent | 57 | Success
+1740361041.195371 | 0 | Received | 57 | Success
+1740361041.195441 | 1 | Sent | 129 | Success
+1740361041.19547 | 1 | Received | 129 | Success
+1740361041.195543 | 0 | Sent | 15 | Success
+1740361041.195575 | 0 | Received | 15 | Success
+1740361041.1956742 | 1 | Sent | 65 | Success
+1740361041.1956868 | 1 | Received | 65 | Success
+1740361041.195733 | 1 | Corrupt ACK | 65 | Resent ACK
+1740361041.195769 | 1 | Resent | 65 | Incorrect ACK
+1740361041.1958039 | 1 | Sent | 65 | Success
+1740361041.1958342 | 1 | Corrupt Packet | 65 | Resent ACK
+1740361041.195911 | 0 | Sent | 63 | Success
+1740361041.1959412 | 0 | Received | 63 | Success
+1740361041.195977 | 0 | Corrupt ACK | 63 | Resent ACK
+1740361041.196061 | 0 | Resent | 63 | Incorrect ACK
+1740361041.196118 | 0 | Sent | 63 | Success
+1740361041.1961632 | 0 | Corrupt Packet | 63 | Resent ACK
+1740361041.1962712 | 1 | Sent | 224 | Success
+1740361041.196316 | 1 | Received | 224 | Success
+1740361041.196359 | 1 | Corrupt ACK | 224 | Resent ACK
+1740361041.196409 | 1 | Resent | 224 | Incorrect ACK
+1740361041.196464 | 1 | Sent | 224 | Success
+1740361041.196509 | 1 | Corrupt Packet | 224 | Resent ACK
+1740361041.196616 | 0 | Sent | 247 | Success
+1740361041.196661 | 0 | Received | 247 | Success
+1740361041.196706 | 0 | Corrupt ACK | 247 | Resent ACK
+1740361041.196757 | 0 | Resent | 247 | Incorrect ACK
+1740361041.196812 | 0 | Sent | 247 | Success
+1740361041.196853 | 0 | Corrupt Packet | 247 | Resent ACK
+1740361041.196958 | 1 | Sent | 172 | Success
+1740361041.1970072 | 1 | Received | 172 | Success
+1740361041.197113 | 0 | Sent | 43 | Success
+1740361041.197162 | 0 | Received | 43 | Success
+1740361041.197205 | 0 | Corrupt ACK | 43 | Resent ACK
+1740361041.197258 | 0 | Resent | 43 | Incorrect ACK
+1740361041.197312 | 0 | Sent | 43 | Success
+1740361041.19736 | 0 | Corrupt Packet | 43 | Resent ACK
+1740361041.197473 | 1 | Sent | 38 | Success
+1740361041.1975198 | 1 | Received | 38 | Success
+1740361041.197564 | 1 | Corrupt ACK | 38 | Resent ACK
+1740361041.197616 | 1 | Resent | 38 | Incorrect ACK
+1740361041.197665 | 1 | Sent | 38 | Success
+1740361041.197711 | 1 | Corrupt Packet | 38 | Resent ACK
+1740361041.197818 | 0 | Sent | 219 | Success
+1740361041.197865 | 0 | Received | 219 | Success
+1740361041.197907 | 0 | Corrupt ACK | 219 | Resent ACK
+1740361041.197957 | 0 | Resent | 219 | Incorrect ACK
+1740361041.198008 | 0 | Sent | 219 | Success
+1740361041.198103 | 0 | Corrupt Packet | 219 | Resent ACK
+1740361041.1982841 | 1 | Received | 174 | Success
+1740361041.19825 | 1 | Sent | 174 | Success
+1740361041.198467 | 0 | Sent | 172 | Success
+1740361041.198543 | 0 | Received | 172 | Success
+1740361041.198608 | 0 | Corrupt ACK | 172 | Resent ACK
+1740361041.198685 | 0 | Resent | 172 | Incorrect ACK
+1740361041.198914 | 0 | Sent | 172 | Success
+1740361041.1989582 | 0 | Corrupt Packet | 172 | Resent ACK
+1740361041.1993542 | 1 | Sent | 22 | Success
+1740361041.199491 | 1 | Received | 22 | Success
+1740361041.199771 | 0 | Sent | 22 | Success
+1740361041.1998432 | 0 | Received | 22 | Success
+1740361041.2001002 | 1 | Sent | 185 | Success
+1740361041.2001941 | 1 | Received | 185 | Success
+1740361041.200329 | 1 | Corrupt ACK | 185 | Resent ACK
+1740361041.200477 | 1 | Resent | 185 | Incorrect ACK
+1740361041.2005498 | 1 | Sent | 185 | Success
+1740361041.200593 | 1 | Corrupt Packet | 185 | Resent ACK
+1740361041.2008011 | 0 | Sent | 211 | Success
+1740361041.2008991 | 0 | Received | 211 | Success
+1740361041.201225 | 1 | Sent | 240 | Success
+1740361041.201335 | 1 | Received | 240 | Success
+1740361041.201561 | 0 | Sent | 20 | Success
+1740361041.201643 | 0 | Received | 20 | Success
+1740361041.201847 | 1 | Sent | 134 | Success
+1740361041.201934 | 1 | Received | 134 | Success
+1740361041.202106 | 0 | Sent | 131 | Success
+1740361041.2021701 | 0 | Received | 131 | Success
+1740361041.202372 | 1 | Sent | 227 | Success
+1740361041.2024279 | 1 | Received | 227 | Success
+1740361041.2026181 | 0 | Sent | 30 | Success
+1740361041.202641 | 0 | Received | 30 | Success
+1740361041.202743 | 1 | Sent | 160 | Success
+1740361041.2027788 | 1 | Received | 160 | Success
+1740361041.202817 | 1 | Corrupt ACK | 160 | Resent ACK
+1740361041.2028558 | 1 | Resent | 160 | Incorrect ACK
+1740361041.202893 | 1 | Sent | 160 | Success
+1740361041.202927 | 1 | Corrupt Packet | 160 | Resent ACK
+1740361041.20301 | 0 | Sent | 87 | Success
+1740361041.203043 | 0 | Received | 87 | Success
+1740361041.20308 | 0 | Corrupt ACK | 87 | Resent ACK
+1740361041.203122 | 0 | Resent | 87 | Incorrect ACK
+1740361041.203167 | 0 | Sent | 87 | Success
+1740361041.2031958 | 0 | Corrupt Packet | 87 | Resent ACK
+1740361041.203285 | 1 | Sent | 219 | Success
+1740361041.20332 | 1 | Received | 219 | Success
+1740361041.2033641 | 1 | Corrupt ACK | 219 | Resent ACK
+1740361041.203409 | 1 | Resent | 219 | Incorrect ACK
+1740361041.203447 | 1 | Sent | 219 | Success
+1740361041.203479 | 1 | Corrupt Packet | 219 | Resent ACK
+1740361041.203556 | 0 | Sent | 42 | Success
+1740361041.2035892 | 0 | Received | 42 | Success
+1740361041.2036648 | 1 | Sent | 64 | Success
+1740361041.203697 | 1 | Received | 64 | Success
+1740361041.203727 | 1 | Corrupt ACK | 64 | Resent ACK
+1740361041.203764 | 1 | Resent | 64 | Incorrect ACK
+1740361041.203799 | 1 | Sent | 64 | Success
+1740361041.203829 | 1 | Corrupt Packet | 64 | Resent ACK
+1740361041.203904 | 0 | Sent | 214 | Success
+1740361041.203935 | 0 | Received | 214 | Success
+1740361041.203966 | 0 | Corrupt ACK | 214 | Resent ACK
+1740361041.204001 | 0 | Resent | 214 | Incorrect ACK
+1740361041.204035 | 0 | Sent | 214 | Success
+1740361041.204065 | 0 | Corrupt Packet | 214 | Resent ACK
+1740361041.204138 | 1 | Sent | 12 | Success
+1740361041.2041678 | 1 | Received | 12 | Success
+1740361041.204277 | 0 | Sent | 139 | Success
+1740361041.204312 | 0 | Received | 139 | Success
+1740361041.204352 | 0 | Corrupt ACK | 139 | Resent ACK
+1740361041.204393 | 0 | Resent | 139 | Incorrect ACK
+1740361041.20443 | 0 | Sent | 139 | Success
+1740361041.204462 | 0 | Corrupt Packet | 139 | Resent ACK
+1740361041.204538 | 1 | Sent | 30 | Success
+1740361041.2045708 | 1 | Received | 30 | Success
+1740361041.204606 | 1 | Corrupt ACK | 30 | Resent ACK
+1740361041.2046452 | 1 | Resent | 30 | Incorrect ACK
+1740361041.2046888 | 1 | Sent | 30 | Success
+1740361041.204719 | 1 | Corrupt Packet | 30 | Resent ACK
+1740361041.204793 | 0 | Sent | 206 | Success
+1740361041.2048268 | 0 | Received | 206 | Success
+1740361041.20487 | 0 | Corrupt ACK | 206 | Resent ACK
+1740361041.20492 | 0 | Resent | 206 | Incorrect ACK
+1740361041.205007 | 0 | Sent | 206 | Success
+1740361041.2050502 | 0 | Corrupt Packet | 206 | Resent ACK
+1740361041.205209 | 1 | Sent | 49 | Success
+1740361041.2052732 | 1 | Received | 49 | Success
+1740361041.205385 | 0 | Sent | 136 | Success
+1740361041.205573 | 0 | Received | 136 | Success
+1740361041.205725 | 1 | Sent | 116 | Success
+1740361041.2057621 | 1 | Received | 116 | Success
+1740361041.2057989 | 1 | Corrupt ACK | 116 | Resent ACK
+1740361041.205873 | 1 | Resent | 116 | Incorrect ACK
+1740361041.205916 | 1 | Sent | 116 | Success
+1740361041.205956 | 1 | Corrupt Packet | 116 | Resent ACK
+1740361041.206062 | 0 | Sent | 77 | Success
+1740361041.206101 | 0 | Received | 77 | Success
+1740361041.206182 | 1 | Sent | 255 | Success
+1740361041.206212 | 1 | Received | 255 | Success
+1740361041.2062879 | 0 | Sent | 64 | Success
+1740361041.206321 | 0 | Received | 64 | Success
+1740361041.2063518 | 0 | Corrupt ACK | 64 | Resent ACK
+1740361041.206388 | 0 | Resent | 64 | Incorrect ACK
+1740361041.206424 | 0 | Sent | 64 | Success
+1740361041.206453 | 0 | Corrupt Packet | 64 | Resent ACK
+1740361041.206534 | 1 | Sent | 206 | Success
+1740361041.2065642 | 1 | Received | 206 | Success
+1740361041.206594 | 1 | Corrupt ACK | 206 | Resent ACK
+1740361041.206629 | 1 | Resent | 206 | Incorrect ACK
+1740361041.206663 | 1 | Sent | 206 | Success
+1740361041.206697 | 1 | Corrupt Packet | 206 | Resent ACK
+1740361041.2067819 | 0 | Sent | 76 | Success
+1740361041.206814 | 0 | Received | 76 | Success
+1740361041.206845 | 0 | Corrupt ACK | 76 | Resent ACK
+1740361041.206887 | 0 | Resent | 76 | Incorrect ACK
+1740361041.2069252 | 0 | Sent | 76 | Success
+1740361041.206963 | 0 | Corrupt Packet | 76 | Resent ACK
+1740361041.2070389 | 1 | Sent | 200 | Success
+1740361041.2070699 | 1 | Received | 200 | Success
+1740361041.2071 | 1 | Corrupt ACK | 200 | Resent ACK
+1740361041.207136 | 1 | Resent | 200 | Incorrect ACK
+1740361041.207171 | 1 | Sent | 200 | Success
+1740361041.2072 | 1 | Corrupt Packet | 200 | Resent ACK
+1740361041.207273 | 0 | Sent | 196 | Success
+1740361041.2073028 | 0 | Received | 196 | Success
+1740361041.2073731 | 1 | Sent | 14 | Success
+1740361041.207405 | 1 | Received | 14 | Success
+1740361041.207437 | 1 | Corrupt ACK | 14 | Resent ACK
+1740361041.207474 | 1 | Resent | 14 | Incorrect ACK
+1740361041.20751 | 1 | Sent | 14 | Success
+1740361041.207554 | 1 | Corrupt Packet | 14 | Resent ACK
+1740361041.2076302 | 0 | Sent | 183 | Success
+1740361041.2076612 | 0 | Received | 183 | Success
+1740361041.207695 | 0 | Corrupt ACK | 183 | Resent ACK
+1740361041.2077398 | 0 | Resent | 183 | Incorrect ACK
+1740361041.2077749 | 0 | Sent | 183 | Success
+1740361041.207807 | 0 | Corrupt Packet | 183 | Resent ACK
+1740361041.207888 | 1 | Sent | 221 | Success
+1740361041.2079182 | 1 | Received | 221 | Success
+1740361041.207948 | 1 | Corrupt ACK | 221 | Resent ACK
+1740361041.207982 | 1 | Resent | 221 | Incorrect ACK
+1740361041.208016 | 1 | Sent | 221 | Success
+1740361041.208045 | 1 | Corrupt Packet | 221 | Resent ACK
+1740361041.208124 | 0 | Sent | 217 | Success
+1740361041.2081861 | 0 | Received | 217 | Success
+1740361041.208229 | 0 | Corrupt ACK | 217 | Resent ACK
+1740361041.20828 | 0 | Resent | 217 | Incorrect ACK
+1740361041.20833 | 0 | Sent | 217 | Success
+1740361041.208374 | 0 | Corrupt Packet | 217 | Resent ACK
+1740361041.208477 | 1 | Sent | 102 | Success
+1740361041.208522 | 1 | Received | 102 | Success
+1740361041.2086148 | 0 | Sent | 181 | Success
+1740361041.208645 | 0 | Received | 181 | Success
+1740361041.20868 | 0 | Corrupt ACK | 181 | Resent ACK
+1740361041.208718 | 0 | Resent | 181 | Incorrect ACK
+1740361041.208759 | 0 | Sent | 181 | Success
+1740361041.2088 | 0 | Corrupt Packet | 181 | Resent ACK
+1740361041.208875 | 1 | Sent | 120 | Success
+1740361041.208907 | 1 | Received | 120 | Success
+1740361041.208937 | 1 | Corrupt ACK | 120 | Resent ACK
+1740361041.208971 | 1 | Resent | 120 | Incorrect ACK
+1740361041.209005 | 1 | Sent | 120 | Success
+1740361041.209035 | 1 | Corrupt Packet | 120 | Resent ACK
+1740361041.2091079 | 0 | Sent | 83 | Success
+1740361041.209142 | 0 | Received | 83 | Success
+1740361041.2092302 | 1 | Sent | 241 | Success
+1740361041.20929 | 1 | Received | 241 | Success
+1740361041.209321 | 1 | Corrupt ACK | 241 | Resent ACK
+1740361041.209377 | 1 | Resent | 241 | Incorrect ACK
+1740361041.209468 | 1 | Sent | 241 | Success
+1740361041.209615 | 1 | Corrupt Packet | 241 | Resent ACK
+1740361041.209847 | 0 | Sent | 67 | Success
+1740361041.209866 | 0 | Received | 67 | Success
+1740361041.210027 | 1 | Sent | 170 | Success
+1740361041.210052 | 1 | Received | 170 | Success
+1740361041.210151 | 0 | Sent | 150 | Success
+1740361041.2102258 | 0 | Received | 150 | Success
+1740361041.210258 | 0 | Corrupt ACK | 150 | Resent ACK
+1740361041.210306 | 0 | Resent | 150 | Incorrect ACK
+1740361041.2103438 | 0 | Sent | 150 | Success
+1740361041.21038 | 0 | Corrupt Packet | 150 | Resent ACK
+1740361041.2104661 | 1 | Sent | 40 | Success
+1740361041.21052 | 1 | Received | 40 | Success
+1740361041.210551 | 1 | Corrupt ACK | 40 | Resent ACK
+1740361041.210591 | 1 | Resent | 40 | Incorrect ACK
+1740361041.210628 | 1 | Sent | 40 | Success
+1740361041.210687 | 1 | Corrupt Packet | 40 | Resent ACK
+1740361041.2107992 | 0 | Received | 222 | Success
+1740361041.210797 | 0 | Sent | 222 | Success
+1740361041.210863 | 0 | Corrupt ACK | 222 | Resent ACK
+1740361041.210915 | 0 | Resent | 222 | Incorrect ACK
+1740361041.210958 | 0 | Sent | 222 | Success
+1740361041.21104 | 0 | Corrupt Packet | 222 | Resent ACK
+1740361041.211124 | 1 | Sent | 170 | Success
+1740361041.2111528 | 1 | Received | 170 | Success
+1740361041.211205 | 1 | Corrupt ACK | 170 | Resent ACK
+1740361041.2112541 | 1 | Resent | 170 | Incorrect ACK
+1740361041.2112892 | 1 | Sent | 170 | Success
+1740361041.211335 | 1 | Corrupt Packet | 170 | Resent ACK
+1740361041.211423 | 0 | Sent | 40 | Success
+1740361041.21146 | 0 | Received | 40 | Success
+1740361041.211508 | 0 | Corrupt ACK | 40 | Resent ACK
+1740361041.21155 | 0 | Resent | 40 | Incorrect ACK
+1740361041.211618 | 0 | Corrupt Packet | 40 | Resent ACK
+1740361041.211584 | 0 | Sent | 40 | Success
+1740361041.2116969 | 1 | Sent | 162 | Success
+1740361041.2117279 | 1 | Received | 162 | Success
+1740361041.211829 | 0 | Sent | 183 | Success
+1740361041.211864 | 0 | Received | 183 | Success
+1740361041.2118988 | 0 | Corrupt ACK | 183 | Resent ACK
+1740361041.211937 | 0 | Resent | 183 | Incorrect ACK
+1740361041.211977 | 0 | Sent | 183 | Success
+1740361041.21201 | 0 | Corrupt Packet | 183 | Resent ACK
+1740361041.212099 | 1 | Sent | 158 | Success
+1740361041.21213 | 1 | Received | 158 | Success
+1740361041.212161 | 1 | Corrupt ACK | 158 | Resent ACK
+1740361041.2121978 | 1 | Resent | 158 | Incorrect ACK
+1740361041.212239 | 1 | Sent | 158 | Success
+1740361041.21227 | 1 | Corrupt Packet | 158 | Resent ACK
+1740361041.2123451 | 0 | Sent | 217 | Success
+1740361041.212376 | 0 | Received | 217 | Success
+1740361041.212449 | 1 | Sent | 208 | Success
+1740361041.21248 | 1 | Received | 208 | Success
+1740361041.212512 | 1 | Corrupt ACK | 208 | Resent ACK
+1740361041.21255 | 1 | Resent | 208 | Incorrect ACK
+1740361041.2125921 | 1 | Sent | 208 | Success
+1740361041.2126238 | 1 | Corrupt Packet | 208 | Resent ACK
+1740361041.212703 | 0 | Sent | 33 | Success
+1740361041.212733 | 0 | Received | 33 | Success
+1740361041.2128088 | 1 | Sent | 101 | Success
+1740361041.212841 | 1 | Received | 101 | Success
+1740361041.2128708 | 1 | Corrupt ACK | 101 | Resent ACK
+1740361041.2129111 | 1 | Resent | 101 | Incorrect ACK
+1740361041.212946 | 1 | Sent | 101 | Success
+1740361041.212977 | 1 | Corrupt Packet | 101 | Resent ACK
+1740361041.213064 | 0 | Sent | 70 | Success
+1740361041.213095 | 0 | Received | 70 | Success
+1740361041.213127 | 0 | Corrupt ACK | 70 | Resent ACK
+1740361041.213161 | 0 | Resent | 70 | Incorrect ACK
+1740361041.213202 | 0 | Sent | 70 | Success
+1740361041.2132359 | 0 | Corrupt Packet | 70 | Resent ACK
+1740361041.213314 | 1 | Sent | 103 | Success
+1740361041.213345 | 1 | Received | 103 | Success
+1740361041.213376 | 1 | Corrupt ACK | 103 | Resent ACK
+1740361041.2134132 | 1 | Resent | 103 | Incorrect ACK
+1740361041.21345 | 1 | Sent | 103 | Success
+1740361041.213482 | 1 | Corrupt Packet | 103 | Resent ACK
+1740361041.2135592 | 0 | Sent | 101 | Success
+1740361041.213591 | 0 | Received | 101 | Success
+1740361041.21362 | 0 | Corrupt ACK | 101 | Resent ACK
+1740361041.213655 | 0 | Resent | 101 | Incorrect ACK
+1740361041.213689 | 0 | Sent | 101 | Success
+1740361041.213718 | 0 | Corrupt Packet | 101 | Resent ACK
+1740361041.21381 | 1 | Sent | 154 | Success
+1740361041.213848 | 1 | Received | 154 | Success
+1740361041.2138932 | 1 | Corrupt ACK | 154 | Resent ACK
+1740361041.2139678 | 1 | Resent | 154 | Incorrect ACK
+1740361041.214015 | 1 | Sent | 154 | Success
+1740361041.214072 | 1 | Corrupt Packet | 154 | Resent ACK
+1740361041.214255 | 0 | Sent | 149 | Success
+1740361041.214514 | 0 | Received | 149 | Success
+1740361041.214586 | 0 | Corrupt ACK | 149 | Resent ACK
+1740361041.214755 | 0 | Resent | 149 | Incorrect ACK
+1740361041.214836 | 0 | Sent | 149 | Success
+1740361041.2148638 | 0 | Corrupt Packet | 149 | Resent ACK
+1740361041.214972 | 1 | Sent | 10 | Success
+1740361041.215007 | 1 | Received | 10 | Success
+1740361041.215039 | 1 | Corrupt ACK | 10 | Resent ACK
+1740361041.2150762 | 1 | Resent | 10 | Incorrect ACK
+1740361041.2151139 | 1 | Sent | 10 | Success
+1740361041.215147 | 1 | Corrupt Packet | 10 | Resent ACK
+1740361041.2152488 | 0 | Sent | 107 | Success
+1740361041.215281 | 0 | Received | 107 | Success
+1740361041.21537 | 1 | Sent | 180 | Success
+1740361041.215403 | 1 | Received | 180 | Success
+1740361041.215484 | 0 | Sent | 178 | Success
+1740361041.215515 | 0 | Received | 178 | Success
+1740361041.2155452 | 0 | Corrupt ACK | 178 | Resent ACK
+1740361041.2155788 | 0 | Resent | 178 | Incorrect ACK
+1740361041.215616 | 0 | Sent | 178 | Success
+1740361041.2156448 | 0 | Corrupt Packet | 178 | Resent ACK
+1740361041.215722 | 1 | Sent | 224 | Success
+1740361041.215753 | 1 | Received | 224 | Success
+1740361041.2157838 | 1 | Corrupt ACK | 224 | Resent ACK
+1740361041.2158191 | 1 | Resent | 224 | Incorrect ACK
+1740361041.215853 | 1 | Sent | 224 | Success
+1740361041.215882 | 1 | Corrupt Packet | 224 | Resent ACK
+1740361041.215959 | 0 | Sent | 202 | Success
+1740361041.2159889 | 0 | Received | 202 | Success
+1740361041.2160609 | 1 | Sent | 34 | Success
+1740361041.216094 | 1 | Received | 34 | Success
+1740361041.216126 | 1 | Corrupt ACK | 34 | Resent ACK
+1740361041.216164 | 1 | Resent | 34 | Incorrect ACK
+1740361041.216199 | 1 | Sent | 34 | Success
+1740361041.2162292 | 1 | Corrupt Packet | 34 | Resent ACK
+1740361041.2163131 | 0 | Sent | 55 | Success
+1740361041.216344 | 0 | Received | 55 | Success
+1740361041.216374 | 0 | Corrupt ACK | 55 | Resent ACK
+1740361041.2164102 | 0 | Resent | 55 | Incorrect ACK
+1740361041.216445 | 0 | Sent | 55 | Success
+1740361041.216473 | 0 | Corrupt Packet | 55 | Resent ACK
+1740361041.216546 | 1 | Sent | 243 | Success
+1740361041.216581 | 1 | Received | 243 | Success
+1740361041.216615 | 1 | Corrupt ACK | 243 | Resent ACK
+1740361041.216651 | 1 | Resent | 243 | Incorrect ACK
+1740361041.216685 | 1 | Sent | 243 | Success
+1740361041.216717 | 1 | Corrupt Packet | 243 | Resent ACK
+1740361041.216788 | 0 | Sent | 209 | Success
+1740361041.216819 | 0 | Received | 209 | Success
+1740361041.216893 | 1 | Sent | 43 | Success
+1740361041.216923 | 1 | Received | 43 | Success
+1740361041.216952 | 1 | Corrupt ACK | 43 | Resent ACK
+1740361041.216987 | 1 | Resent | 43 | Incorrect ACK
+1740361041.217021 | 1 | Sent | 43 | Success
+1740361041.217055 | 1 | Corrupt Packet | 43 | Resent ACK
+1740361041.2171352 | 0 | Sent | 107 | Success
+1740361041.2171671 | 0 | Received | 107 | Success
+1740361041.217197 | 0 | Corrupt ACK | 107 | Resent ACK
+1740361041.217232 | 0 | Resent | 107 | Incorrect ACK
+1740361041.217268 | 0 | Sent | 107 | Success
+1740361041.217298 | 0 | Corrupt Packet | 107 | Resent ACK
+1740361041.2173812 | 1 | Sent | 174 | Success
+1740361041.217414 | 1 | Received | 174 | Success
+1740361041.2174442 | 1 | Corrupt ACK | 174 | Resent ACK
+1740361041.21748 | 1 | Resent | 174 | Incorrect ACK
+1740361041.217515 | 1 | Sent | 174 | Success
+1740361041.217546 | 1 | Corrupt Packet | 174 | Resent ACK
+1740361041.217618 | 0 | Sent | 40 | Success
+1740361041.217649 | 0 | Received | 40 | Success
+1740361041.217679 | 0 | Corrupt ACK | 40 | Resent ACK
+1740361041.217717 | 0 | Resent | 40 | Incorrect ACK
+1740361041.217751 | 0 | Sent | 40 | Success
+1740361041.217781 | 0 | Corrupt Packet | 40 | Resent ACK
+1740361041.2178519 | 1 | Sent | 17 | Success
+1740361041.2178829 | 1 | Received | 17 | Success
+1740361041.217911 | 1 | Corrupt ACK | 17 | Resent ACK
+1740361041.217946 | 1 | Resent | 17 | Incorrect ACK
+1740361041.217979 | 1 | Sent | 17 | Success
+1740361041.218007 | 1 | Corrupt Packet | 17 | Resent ACK
+1740361041.218081 | 0 | Sent | 215 | Success
+1740361041.218112 | 0 | Received | 215 | Success
+1740361041.2181408 | 0 | Corrupt ACK | 215 | Resent ACK
+1740361041.218175 | 0 | Resent | 215 | Incorrect ACK
+1740361041.218209 | 0 | Sent | 215 | Success
+1740361041.2182379 | 0 | Corrupt Packet | 215 | Resent ACK
+1740361041.218317 | 1 | Sent | 174 | Success
+1740361041.218348 | 1 | Received | 174 | Success
+1740361041.2183812 | 1 | Corrupt ACK | 174 | Resent ACK
+1740361041.218417 | 1 | Resent | 174 | Incorrect ACK
+1740361041.218452 | 1 | Sent | 174 | Success
+1740361041.2184808 | 1 | Corrupt Packet | 174 | Resent ACK
+1740361041.218553 | 0 | Sent | 107 | Success
+1740361041.218583 | 0 | Received | 107 | Success
+1740361041.2186618 | 1 | Sent | 44 | Success
+1740361041.218693 | 1 | Received | 44 | Success
+1740361041.218723 | 1 | Corrupt ACK | 44 | Resent ACK
+1740361041.2187579 | 1 | Resent | 44 | Incorrect ACK
+1740361041.2187939 | 1 | Sent | 44 | Success
+1740361041.218828 | 1 | Corrupt Packet | 44 | Resent ACK
+1740361041.218903 | 0 | Sent | 23 | Success
+1740361041.218934 | 0 | Received | 23 | Success
+1740361041.2189639 | 0 | Corrupt ACK | 23 | Resent ACK
+1740361041.219012 | 0 | Resent | 23 | Incorrect ACK
+1740361041.2190459 | 0 | Sent | 23 | Success
+1740361041.219075 | 0 | Corrupt Packet | 23 | Resent ACK
+1740361041.219161 | 1 | Sent | 228 | Success
+1740361041.219195 | 1 | Received | 228 | Success
+1740361041.219262 | 1 | Corrupt ACK | 228 | Resent ACK
+1740361041.219313 | 1 | Resent | 228 | Incorrect ACK
+1740361041.219402 | 1 | Corrupt Packet | 228 | Resent ACK
+1740361041.21942 | 1 | Sent | 228 | Success
+1740361041.219501 | 0 | Sent | 214 | Success
+1740361041.219532 | 0 | Received | 214 | Success
+1740361041.219564 | 0 | Corrupt ACK | 214 | Resent ACK
+1740361041.219601 | 0 | Resent | 214 | Incorrect ACK
+1740361041.219637 | 0 | Sent | 214 | Success
+1740361041.219668 | 0 | Corrupt Packet | 214 | Resent ACK
+1740361041.219745 | 1 | Sent | 88 | Success
+1740361041.219776 | 1 | Received | 88 | Success
+1740361041.219807 | 1 | Corrupt ACK | 88 | Resent ACK
+1740361041.219842 | 1 | Resent | 88 | Incorrect ACK
+1740361041.219878 | 1 | Sent | 88 | Success
+1740361041.2199092 | 1 | Corrupt Packet | 88 | Resent ACK
+1740361041.2199821 | 0 | Sent | 208 | Success
+1740361041.220012 | 0 | Received | 208 | Success
+1740361041.220083 | 1 | Sent | 45 | Success
+1740361041.220114 | 1 | Received | 45 | Success
+1740361041.220145 | 1 | Corrupt ACK | 45 | Resent ACK
+1740361041.220181 | 1 | Resent | 45 | Incorrect ACK
+1740361041.220215 | 1 | Sent | 45 | Success
+1740361041.220246 | 1 | Corrupt Packet | 45 | Resent ACK
+1740361041.220317 | 0 | Sent | 218 | Success
+1740361041.220348 | 0 | Received | 218 | Success
+1740361041.2204192 | 1 | Sent | 250 | Success
+1740361041.2204502 | 1 | Received | 250 | Success
+1740361041.220479 | 1 | Corrupt ACK | 250 | Resent ACK
+1740361041.2205172 | 1 | Resent | 250 | Incorrect ACK
+1740361041.220562 | 1 | Sent | 250 | Success
+1740361041.220598 | 1 | Corrupt Packet | 250 | Resent ACK
+1740361041.220727 | 0 | Sent | 101 | Success
+1740361041.220758 | 0 | Received | 101 | Success
+1740361041.22079 | 0 | Corrupt ACK | 101 | Resent ACK
+1740361041.22083 | 0 | Resent | 101 | Incorrect ACK
+1740361041.2208672 | 0 | Sent | 101 | Success
+1740361041.220897 | 0 | Corrupt Packet | 101 | Resent ACK
+1740361041.22097 | 1 | Sent | 105 | Success
+1740361041.221 | 1 | Received | 105 | Success
+1740361041.221029 | 1 | Corrupt ACK | 105 | Resent ACK
+1740361041.2210639 | 1 | Resent | 105 | Incorrect ACK
+1740361041.221098 | 1 | Sent | 105 | Success
+1740361041.221129 | 1 | Corrupt Packet | 105 | Resent ACK
+1740361041.2212029 | 0 | Sent | 176 | Success
+1740361041.2212338 | 0 | Received | 176 | Success
+1740361041.221306 | 1 | Sent | 136 | Success
+1740361041.221338 | 1 | Received | 136 | Success
+1740361041.221369 | 1 | Corrupt ACK | 136 | Resent ACK
+1740361041.221405 | 1 | Resent | 136 | Incorrect ACK
+1740361041.22144 | 1 | Sent | 136 | Success
+1740361041.2214699 | 1 | Corrupt Packet | 136 | Resent ACK
+1740361041.221591 | 0 | Sent | 218 | Success
+1740361041.221652 | 0 | Received | 218 | Success
+1740361041.221683 | 0 | Corrupt ACK | 218 | Resent ACK
+1740361041.2217312 | 0 | Resent | 218 | Incorrect ACK
+1740361041.221802 | 0 | Sent | 218 | Success
+1740361041.2218492 | 0 | Corrupt Packet | 218 | Resent ACK
+1740361041.221971 | 1 | Sent | 164 | Success
+1740361041.2221282 | 1 | Received | 164 | Success
+1740361041.2222452 | 1 | Corrupt ACK | 164 | Resent ACK
+1740361041.222315 | 1 | Resent | 164 | Incorrect ACK
+1740361041.222406 | 1 | Corrupt Packet | 164 | Resent ACK
+1740361041.222372 | 1 | Sent | 164 | Success
+1740361041.222523 | 0 | Sent | 62 | Success
+1740361041.222558 | 0 | Received | 62 | Success
+1740361041.222647 | 1 | Sent | 58 | Success
+1740361041.2226958 | 1 | Received | 58 | Success
+1740361041.2227762 | 0 | Sent | 219 | Success
+1740361041.2228081 | 0 | Received | 219 | Success
+1740361041.22284 | 0 | Corrupt ACK | 219 | Resent ACK
+1740361041.222877 | 0 | Resent | 219 | Incorrect ACK
+1740361041.222913 | 0 | Sent | 219 | Success
+1740361041.222943 | 0 | Corrupt Packet | 219 | Resent ACK
+1740361041.223016 | 1 | Sent | 60 | Success
+1740361041.2230499 | 1 | Received | 60 | Success
+1740361041.223126 | 0 | Sent | 124 | Success
+1740361041.223157 | 0 | Received | 124 | Success
+1740361041.223229 | 1 | Sent | 66 | Success
+1740361041.22326 | 1 | Received | 66 | Success
+1740361041.223291 | 1 | Corrupt ACK | 66 | Resent ACK
+1740361041.223328 | 1 | Resent | 66 | Incorrect ACK
+1740361041.223365 | 1 | Sent | 66 | Success
+1740361041.223396 | 1 | Corrupt Packet | 66 | Resent ACK
+1740361041.223468 | 0 | Sent | 235 | Success
+1740361041.223499 | 0 | Received | 235 | Success
+1740361041.223528 | 0 | Corrupt ACK | 235 | Resent ACK
+1740361041.223563 | 0 | Resent | 235 | Incorrect ACK
+1740361041.223598 | 0 | Sent | 235 | Success
+1740361041.2236302 | 0 | Corrupt Packet | 235 | Resent ACK
+1740361041.223704 | 1 | Sent | 150 | Success
+1740361041.223735 | 1 | Received | 150 | Success
+1740361041.2237692 | 1 | Corrupt ACK | 150 | Resent ACK
+1740361041.223806 | 1 | Resent | 150 | Incorrect ACK
+1740361041.2238421 | 1 | Sent | 150 | Success
+1740361041.223872 | 1 | Corrupt Packet | 150 | Resent ACK
+1740361041.223945 | 0 | Sent | 228 | Success
+1740361041.2239769 | 0 | Received | 228 | Success
+1740361041.224052 | 1 | Sent | 131 | Success
+1740361041.224083 | 1 | Received | 131 | Success
+1740361041.224156 | 0 | Sent | 180 | Success
+1740361041.2241879 | 0 | Received | 180 | Success
+1740361041.224266 | 0 | Corrupt ACK | 180 | Resent ACK
+1740361041.224303 | 0 | Resent | 180 | Incorrect ACK
+1740361041.22434 | 0 | Sent | 180 | Success
+1740361041.224373 | 0 | Corrupt Packet | 180 | Resent ACK
+1740361041.224447 | 1 | Sent | 171 | Success
+1740361041.224481 | 1 | Received | 171 | Success
+1740361041.224512 | 1 | Corrupt ACK | 171 | Resent ACK
+1740361041.224567 | 1 | Resent | 171 | Incorrect ACK
+1740361041.2246022 | 1 | Sent | 171 | Success
+1740361041.224632 | 1 | Corrupt Packet | 171 | Resent ACK
+1740361041.224706 | 0 | Sent | 70 | Success
+1740361041.2247381 | 0 | Received | 70 | Success
+1740361041.224816 | 1 | Sent | 187 | Success
+1740361041.224849 | 1 | Received | 187 | Success
+1740361041.224879 | 1 | Corrupt ACK | 187 | Resent ACK
+1740361041.224913 | 1 | Resent | 187 | Incorrect ACK
+1740361041.224947 | 1 | Sent | 187 | Success
+1740361041.2249768 | 1 | Corrupt Packet | 187 | Resent ACK
+1740361041.225051 | 0 | Sent | 235 | Success
+1740361041.2250822 | 0 | Received | 235 | Success
+1740361041.2251542 | 1 | Sent | 95 | Success
+1740361041.225185 | 1 | Received | 95 | Success
+1740361041.2252202 | 1 | Corrupt ACK | 95 | Resent ACK
+1740361041.225261 | 1 | Resent | 95 | Incorrect ACK
+1740361041.225298 | 1 | Sent | 95 | Success
+1740361041.2253299 | 1 | Corrupt Packet | 95 | Resent ACK
+1740361041.225406 | 0 | Sent | 214 | Success
+1740361041.225436 | 0 | Received | 214 | Success
+1740361041.225466 | 0 | Corrupt ACK | 214 | Resent ACK
+1740361041.225503 | 0 | Resent | 214 | Incorrect ACK
+1740361041.225537 | 0 | Sent | 214 | Success
+1740361041.225568 | 0 | Corrupt Packet | 214 | Resent ACK
+1740361041.2256398 | 1 | Sent | 176 | Success
+1740361041.2256708 | 1 | Received | 176 | Success
+1740361041.225701 | 1 | Corrupt ACK | 176 | Resent ACK
+1740361041.225735 | 1 | Resent | 176 | Incorrect ACK
+1740361041.225769 | 1 | Sent | 176 | Success
+1740361041.225801 | 1 | Corrupt Packet | 176 | Resent ACK
+1740361041.2258828 | 0 | Sent | 126 | Success
+1740361041.225913 | 0 | Received | 126 | Success
+1740361041.225943 | 0 | Corrupt ACK | 126 | Resent ACK
+1740361041.225982 | 0 | Resent | 126 | Incorrect ACK
+1740361041.226016 | 0 | Sent | 126 | Success
+1740361041.226047 | 0 | Corrupt Packet | 126 | Resent ACK
+1740361041.226123 | 1 | Sent | 9 | Success
+1740361041.226155 | 1 | Received | 9 | Success
+1740361041.226193 | 1 | Corrupt ACK | 9 | Resent ACK
+1740361041.226235 | 1 | Resent | 9 | Incorrect ACK
+1740361041.226274 | 1 | Sent | 9 | Success
+1740361041.226306 | 1 | Corrupt Packet | 9 | Resent ACK
+1740361041.226379 | 0 | Sent | 66 | Success
+1740361041.226409 | 0 | Received | 66 | Success
+1740361041.2264802 | 1 | Sent | 212 | Success
+1740361041.22651 | 1 | Received | 212 | Success
+1740361041.226541 | 1 | Corrupt ACK | 212 | Resent ACK
+1740361041.22658 | 1 | Resent | 212 | Incorrect ACK
+1740361041.226615 | 1 | Sent | 212 | Success
+1740361041.2266471 | 1 | Corrupt Packet | 212 | Resent ACK
+1740361041.226719 | 0 | Sent | 74 | Success
+1740361041.226751 | 0 | Received | 74 | Success
+1740361041.226794 | 0 | Corrupt ACK | 74 | Resent ACK
+1740361041.22683 | 0 | Resent | 74 | Incorrect ACK
+1740361041.226864 | 0 | Sent | 74 | Success
+1740361041.2268941 | 0 | Corrupt Packet | 74 | Resent ACK
+1740361041.226976 | 1 | Sent | 132 | Success
+1740361041.227007 | 1 | Received | 132 | Success
+1740361041.227038 | 1 | Corrupt ACK | 132 | Resent ACK
+1740361041.227081 | 1 | Resent | 132 | Incorrect ACK
+1740361041.227118 | 1 | Sent | 132 | Success
+1740361041.227148 | 1 | Corrupt Packet | 132 | Resent ACK
+1740361041.227236 | 0 | Sent | 178 | Success
+1740361041.227266 | 0 | Received | 178 | Success
+1740361041.227298 | 0 | Corrupt ACK | 178 | Resent ACK
+1740361041.2273338 | 0 | Resent | 178 | Incorrect ACK
+1740361041.227371 | 0 | Sent | 178 | Success
+1740361041.227403 | 0 | Corrupt Packet | 178 | Resent ACK
+1740361041.227478 | 1 | Sent | 174 | Success
+1740361041.227509 | 1 | Received | 174 | Success
+1740361041.227539 | 1 | Corrupt ACK | 174 | Resent ACK
+1740361041.227577 | 1 | Resent | 174 | Incorrect ACK
+1740361041.227614 | 1 | Sent | 174 | Success
+1740361041.2276459 | 1 | Corrupt Packet | 174 | Resent ACK
+1740361041.22772 | 0 | Sent | 83 | Success
+1740361041.227752 | 0 | Received | 83 | Success
+1740361041.2278259 | 1 | Sent | 174 | Success
+1740361041.2278569 | 1 | Received | 174 | Success
+1740361041.227929 | 0 | Sent | 107 | Success
+1740361041.2279592 | 0 | Received | 107 | Success
+1740361041.227988 | 0 | Corrupt ACK | 107 | Resent ACK
+1740361041.228022 | 0 | Resent | 107 | Incorrect ACK
+1740361041.228056 | 0 | Sent | 107 | Success
+1740361041.228085 | 0 | Corrupt Packet | 107 | Resent ACK
+1740361041.228159 | 1 | Sent | 31 | Success
+1740361041.228189 | 1 | Received | 31 | Success
+1740361041.2282188 | 1 | Corrupt ACK | 31 | Resent ACK
+1740361041.228256 | 1 | Resent | 31 | Incorrect ACK
+1740361041.228291 | 1 | Sent | 31 | Success
+1740361041.228323 | 1 | Corrupt Packet | 31 | Resent ACK
+1740361041.228394 | 0 | Sent | 221 | Success
+1740361041.2284238 | 0 | Received | 221 | Success
+1740361041.2284968 | 1 | Sent | 248 | Success
+1740361041.228529 | 1 | Received | 248 | Success
+1740361041.228605 | 0 | Sent | 255 | Success
+1740361041.2286358 | 0 | Received | 255 | Success
+1740361041.228666 | 0 | Corrupt ACK | 255 | Resent ACK
+1740361041.2287009 | 0 | Resent | 255 | Incorrect ACK
+1740361041.228735 | 0 | Sent | 255 | Success
+1740361041.228767 | 0 | Corrupt Packet | 255 | Resent ACK
+1740361041.228839 | 1 | Sent | 56 | Success
+1740361041.22887 | 1 | Received | 56 | Success
+1740361041.228943 | 0 | Sent | 180 | Success
+1740361041.228974 | 0 | Received | 180 | Success
+1740361041.229003 | 0 | Corrupt ACK | 180 | Resent ACK
+1740361041.2290409 | 0 | Resent | 180 | Incorrect ACK
+1740361041.229075 | 0 | Sent | 180 | Success
+1740361041.229106 | 0 | Corrupt Packet | 180 | Resent ACK
+1740361041.229176 | 1 | Sent | 154 | Success
+1740361041.2292109 | 1 | Received | 154 | Success
+1740361041.2292721 | 1 | Corrupt ACK | 154 | Resent ACK
+1740361041.229395 | 1 | Resent | 154 | Incorrect ACK
+1740361041.229567 | 1 | Corrupt Packet | 154 | Resent ACK
+1740361041.229515 | 1 | Sent | 154 | Success
+1740361041.229728 | 0 | Sent | 109 | Success
+1740361041.229822 | 0 | Received | 109 | Success
+1740361041.2299469 | 1 | Sent | 133 | Success
+1740361041.23 | 1 | Received | 133 | Success
+1740361041.230043 | 1 | Corrupt ACK | 133 | Resent ACK
+1740361041.2300951 | 1 | Resent | 133 | Incorrect ACK
+1740361041.230146 | 1 | Sent | 133 | Success
+1740361041.230189 | 1 | Corrupt Packet | 133 | Resent ACK
+1740361041.230291 | 0 | Sent | 22 | Success
+1740361041.2303371 | 0 | Received | 22 | Success
+1740361041.2304482 | 1 | Sent | 74 | Success
+1740361041.2304928 | 1 | Received | 74 | Success
+1740361041.230536 | 1 | Corrupt ACK | 74 | Resent ACK
+1740361041.230586 | 1 | Resent | 74 | Incorrect ACK
+1740361041.230638 | 1 | Sent | 74 | Success
+1740361041.2306812 | 1 | Corrupt Packet | 74 | Resent ACK
+1740361041.2307851 | 0 | Sent | 95 | Success
+1740361041.2308311 | 0 | Received | 95 | Success
+1740361041.2308962 | 0 | Corrupt ACK | 95 | Resent ACK
+1740361041.2309551 | 0 | Resent | 95 | Incorrect ACK
+1740361041.23101 | 0 | Sent | 95 | Success
+1740361041.2310982 | 0 | Corrupt Packet | 95 | Resent ACK
+1740361041.231263 | 1 | Sent | 30 | Success
+1740361041.231355 | 1 | Received | 30 | Success
+1740361041.231421 | 1 | Corrupt ACK | 30 | Resent ACK
+1740361041.231497 | 1 | Resent | 30 | Incorrect ACK
+1740361041.23161 | 1 | Sent | 30 | Success
+1740361041.231642 | 1 | Corrupt Packet | 30 | Resent ACK
+1740361041.23177 | 0 | Sent | 109 | Success
+1740361041.231856 | 0 | Received | 109 | Success
+1740361041.231979 | 1 | Sent | 75 | Success
+1740361041.232029 | 1 | Received | 75 | Success
+1740361041.232102 | 1 | Corrupt ACK | 75 | Resent ACK
+1740361041.232158 | 1 | Resent | 75 | Incorrect ACK
+1740361041.232233 | 1 | Sent | 75 | Success
+1740361041.232275 | 1 | Corrupt Packet | 75 | Resent ACK
+1740361041.23239 | 0 | Sent | 27 | Success
+1740361041.232436 | 0 | Received | 27 | Success
+1740361041.232553 | 1 | Sent | 249 | Success
+1740361041.232596 | 1 | Received | 249 | Success
+1740361041.23264 | 1 | Corrupt ACK | 249 | Resent ACK
+1740361041.2326899 | 1 | Resent | 249 | Incorrect ACK
+1740361041.232744 | 1 | Sent | 249 | Success
+1740361041.232786 | 1 | Corrupt Packet | 249 | Resent ACK
+1740361041.232897 | 0 | Sent | 60 | Success
+1740361041.232939 | 0 | Received | 60 | Success
+1740361041.233078 | 1 | Sent | 221 | Success
+1740361041.233122 | 1 | Received | 221 | Success
+1740361041.233231 | 0 | Sent | 83 | Success
+1740361041.2332742 | 0 | Received | 83 | Success
+1740361041.2333171 | 0 | Corrupt ACK | 83 | Resent ACK
+1740361041.2333708 | 0 | Resent | 83 | Incorrect ACK
+1740361041.233438 | 0 | Sent | 83 | Success
+1740361041.233472 | 0 | Corrupt Packet | 83 | Resent ACK
+1740361041.233589 | 1 | Sent | 14 | Success
+1740361041.233632 | 1 | Received | 14 | Success
+1740361041.2336729 | 1 | Corrupt ACK | 14 | Resent ACK
+1740361041.233723 | 1 | Resent | 14 | Incorrect ACK
+1740361041.233772 | 1 | Sent | 14 | Success
+1740361041.233814 | 1 | Corrupt Packet | 14 | Resent ACK
+1740361041.233921 | 0 | Sent | 3 | Success
+1740361041.233963 | 0 | Received | 3 | Success
+1740361041.234005 | 0 | Corrupt ACK | 3 | Resent ACK
+1740361041.2340648 | 0 | Resent | 3 | Incorrect ACK
+1740361041.2341208 | 0 | Sent | 3 | Success
+1740361041.234158 | 0 | Corrupt Packet | 3 | Resent ACK
+1740361041.234318 | 1 | Sent | 137 | Success
+1740361041.23439 | 1 | Received | 137 | Success
+1740361041.2344341 | 1 | Corrupt ACK | 137 | Resent ACK
+1740361041.2345228 | 1 | Resent | 137 | Incorrect ACK
+1740361041.234564 | 1 | Sent | 137 | Success
+1740361041.234595 | 1 | Corrupt Packet | 137 | Resent ACK
+1740361041.234677 | 0 | Sent | 69 | Success
+1740361041.234708 | 0 | Received | 69 | Success
+1740361041.234742 | 0 | Corrupt ACK | 69 | Resent ACK
+1740361041.2347782 | 0 | Resent | 69 | Incorrect ACK
+1740361041.234813 | 0 | Sent | 69 | Success
+1740361041.234842 | 0 | Corrupt Packet | 69 | Resent ACK
+1740361041.234914 | 1 | Sent | 233 | Success
+1740361041.234944 | 1 | Received | 233 | Success
+1740361041.235017 | 0 | Sent | 6 | Success
+1740361041.235049 | 0 | Received | 6 | Success
+1740361041.2350788 | 0 | Corrupt ACK | 6 | Resent ACK
+1740361041.235114 | 0 | Resent | 6 | Incorrect ACK
+1740361041.235148 | 0 | Sent | 6 | Success
+1740361041.235177 | 0 | Corrupt Packet | 6 | Resent ACK
+1740361041.2352471 | 1 | Sent | 65 | Success
+1740361041.2352781 | 1 | Received | 65 | Success
+1740361041.235308 | 1 | Corrupt ACK | 65 | Resent ACK
+1740361041.2353432 | 1 | Resent | 65 | Incorrect ACK
+1740361041.235378 | 1 | Sent | 65 | Success
+1740361041.2354088 | 1 | Corrupt Packet | 65 | Resent ACK
+1740361041.235481 | 0 | Sent | 148 | Success
+1740361041.235511 | 0 | Received | 148 | Success
+1740361041.235541 | 0 | Corrupt ACK | 148 | Resent ACK
+1740361041.2355819 | 0 | Resent | 148 | Incorrect ACK
+1740361041.235618 | 0 | Sent | 148 | Success
+1740361041.235658 | 0 | Corrupt Packet | 148 | Resent ACK
+1740361041.235731 | 1 | Sent | 202 | Success
+1740361041.235778 | 1 | Received | 202 | Success
+1740361041.235853 | 0 | Sent | 114 | Success
+1740361041.235884 | 0 | Received | 114 | Success
+1740361041.235917 | 0 | Corrupt ACK | 114 | Resent ACK
+1740361041.2359529 | 0 | Resent | 114 | Incorrect ACK
+1740361041.235986 | 0 | Sent | 114 | Success
+1740361041.236016 | 0 | Corrupt Packet | 114 | Resent ACK
+1740361041.2360861 | 1 | Sent | 216 | Success
+1740361041.236116 | 1 | Received | 216 | Success
+1740361041.236146 | 1 | Corrupt ACK | 216 | Resent ACK
+1740361041.23618 | 1 | Resent | 216 | Incorrect ACK
+1740361041.236213 | 1 | Sent | 216 | Success
+1740361041.236243 | 1 | Corrupt Packet | 216 | Resent ACK
+1740361041.236316 | 0 | Sent | 242 | Success
+1740361041.236347 | 0 | Received | 242 | Success
+1740361041.236376 | 0 | Corrupt ACK | 242 | Resent ACK
+1740361041.2364109 | 0 | Resent | 242 | Incorrect ACK
+1740361041.236446 | 0 | Sent | 242 | Success
+1740361041.236475 | 0 | Corrupt Packet | 242 | Resent ACK
+1740361041.2365508 | 1 | Sent | 80 | Success
+1740361041.236583 | 1 | Received | 80 | Success
+1740361041.2366662 | 0 | Sent | 196 | Success
+1740361041.2366972 | 0 | Received | 196 | Success
+1740361041.236768 | 1 | Sent | 198 | Success
+1740361041.236798 | 1 | Received | 198 | Success
+1740361041.2368279 | 1 | Corrupt ACK | 198 | Resent ACK
+1740361041.236864 | 1 | Resent | 198 | Incorrect ACK
+1740361041.236911 | 1 | Sent | 198 | Success
+1740361041.2369459 | 1 | Corrupt Packet | 198 | Resent ACK
+1740361041.237031 | 0 | Sent | 68 | Success
+1740361041.237061 | 0 | Received | 68 | Success
+1740361041.237091 | 0 | Corrupt ACK | 68 | Resent ACK
+1740361041.2371268 | 0 | Resent | 68 | Incorrect ACK
+1740361041.237161 | 0 | Sent | 68 | Success
+1740361041.237191 | 0 | Corrupt Packet | 68 | Resent ACK
+1740361041.2372632 | 1 | Sent | 91 | Success
+1740361041.237293 | 1 | Received | 91 | Success
+1740361041.237323 | 1 | Corrupt ACK | 91 | Resent ACK
+1740361041.237358 | 1 | Resent | 91 | Incorrect ACK
+1740361041.237392 | 1 | Sent | 91 | Success
+1740361041.237422 | 1 | Corrupt Packet | 91 | Resent ACK
+1740361041.237498 | 0 | Sent | 209 | Success
+1740361041.237529 | 0 | Received | 209 | Success
+1740361041.237567 | 0 | Corrupt ACK | 209 | Resent ACK
+1740361041.237607 | 0 | Resent | 209 | Incorrect ACK
+1740361041.2376478 | 0 | Sent | 209 | Success
+1740361041.2376802 | 0 | Corrupt Packet | 209 | Resent ACK
+1740361041.237761 | 1 | Sent | 167 | Success
+1740361041.237792 | 1 | Received | 167 | Success
+1740361041.237865 | 0 | Sent | 132 | Success
+1740361041.237896 | 0 | Received | 132 | Success
+1740361041.237967 | 1 | Sent | 16 | Success
+1740361041.237998 | 1 | Received | 16 | Success
+1740361041.238045 | 1 | Corrupt ACK | 16 | Resent ACK
+1740361041.2380888 | 1 | Resent | 16 | Incorrect ACK
+1740361041.238157 | 1 | Sent | 16 | Success
+1740361041.238189 | 1 | Corrupt Packet | 16 | Resent ACK
+1740361041.238327 | 0 | Sent | 35 | Success
+1740361041.23839 | 0 | Received | 35 | Success
+1740361041.238497 | 1 | Sent | 46 | Success
+1740361041.238527 | 1 | Received | 46 | Success
+1740361041.238625 | 0 | Sent | 110 | Success
+1740361041.238656 | 0 | Received | 110 | Success
+1740361041.238726 | 0 | Corrupt ACK | 110 | Resent ACK
+1740361041.238773 | 0 | Resent | 110 | Incorrect ACK
+1740361041.238813 | 0 | Sent | 110 | Success
+1740361041.2388449 | 0 | Corrupt Packet | 110 | Resent ACK
+File Transfer Completed in 0.20 seconds
+File Transfer Completed in 0.20 seconds
+Packet Log - Server Side
+Timestamp | Packet # | Action | Checksum | Status
