@@ -2,8 +2,6 @@ import socket
 import struct
 import random
 from file_transfer import send_file
-# Server details
-SERVER_ADDRESS = ('localhost', 12351)  # Use the same port number as the server
 
 # Packet size
 PACKET_SIZE = 1024
@@ -56,7 +54,7 @@ def send_file(file_path, update_fsm_state, option=1, error_rate=0.0):
         # Wait for ACK
         try:
             ack, _ = client_socket.recvfrom(2048)
-            if len(ack) == 8:  # Ensure the ACK packet is 8 bytes long
+            if len(ack) == 8:  #Ensure the ACK packet is 8 bytes long
                 ack_seq_num, ack_checksum = struct.unpack("!II", ack)
 
                 # Option 2: Introduce bit error in ACK packet for testing
@@ -66,13 +64,13 @@ def send_file(file_path, update_fsm_state, option=1, error_rate=0.0):
 
                 if ack_seq_num != seq_num:
                     print(f"Error: Incorrect ACK sequence number. Expected {seq_num}, got {ack_seq_num}")
-                    continue  # Handle retransmission or other error recovery mechanisms
+                    continue  #Handle retransmission or other error recovery mechanisms
             else:
                 print("Error: Received malformed ACK packet")
-                continue  # Handle retransmission or other error recovery mechanisms
+                continue  #Handle retransmission or other error recovery mechanisms
         except socket.timeout:
             print("Timeout waiting for ACK")
-            continue  # Handle retransmission or other error recovery mechanisms
+            continue  #Handle retransmission or other error recovery mechanisms
         except ConnectionResetError as e:
             print(f"ConnectionResetError: {e}")
             break
