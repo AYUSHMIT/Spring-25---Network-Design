@@ -51,6 +51,12 @@ This project implements a **basic UDP client-server file transfer** system with 
 * `performance_plot.png` - The **graph showing Completion Time vs. Error Rate**. 
 * `plot.py` - The **This creates the graph for the completion times for 3 options**. 
 
+For each scenario where there was no/loss error, ACK bit error, and Data packet error. We have checked with no Loss/error by 
+adding if there was a "Corrupt" message in the log when sending or receiving. For Ack bit Error, we had checked by introducing 
+intentional ACK corruption by flipping a bit acknowledgment number, then the sender logs a mismatch ACK and retransmits the last packet and 
+shown in the logs. For Data packet Error scenario, we stimulated bit errors in the received data by flipping bits in received packets, 
+the receiver detects checksum mismatches and requests retransmission by sending the last ACK and the sender resends the packet until it is correctly 
+received as seen in the Logs. 
 
 
 ---
