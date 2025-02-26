@@ -72,7 +72,7 @@ This project implements an image transfer system using UDP communication between
 
 ## Dependencies
 
-- Python 3.x
+- Python 3.9 or 3.10
 - Socket Module (Standard Python Library)
 
 ## Notes
@@ -81,15 +81,12 @@ This project implements an image transfer system using UDP communication between
 - The client must use the correct hostname or IP address of the server.
 - The project can be extended to use TCP for more reliable transmission.
 
-## Future Enhancements
-
-- Implementing a **Selective Repeat ARQ** mechanism.
-- Enhancing **error detection and correction** mechanisms.
-- Supporting **multi-client parallel image transfers**.
-
 ## Authors
 
-- Developed for network reliability simulation in **UDP-based image transmission**.
+1. Parthaw Goswami
+2. Ayush Pandey
+3. Joseph Nguyen
+4. Luis Pena Mateo
 
 ---
 
