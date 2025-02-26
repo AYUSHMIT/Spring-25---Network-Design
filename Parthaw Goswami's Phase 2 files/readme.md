@@ -17,14 +17,14 @@ This project implements an image transfer system using UDP communication between
 
 ## Components
 
-### 1. Image Server (`imageserver.py`)
+### 1. Image Server (`ImageServer.py`)
 
 - Listens for incoming image packets from the client.
 - Validates received packets using sequence numbers and checksums.
 - Requests retransmission if errors are detected.
 - Reconstructs and saves the received image.
 
-### 2. Client Server (`clientserver.py`)
+### 2. Client Server (`ClientServer.py`)
 
 - Reads and splits an image file into packets.
 - Attaches sequence numbers and checksums before sending packets.
@@ -36,7 +36,7 @@ This project implements an image transfer system using UDP communication between
 1. **Start the Image Server**
 
    ```sh
-   python imageserver.py
+   python ImageServer.py
    ```
 
    The server will start listening on port `12000` for incoming packets.
@@ -44,7 +44,7 @@ This project implements an image transfer system using UDP communication between
 2. **Run the Client Server**
 
    ```sh
-   python clientserver.py
+   python ClientServer.py
    ```
 
    The client will prompt for an error simulation mode:
