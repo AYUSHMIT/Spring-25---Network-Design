@@ -58,6 +58,40 @@ shown in the logs. For Data packet Error scenario, we stimulated bit errors in t
 the receiver detects checksum mismatches and requests retransmission by sending the last ACK and the sender resends the packet until it is correctly 
 received as seen in the Logs. 
 
+To enhance the efficiency and usability of the RDT 2.2 implementation, several advanced features were integrated, 
+including multi-threading, GUI visualization, adaptive timeout mechanisms, and CRC-16 error detection. These improvements 
+optimize the protocol by reducing transmission delays, improving error handling, and providing real-time monitoring of the
+data transfer process. Each enhancement was thoroughly tested to compare performance improvements and ensure
+correct functionality under different network conditions.
+
+One of the major improvements was the multi-threaded RDT 2.2 implementation. In the client, a dedicated sending thread continuously transmits data packets, 
+while a separate listener thread simultaneously waits for and processes ACKs. Similarly, on the server side, a processing thread was created to handle incoming
+ packets and verify their checksum, while a response thread was responsible for sending ACKs back to the sender. This modification significantly reduced 
+ transmission time, as data could be sent and acknowledged in parallel instead of waiting for each acknowledgment sequentially. Testing was conducted by 
+ comparing total transmission times and analyzing log entries in log.txt for single-threaded vs. multi-threaded runs. The results confirmed that the 
+ multi-threaded implementation improves efficiency by reducing idle time and enhancing network performance.
+
+To further improve usability, a high-quality PyQt6-based GUI was developed to visualize the file transfer process. The GUI includes a real-time progress bar,
+an FSM (Finite State Machine) visualization that updates as packets are sent and received, and a live image preview of the received file. This enhancement
+not only improves the user experience by providing immediate feedback on the transmission status but also aids in debugging by dynamically displaying
+packet states. The GUI was tested in various error-handling scenarios, such as packet loss and corruption, to ensure that it accurately reflected 
+transmission progress. By implementing this interface, users can now monitor file transfer operations more intuitively and detect potential transmission issues in real time.
+
+Another significant enhancement was the adaptive timeout mechanism, which dynamically adjusts the retransmission timer based on observed network delays. 
+Instead of using a static timeout value, the system monitors network latency and adjusts the timeout to prevent unnecessary retransmissions. 
+This feature was tested by comparing the performance of a static timeout vs. an adaptive timeout across multiple runs, recording the number of 
+retransmissions in each case. The results showed that adaptive timeouts reduce unnecessary retransmissions and improve overall transmission efficiency
+ by preventing premature resends and network congestion.
+
+Lastly, CRC-16 error detection was integrated to replace the previous XOR checksum method, improving the protocol’s ability to detect corrupted packets. 
+CRC-16, which uses polynomial 0x8005, provides a more robust error-checking mechanism, allowing it to catch more complex errors that XOR checksum might miss. 
+Testing was conducted by comparing CRC-16 and XOR checksum in terms of error detection accuracy, processing time, and the number of retransmissions required for 
+successful delivery. The findings indicated that CRC-16 detects a significantly higher percentage of errors while slightly increasing processing time. However, 
+the reduction in retransmissions due to improved error detection resulted in better overall transmission efficiency.
+
+(Also Reference The performance-Report.pdf for further reasoning)
+>>>>>>> Stashed changes
+
 
 ---
 
