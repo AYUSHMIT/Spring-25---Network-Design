@@ -14,16 +14,35 @@ def start_server(option, error_rate):
     return thread
 
 def measure_completion_time(file_path, option, error_rate):
-    server_thread = start_server(option, error_rate)
-    time.sleep(1)  # Give the server some time to start
-    start_time = time.time()
-    send_file(file_path, update_fsm_state, option, error_rate)
-    server_thread.join()  # Wait for the server to finish
-    end_time = time.time()
-    return end_time - start_time
+    if option == 1: # noerrors
+        server_thread = start_server(option, 0)
+        time.sleep(1)  # Give the server some time to start
+        start_time = time.time()
+        send_file(file_path, update_fsm_state, option, 0)
+        server_thread.join()  # Wait for the server to finish
+        end_time = time.time()
+        return end_time - start_time
+    elif option == 2:
+        server_thread = start_server(option, 0)
+        time.sleep(1)  # Give the server some time to start
+        start_time = time.time()
+        send_file(file_path, update_fsm_state, option, error_rate)
+        server_thread.join()  # Wait for the server to finish
+        end_time = time.time()
+        return end_time - start_time
+    elif option == 3:
+        server_thread = start_server(option, error_rate)
+        time.sleep(1)  # Give the server some time to start
+        start_time = time.time()
+        send_file(file_path, update_fsm_state, option, 0)
+        server_thread.join()  # Wait for the server to finish
+        end_time = time.time()
+        return end_time - start_time
+
+
 
 def plot_performance():
-    file_path = "C:/Users/Ayush_Pandey/Dev/Pandey_phase2/RDT/pandey/phase_2.jpg"  # Use a 500KB file for transmission
+    file_path = 'C:/Users/lpenama/Downloads/Repo/Spring-25---Network-Design/team4/phase_2.jpg'  # Use a 500KB file for transmission
     error_rates = [i / 100 for i in range(0, 65, 5)]
     options = [1, 2, 3]
     completion_times = {option: [] for option in options}
