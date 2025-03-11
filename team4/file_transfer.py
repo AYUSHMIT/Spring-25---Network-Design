@@ -61,18 +61,24 @@ def send_file(file_path, update_fsm_state, option, error_rate, retry_count=3, ad
     for packet in packets:
         rdt_packet = make_rdt_packet(seq_num, packet)
         try:
-            if random.random() < error_rate:
-                print(f"Simulating packet loss for packet {seq_num}")
-                continue  # Simulate packet loss
-
+            
             send_packet(sock, rdt_packet, address)
             print(f"Sent packet {seq_num}")
             while True:
+                #Wait for acknoledgement
                 ack_packet, _ = receive_packet(sock)
                 ack_seq_num, ack_checksum = parse_ack_packet(ack_packet)
+
+                if random.random() < error_rate:
+                    print(f"option2: Simulating ACK for packet {seq_num}")
+                    ack_seq_num = 1 - ack_seq_num  #flip sequence number to from 1 to 0
+                    #continue  # Simulate packet loss
+
                 if ack_seq_num == seq_num and not is_corrupt(ack_packet):
                     print(f"Received ACK for packet {seq_num}")
                     break
+                else: #acknoledgement corrupt or out of sequence, Retransmitting.
+                    rdt_packet = make_rdt_packet(seq_num, packet) #resend current package
         except ConnectionResetError as e:
             print(f"ConnectionResetError: {e}")
             if retry_count > 0:
@@ -100,6 +106,14 @@ def send_file(file_path, update_fsm_state, option, error_rate, retry_count=3, ad
     print("Sent end of file packet")
     update_fsm_state("Sent end of file packet")
 
+def corrupt_packet(packet):
+    seq_num, checksum, data = parse_rdt_packet(packet)
+    newdata = packet[:-1] ^ b'\xFF'      #corrupt last byte of data Toggle 1 to 0 and viceversa     
+    return make_rdt_packet(seq_num, newdata)
+
+
+
+
 def receive_file(update_fsm_state, option, error_rate, sock, listen_address, save_path):
     while True:
         try:
@@ -118,8 +132,8 @@ def receive_file(update_fsm_state, option, error_rate, sock, listen_address, sav
         try:
             rdt_packet, sender_address = receive_packet(sock)
             if random.random() < error_rate:
-                print(f"Simulating packet loss for packet {expected_seq_num}")
-                continue  # Simulate packet loss
+                print(f"Option 3: Simulating Data packet bit-error {expected_seq_num}")
+                rdt_packet = corrupt_packet(rdt_packet)
 
             if not is_corrupt(rdt_packet):
                 seq_num, _, data = parse_rdt_packet(rdt_packet)
