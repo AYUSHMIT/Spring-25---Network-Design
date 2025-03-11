@@ -1,0 +1,8 @@
+Error sending file: send_file() missing 2 required positional arguments: 'option' and 'error_rate'
+Unhandled error or no retries left: send_file() missing 2 required positional arguments: 'option' and 'error_rate'
+Error sending file: send_file() missing 2 required positional arguments: 'option' and 'error_rate'
+Unhandled error or no retries left: send_file() missing 2 required positional arguments: 'option' and 'error_rate'
+Error sending file: send_file() missing 2 required positional arguments: 'option' and 'error_rate'
+Unhandled error or no retries left: send_file() missing 2 required positional arguments: 'option' and 'error_rate'
+Error sending file: send_file() missing 2 required positional arguments: 'option' and 'error_rate'
+Unhandled error or no retries left: send_file() missing 2 required positional arguments: 'option' and 'error_rate'
