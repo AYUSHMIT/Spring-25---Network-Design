@@ -108,7 +108,7 @@ def send_file(file_path, update_fsm_state, option, error_rate, retry_count=3, ad
 
 def corrupt_packet(packet):
     seq_num, checksum, data = parse_rdt_packet(packet)
-    newdata = packet[:-1] ^ b'\xFF'      #corrupt last byte of data Toggle 1 to 0 and viceversa     
+    newdata = data[:-1] + bytes([data[-1] ^ 0xFF])     #corrupt last byte of data Toggle 1 to 0 and viceversa
     return make_rdt_packet(seq_num, newdata)
 
 
