@@ -8,7 +8,8 @@ def update_fsm_state(state):
 
 def start_server(option, error_rate):
     def server_thread():
-        receive_file(update_fsm_state, option, error_rate, sock=create_udp_socket(), listen_address=('localhost', 12345), save_path='received_image.jpg')
+        server_error_rate = error_rate if option == 2 else 0.0  # Apply error rate only if option is 2
+        receive_file(update_fsm_state, option, server_error_rate, sock=create_udp_socket(), listen_address=('localhost', 12345), save_path='received_image.jpg')
     thread = threading.Thread(target=server_thread, daemon=True)
     thread.start()
     return thread
@@ -16,8 +17,9 @@ def start_server(option, error_rate):
 def measure_completion_time(file_path, option, error_rate):
     server_thread = start_server(option, error_rate)
     time.sleep(1)  # Give the server some time to start
+    client_error_rate = error_rate if option == 3 else 0.0  # Apply error rate only if option is 3
     start_time = time.time()
-    send_file(file_path, update_fsm_state, option, error_rate)
+    send_file(file_path, update_fsm_state, option, client_error_rate)
     server_thread.join()  # Wait for the server to finish
     end_time = time.time()
     return end_time - start_time
