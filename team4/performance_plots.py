@@ -49,7 +49,7 @@ def plot_performance():
 
     for option in options:
         for error_rate in error_rates:
-            times = [measure_completion_time(file_path, option, error_rate) for _ in range(3)]
+            times = [measure_completion_time(file_path, option, error_rate) for _ in range(10)]
             avg_time = sum(times) / len(times)
             completion_times[option].append(avg_time)
             print(f"Option {option}, Error Rate {error_rate}: {avg_time} seconds")

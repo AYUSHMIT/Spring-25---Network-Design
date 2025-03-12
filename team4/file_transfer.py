@@ -7,27 +7,33 @@ def calculate_checksum(data):
     checksum = 0
     for byte in data:
         checksum += byte
-        checksum &= 0xFF  # Keep it 8-bit
-    return ~checksum & 0xFF
+        checksum &= 0xFFFFFFFF  # Keep it 32-bit
+    return ~checksum & 0xFFFFFFFF
 
 def make_rdt_packet(seq_num, data):
     checksum = calculate_checksum(data)
-    header = struct.pack('!I B', seq_num, checksum)
+    header = struct.pack('!I B', checksum, seq_num)
     return header + data
 
 def parse_rdt_packet(packet):
     header = packet[:5]
     data = packet[5:]
-    seq_num, checksum = struct.unpack('!I B', header)
-    return seq_num, checksum, data
+    checksum, seq_num= struct.unpack('!I B', header)
+    return checksum, seq_num, data
 
 def is_corrupt(packet):
-    seq_num, checksum, data = parse_rdt_packet(packet)
-    return calculate_checksum(data) != checksum
+    checksum, seq_num, data = parse_rdt_packet(packet)
+    calculated_checksum = calculate_checksum(data)
+    print(f"Original checksum: {checksum}, Calculated checksum: {calculated_checksum}")
+    return calculated_checksum != checksum
+
+def is_ack_corrupt(packet):
+    checksum, seq_num, data = parse_rdt_packet(packet)
+    return calculate_checksum(struct.pack('!I', seq_num)) != checksum
 
 def make_ack_packet(seq_num):
     checksum = calculate_checksum(struct.pack('!I', seq_num))
-    return struct.pack('!I B', seq_num, checksum)
+    return struct.pack('!I B', checksum, seq_num)
 
 def parse_ack_packet(packet):
     return struct.unpack('!I B', packet)
@@ -58,27 +64,31 @@ def send_file(file_path, update_fsm_state, option, error_rate, retry_count=3, ad
     sock = create_udp_socket()
     seq_num = 0
 
-    for packet in packets:
+    for index, packet in enumerate(packets):
         rdt_packet = make_rdt_packet(seq_num, packet)
         try:
             
             send_packet(sock, rdt_packet, address)
-            print(f"Sent packet {seq_num}")
+            print(f"Client: Sent packet {index}")
             while True:
                 #Wait for acknoledgement
-                ack_packet, _ = receive_packet(sock)
-                ack_seq_num, ack_checksum = parse_ack_packet(ack_packet)
+                ack_packet, _ = receive_packet(sock) #checksum, seq_num
+                ack_checksum, ack_seq_num = parse_ack_packet(ack_packet)
+                # debug print comment or delete
+                #print(f"Client: ack_seq_num = {ack_seq_num}, seq_num = {seq_num}, ack_checksum = {ack_checksum}, calculate_checksum = {calculate_checksum(ack_packet)}, iscorrupt = {is_corrupt(ack_packet)}")
 
                 if random.random() < error_rate:
-                    print(f"option2: Simulating ACK for packet {seq_num}")
+                    print(f"option2: Simulating ACK packet bit-error")
                     ack_seq_num = 1 - ack_seq_num  #flip sequence number to from 1 to 0
                     #continue  # Simulate packet loss
 
-                if ack_seq_num == seq_num and not is_corrupt(ack_packet):
-                    print(f"Received ACK for packet {seq_num}")
-                    break
+                if ack_seq_num == seq_num and not is_ack_corrupt(ack_packet):
+                    print(f"Client: Received ACK for packet {index}")
+                    seq_num = 1 - seq_num
+                    break  #continue with next packet
                 else: #acknoledgement corrupt or out of sequence, Retransmitting.
-                    rdt_packet = make_rdt_packet(seq_num, packet) #resend current package
+                    send_packet(sock, rdt_packet, address)  #resend current package
+                    print(f"Client: ack is out of sequence, retransmitting packet {index}")
         except ConnectionResetError as e:
             print(f"ConnectionResetError: {e}")
             if retry_count > 0:
@@ -87,18 +97,17 @@ def send_file(file_path, update_fsm_state, option, error_rate, retry_count=3, ad
                 send_file(file_path, update_fsm_state, option, error_rate, retry_count - 1, address)
                 return
             else:
-                update_fsm_state(f"Error sending packet {seq_num}: {e}")
+                update_fsm_state(f"Error sending packet {index}: {e}")
                 return
         except socket.timeout:
-            print(f"Timeout waiting for ACK for packet {seq_num}")
-            update_fsm_state(f"Timeout waiting for ACK for packet {seq_num}")
+            print(f"Timeout waiting for ACK for packet {index}")
+            update_fsm_state(f"Timeout waiting for ACK for packet {index}")
             return
         except Exception as e:
-            print(f"Error sending packet {seq_num}: {e}")
-            update_fsm_state(f"Error sending packet {seq_num}: {e}")
+            print(f"Error sending packet {index}: {e}")
+            update_fsm_state(f"Error sending packet {index}: {e}")
             return
-        seq_num += 1
-        update_fsm_state(f"Sent packet {seq_num}")
+        update_fsm_state(f"Sent packet {index}")
 
     # Send an empty packet to indicate the end of the file transfer
     end_packet = make_rdt_packet(seq_num, b'')
@@ -107,11 +116,17 @@ def send_file(file_path, update_fsm_state, option, error_rate, retry_count=3, ad
     update_fsm_state("Sent end of file packet")
 
 def corrupt_packet(packet):
-    seq_num, checksum, data = parse_rdt_packet(packet)
-    newdata = data[:-1] + bytes([data[-1] ^ 0xFF])     #corrupt last byte of data Toggle 1 to 0 and viceversa
-    return make_rdt_packet(seq_num, newdata)
-
-
+    checksum, seq_num, data = parse_rdt_packet(packet)
+    num_bytes_to_corrupt = random.randint(1, len(data))  # Randomly decide how many bytes to corrupt
+    corrupted_data = bytearray(data)
+    
+    for _ in range(num_bytes_to_corrupt):
+        index_to_corrupt = random.randint(0, len(data) - 1)
+        corrupted_data[index_to_corrupt] ^= 0xFF  # Toggle bits to corrupt the byte
+    
+    
+    header = struct.pack('!I B', checksum, seq_num)
+    return header + bytes(corrupted_data)
 
 
 def receive_file(update_fsm_state, option, error_rate, sock, listen_address, save_path):
@@ -127,44 +142,52 @@ def receive_file(update_fsm_state, option, error_rate, sock, listen_address, sav
 
     received_packets = {}
     expected_seq_num = 0
+    index = 0
 
     while True:
         try:
             rdt_packet, sender_address = receive_packet(sock)
-            if random.random() < error_rate:
-                print(f"Option 3: Simulating Data packet bit-error {expected_seq_num}")
+            if random.random() < error_rate and parse_rdt_packet(rdt_packet)[2] != b'':
+                print(f"Option 3: Simulating Data packet {index} bit-error")
+                #old_rdt_packet = rdt_packet
                 rdt_packet = corrupt_packet(rdt_packet)
+                #print(f"old: {calculate_checksum(old_rdt_packet)}, new: {calculate_checksum(rdt_packet)}, is_corrupt(rdt_packet){is_corrupt(rdt_packet)}")
 
             if not is_corrupt(rdt_packet):
-                seq_num, _, data = parse_rdt_packet(rdt_packet)
+                _, seq_num, data = parse_rdt_packet(rdt_packet)
                 if seq_num == expected_seq_num:
                     if data == b'':  # End of file packet
-                        print("Received end of file packet")
+                        print("Server: Received end of file packet")
                         update_fsm_state("Received end of file packet")
                         break
-                    received_packets[seq_num] = data
-                    ack_packet = make_ack_packet(seq_num)
+                    received_packets[index] = data
+                    ack_packet = make_ack_packet(expected_seq_num)
                     send_packet(sock, ack_packet, sender_address)
-                    print(f"Received packet {seq_num}")
-                    expected_seq_num += 1
-                    update_fsm_state(f"Received packet {seq_num}")
+                    print(f"Server: Received packet {index}")
+                    update_fsm_state(f"Received packet {index}")
+                    expected_seq_num = 1 - expected_seq_num
+                    index += 1
+                    continue
+                    
                 else:
-                    ack_packet = make_ack_packet(expected_seq_num - 1)
+                    print(f"Server: packet {index} is out of sequence, retransmiting...")
+                    ack_packet = make_ack_packet(1 - expected_seq_num)
                     send_packet(sock, ack_packet, sender_address)
             else:
-                ack_packet = make_ack_packet(expected_seq_num - 1)
+                print(f"Server: packet {index} is data is corrupted, retransmiting...")
+                ack_packet = make_ack_packet(1 - expected_seq_num)
                 send_packet(sock, ack_packet, sender_address)
         except socket.timeout:
-            print("Timeout waiting for packet")
-            update_fsm_state("Timeout waiting for packet")
+            print(f"Timeout waiting for packet {index}")
+            update_fsm_state(f"Timeout waiting for packet{index}")
             return
         except Exception as e:
-            print(f"Error receiving packet: {e}")
-            update_fsm_state(f"Error receiving packet: {e}")
+            print(f"Error receiving packet {index}: {e}")
+            update_fsm_state(f"Error receiving packet {index}: {e}")
             return
 
     with open(save_path, 'wb') as f:
-        for i in range(expected_seq_num):
+        for i in range(len(received_packets)):
             f.write(received_packets[i])
     print("File received successfully")
     update_fsm_state("File received successfully")
