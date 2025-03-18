@@ -14,17 +14,19 @@ class FileTransferServer:
 
     def create_udp_socket(self):
         sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        sock.settimeout(2)  # Set a shorter timeout for socket operations
+        sock.settimeout(0.2)  # Reduced timeout for faster retries
         return sock
 
     def start(self):
-        threading.Thread(target=self.receive_file_with_status, daemon=True).start()
+        receiver_thread = threading.Thread(target=self.receive_file_with_status, daemon=True)
+        receiver_thread.start()
+        receiver_thread.join()  # Wait for the receiver thread to finish
 
     def receive_file_with_status(self):
         try:
             print("Receiving file...")
             start_time = time.time()
-            receive_file(self.update_fsm_state, option=1, error_rate=0.0, sock=self.sock, listen_address=self.listen_address, save_path=self.save_path)  # Pass the required arguments
+            receive_file(self.update_fsm_state, option=1, error_rate=0.0, data_loss_rate=0.1, sock=self.sock, listen_address=self.listen_address, save_path=self.save_path)
             end_time = time.time()
             transfer_time = end_time - start_time
             print(f"File received successfully in {transfer_time:.2f} seconds!")
@@ -37,5 +39,5 @@ class FileTransferServer:
 if __name__ == "__main__":
     server = FileTransferServer()
     server.start()
-    while True:
-        time.sleep(1)  # Keep the server running
+    #while True:
+        #time.sleep(1)  # Keep the server running

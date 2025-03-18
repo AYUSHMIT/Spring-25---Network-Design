@@ -50,7 +50,7 @@ def make_packet(file_path, packet_size=1024):
 
 def create_udp_socket():
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    sock.settimeout(2)  # Set a shorter timeout for socket operations
+    sock.settimeout(0.5)  # Set a shorter timeout for socket operations
     return sock
 
 def send_packet(sock, packet, address):
@@ -59,18 +59,19 @@ def send_packet(sock, packet, address):
 def receive_packet(sock, buffer_size=1030):  # Increased buffer size to 1030 (1024 + 6 for header)
     return sock.recvfrom(buffer_size)
 
-def send_file(file_path, update_fsm_state, option, error_rate, retry_count=3, address=('localhost', 12345)):
+def send_file(file_path, update_fsm_state, option, error_rate, ack_loss_rate, retry_count=3, address=('localhost', 12345)):
     packets = make_packet(file_path)
     sock = create_udp_socket()
     seq_num = 0
 
     for index, packet in enumerate(packets):
         rdt_packet = make_rdt_packet(seq_num, packet)
-        try:
-            
-            send_packet(sock, rdt_packet, address)
-            print(f"Client: Sent packet {index}")
-            while True:
+        
+        while True:
+            try:
+                send_packet(sock, rdt_packet, address)
+                print(f"Client: Sent packet {index}")
+
                 #Wait for acknoledgement
                 ack_packet, _ = receive_packet(sock) #checksum, seq_num
                 ack_checksum, ack_seq_num = parse_ack_packet(ack_packet)
@@ -82,31 +83,37 @@ def send_file(file_path, update_fsm_state, option, error_rate, retry_count=3, ad
                     ack_seq_num = 1 - ack_seq_num  #flip sequence number to from 1 to 0
                     #continue  # Simulate packet loss
 
+                if random.random() < ack_loss_rate:
+                    print(f"option4: Simulating ACK loss for packet {index}")
+                    continue  # Simulate ACK loss by skipping this iteration
+
                 if ack_seq_num == seq_num and not is_ack_corrupt(ack_packet):
                     print(f"Client: Received ACK for packet {index}")
                     seq_num = 1 - seq_num
                     break  #continue with next packet
                 else: #acknoledgement corrupt or out of sequence, Retransmitting.
-                    send_packet(sock, rdt_packet, address)  #resend current package
+                    #send_packet(sock, rdt_packet, address)  #resend current package #commented out because I of line 72 will resend anyways
                     print(f"Client: ack is out of sequence, retransmitting packet {index}")
-        except ConnectionResetError as e:
-            print(f"ConnectionResetError: {e}")
-            if retry_count > 0:
-                print(f"Retrying... {retry_count} attempts left.")
-                time.sleep(1)  # Reduced sleep duration
-                send_file(file_path, update_fsm_state, option, error_rate, retry_count - 1, address)
-                return
-            else:
+    
+            except ConnectionResetError as e:
+                print(f"ConnectionResetError: {e}")
+                if retry_count > 0:
+                    print(f"Retrying... {retry_count} attempts left.")
+                    time.sleep(1)  # Reduced sleep duration
+                    send_file(file_path, update_fsm_state, option, error_rate, retry_count - 1, address)
+                    return
+                else:
+                    update_fsm_state(f"Error sending packet {index}: {e}")
+                    return
+            except socket.timeout:
+                print(f"Timeout waiting for ACK for packet {index}")
+                update_fsm_state(f"Timeout waiting for ACK for packet {index}")
+                #return
+            except Exception as e:
+                print(f"Error sending packet {index}: {e}")
                 update_fsm_state(f"Error sending packet {index}: {e}")
-                return
-        except socket.timeout:
-            print(f"Timeout waiting for ACK for packet {index}")
-            update_fsm_state(f"Timeout waiting for ACK for packet {index}")
-            return
-        except Exception as e:
-            print(f"Error sending packet {index}: {e}")
-            update_fsm_state(f"Error sending packet {index}: {e}")
-            return
+                #return
+        
         update_fsm_state(f"Sent packet {index}")
 
     # Send an empty packet to indicate the end of the file transfer
@@ -129,7 +136,7 @@ def corrupt_packet(packet):
     return header + bytes(corrupted_data)
 
 
-def receive_file(update_fsm_state, option, error_rate, sock, listen_address, save_path):
+def receive_file(update_fsm_state, option, error_rate, data_loss_rate , sock, listen_address, save_path):
     while True:
         try:
             sock.bind(listen_address)
@@ -152,6 +159,14 @@ def receive_file(update_fsm_state, option, error_rate, sock, listen_address, sav
                 #old_rdt_packet = rdt_packet
                 rdt_packet = corrupt_packet(rdt_packet)
                 #print(f"old: {calculate_checksum(old_rdt_packet)}, new: {calculate_checksum(rdt_packet)}, is_corrupt(rdt_packet){is_corrupt(rdt_packet)}")
+
+            #data_loss_rate = 0.2  # 20% probability of dropping DATA packets
+
+            # Simulate DATA packet loss
+            if random.random() < data_loss_rate and parse_rdt_packet(rdt_packet)[2] != b'':
+                print(f"Option 5: Simulating DATA packet loss for packet {index}")
+                continue  # Skip processing the received DATA packet
+
 
             if not is_corrupt(rdt_packet):
                 _, seq_num, data = parse_rdt_packet(rdt_packet)
@@ -179,12 +194,12 @@ def receive_file(update_fsm_state, option, error_rate, sock, listen_address, sav
                 send_packet(sock, ack_packet, sender_address)
         except socket.timeout:
             print(f"Timeout waiting for packet {index}")
-            update_fsm_state(f"Timeout waiting for packet{index}")
-            return
+            update_fsm_state(f"Timeout waiting for packet {index}")
+            #return
         except Exception as e:
             print(f"Error receiving packet {index}: {e}")
             update_fsm_state(f"Error receiving packet {index}: {e}")
-            return
+            #return
 
     with open(save_path, 'wb') as f:
         for i in range(len(received_packets)):
