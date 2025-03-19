@@ -14,7 +14,7 @@ class FileTransferServer:
 
     def create_udp_socket(self):
         sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        sock.settimeout(0.2)  # Reduced timeout for faster retries
+        sock.settimeout(0.1)  # Reduced timeout for faster retries
         return sock
 
     def start(self):

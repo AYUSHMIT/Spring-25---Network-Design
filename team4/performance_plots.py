@@ -16,7 +16,7 @@ def start_server(option, error_rate, data_loss_rate):
 def measure_completion_time(file_path, option, error_rate):
     if option == 1: # noerrors
         server_thread = start_server(option, 0, 0)
-        time.sleep(0.5)  # Give the server some time to start
+        #time.sleep(0.5)  # Give the server some time to start
         start_time = time.time()
         send_file(file_path, update_fsm_state, option, 0, 0)
         server_thread.join()  # Wait for the server to finish
@@ -24,7 +24,7 @@ def measure_completion_time(file_path, option, error_rate):
         return end_time - start_time
     elif option == 2:
         server_thread = start_server(option, 0, 0)
-        time.sleep(0.5)  # Give the server some time to start
+        #time.sleep(0.5)  # Give the server some time to start
         start_time = time.time()
         send_file(file_path, update_fsm_state, option, error_rate, 0)
         server_thread.join()  # Wait for the server to finish
@@ -32,7 +32,7 @@ def measure_completion_time(file_path, option, error_rate):
         return end_time - start_time
     elif option == 3:
         server_thread = start_server(option, error_rate, 0)
-        time.sleep(0.5)  # Give the server some time to start
+        #time.sleep(0.5)  # Give the server some time to start
         start_time = time.time()
         send_file(file_path, update_fsm_state, option, 0 , 0)
         server_thread.join()  # Wait for the server to finish
@@ -40,7 +40,7 @@ def measure_completion_time(file_path, option, error_rate):
         return end_time - start_time
     elif option == 4:
         server_thread = start_server(option, 0, 0)
-        time.sleep(0.5)  # Give the server some time to start
+        #time.sleep(0.5)  # Give the server some time to start
         start_time = time.time()
         send_file(file_path, update_fsm_state, option, 0 , error_rate)
         server_thread.join()  # Wait for the server to finish
@@ -48,7 +48,7 @@ def measure_completion_time(file_path, option, error_rate):
         return end_time - start_time
     elif option == 5:
         server_thread = start_server(option, 0, error_rate)
-        time.sleep(0.5)  # Give the server some time to start
+        #time.sleep(0.5)  # Give the server some time to start
         start_time = time.time()
         send_file(file_path, update_fsm_state, option, 0 , 0)
         server_thread.join()  # Wait for the server to finish
@@ -60,7 +60,7 @@ def measure_completion_time(file_path, option, error_rate):
 def plot_performance():
     file_path = r'C:\Users\Luis D. Pena Mateo\OneDrive\Desktop\Spring2025\Spring-25---Network-Design\team4\phase_2_JPG_500kB.jpg'  # Use a 500KB file for transmission
     error_rates = [i / 100 for i in range(0, 65, 5)]
-    options = [1, 2, 3, 4]
+    options = [1, 2, 3, 4, 5]
     completion_times = {option: [] for option in options}
 
     for option in options:

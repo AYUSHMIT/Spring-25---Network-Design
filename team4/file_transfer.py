@@ -50,7 +50,7 @@ def make_packet(file_path, packet_size=1024):
 
 def create_udp_socket():
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    sock.settimeout(0.5)  # Set a shorter timeout for socket operations
+    sock.settimeout(0.1)  # Set a shorter timeout for socket operations
     return sock
 
 def send_packet(sock, packet, address):
