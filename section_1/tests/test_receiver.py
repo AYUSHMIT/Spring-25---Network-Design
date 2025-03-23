@@ -2,6 +2,7 @@ import unittest
 from src.receiver import run_go_back_n_receiver
 import socket
 import os
+import threading
 
 class TestReceiver(unittest.TestCase):
     def setUp(self):
@@ -16,7 +17,10 @@ class TestReceiver(unittest.TestCase):
 
     def tearDown(self):
         if os.path.exists(self.output_file):
-            os.remove(self.output_file)
+            try:
+                os.remove(self.output_file)
+            except PermissionError:
+                pass
         if os.path.exists(self.test_image_path):
             os.remove(self.test_image_path)
 

@@ -1,7 +1,7 @@
 import socket
 import struct
 import os
-from utils import calculate_checksum, verify_checksum, make_packet, extract_sequence_number, extract_data, introduce_bit_error, simulate_loss
+from .utils import calculate_checksum, verify_checksum, introduce_bit_error, simulate_loss, make_packet, extract_sequence_number, extract_data
 
 PACKET_SIZE = 1024
 ACK_SIGNAL = b'ACK'
@@ -52,3 +52,10 @@ def run_go_back_n_receiver(host, port, output_file):
     finally:
         sock.close()
     return len(received_data)
+
+if __name__ == "__main__":
+    receiver_host = 'localhost'
+    receiver_port = 5000
+    output_file = 'received_image.bmp'
+
+    run_go_back_n_receiver(receiver_host, receiver_port, output_file)

@@ -1,3 +1,4 @@
+from .utils import Timer
 import socket
 import struct
 import time
@@ -106,7 +107,7 @@ def run_go_back_n_sender(host, port, file_path, N):
 if __name__ == "__main__":
     sender_host = 'localhost'
     sender_port = 12345
-    file_to_transfer = 'example.bmp'
+    file_to_transfer = r'C:\Users\Ayush_Pandey\Dev\phase_ 4\go-back-n-bmp-transfer\src\example.bmp'
     window_size = 10
 
     run_go_back_n_sender(sender_host, sender_port, file_to_transfer, window_size)
