@@ -10,7 +10,7 @@ def introduce_bit_error(packet, error_probability):
         index = random.randint(0, len(packet) - 1)
         bit_index = random.randint(0, 7)
         byte_array = bytearray(packet)
-        byte_array[index] ^= (1 << bit_index)
+        byte_array[index] ^= (1 << bit_index)# Flips a random bit
         return bytes(byte_array)
     return packet
 
