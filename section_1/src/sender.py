@@ -238,3 +238,33 @@ if __name__ == "__main__":
     print("Chart 3 saved as phase4_optimal_window_size.png")
 
     print("\nRemember to implement the logic for Chart 4 (Performance comparison of different phases) separately.")
+
+    # --- Performance Measurement for Chart 4 (Performance Comparison) ---
+print("\nRunning performance measurement for Chart 4 (Performance Comparison)...")
+fixed_loss_probability = 0.2  # 20% loss
+
+# Replace these placeholders with actual measurements when implementing the respective phases
+completion_time_phase2 = 0  # Replace with actual measurement for Phase 2
+completion_time_phase3 = 0  # Replace with actual measurement for Phase 3
+completion_time_phase4 = run_experiment(sender_host, sender_port, file_to_transfer, window_size, fixed_loss_probability)
+completion_time_udp = 0  # Replace with actual measurement for UDP (if implemented)
+completion_time_selective_repeat = 0  # Replace with actual measurement for Selective Repeat (if implemented)
+
+phases = ['Phase 2', 'Phase 3', 'Phase 4']
+times = [completion_time_phase2, completion_time_phase3, completion_time_phase4]
+
+if completion_time_selective_repeat > 0:
+    phases.append('Selective Repeat')
+    times.append(completion_time_selective_repeat)
+if completion_time_udp > 0:
+    phases.append('UDP')
+    times.append(completion_time_udp)
+
+plt.figure(figsize=(10, 6))
+plt.bar(phases, times, color='skyblue')
+plt.xlabel("Phase")
+plt.ylabel("File Transfer Completion Time (seconds)")
+plt.title("Performance Comparison of Different Phases (20% Loss)")
+plt.grid(axis='y')
+plt.savefig("phase4_comparison.png")
+print("Chart 4 saved as phase4_comparison.png")
