@@ -3,15 +3,18 @@ import struct
 import time
 import random
 
-PACKET_SIZE = 1024
-TIMEOUT = 0.05
-MAX_WINDOW_SIZE = 50
-ACK_SIGNAL = b'ACK'
-DATA_LOSS_RATE = 0.2
-ACK_LOSS_RATE = 0.2
-BIT_ERROR_RATE = 0.1
+# Constants for configuration
+PACKET_SIZE = 1024  # Maximum packet size in bytes
+TIMEOUT = 0.05  # Timeout duration for retransmissions
+MAX_WINDOW_SIZE = 50  # Maximum number of packets in the sliding window
+ACK_SIGNAL = b'ACK'  # Signal used to represent acknowledgment packets
+DATA_LOSS_RATE = 0.2  # Probability of data packet loss
+ACK_LOSS_RATE = 0.2  # Probability of acknowledgment packet loss
+BIT_ERROR_RATE = 0.1  # Probability of bit errors introduced in packets
 
+# Helper functions for checksum calculation and verification
 def calculate_checksum(data):
+    # Computes a simple checksum by summing all bytes and masking to 16 bits
     checksum = 0
     for byte in data:
         checksum += byte
@@ -19,23 +22,26 @@ def calculate_checksum(data):
     return checksum
 
 def verify_checksum(packet):
+    # Verifies the checksum of a received packet
     received_checksum = struct.unpack("!H", packet[-2:])[0]
     data = packet[:-2]
     calculated_checksum = calculate_checksum(data)
     return calculated_checksum == received_checksum
 
+# Constructs a packet with a sequence number, data, and checksum
 def make_packet(sequence_number, data, packet_type=b'DATA'):
     header_format = "!II4sH"
     header_size = struct.calcsize(header_format)
 
     if not isinstance(data, bytes):
-        data = data.encode()
+        data = data.encode()  # Convert data to bytes if it is not already
 
     checksum_data = packet_type + struct.pack("!II", sequence_number, len(data)) + data
     checksum = calculate_checksum(checksum_data)
     header = struct.pack(header_format, sequence_number, len(data), packet_type, checksum)
     return header + data + struct.pack("!H", checksum)
 
+# Extracts various components from a packet
 def extract_sequence_number(packet):
     return struct.unpack("!I", packet[:4])[0]
 
@@ -46,18 +52,21 @@ def extract_data(packet):
 def extract_packet_type(packet):
     return packet[8:12]
 
+# Introduces a bit error to a packet with a given probability
 def introduce_bit_error(packet, error_probability):
     if random.random() < error_probability:
         index = random.randint(0, len(packet) - 1)
         bit_index = random.randint(0, 7)
         byte_array = bytearray(packet)
-        byte_array[index] ^= (1 << bit_index)
+        byte_array[index] ^= (1 << bit_index)  # Flip a random bit
         return bytes(byte_array)
     return packet
 
+# Simulates packet loss with a given probability
 def simulate_loss(probability):
     return random.random() < probability
 
+# Timer class to track the timeout duration for retransmissions
 class Timer:
     def __init__(self):
         self.start_time = 0
@@ -81,8 +90,9 @@ class Timer:
         self.start_time = time.time()
         self.running = True
 
+# Implements the sender functionality for Go-Back-N ARQ protocol
 def rdt_send(sock, address, data, base, nextsegnum, N, sndpkt, timer):
-    if nextsegnum < base + N:
+    if nextsegnum < base + N:  # Check if window is not full
         print(f"rdt_send: Sending packet {nextsegnum}, base={base}, nextsegnum={nextsegnum}, N={N}")
         packet = make_packet(nextsegnum, data)
         sndpkt[nextsegnum % N] = packet
@@ -91,26 +101,27 @@ def rdt_send(sock, address, data, base, nextsegnum, N, sndpkt, timer):
         else:
             print(f"rdt_send: Simulating loss of packet {nextsegnum}")
 
-        if base == nextsegnum:
+        if base == nextsegnum:  # Start timer if first unacknowledged packet
             timer.start(TIMEOUT)
         return nextsegnum + 1
     else:
         print("rdt_send: Refuse data, window is full")
         return nextsegnum
 
+# Implements the receiver functionality for Go-Back-N ARQ protocol
 def rdt_rcv(sock, N, expectedsegnum):
     try:
-        packet, address = sock.recvfrom(4096)
+        packet, address = sock.recvfrom(4096)  # Receive packet
         if not packet:
             return None, None, expectedsegnum
 
     except socket.timeout:
         return None, None, expectedsegnum
 
-    if not simulate_loss(DATA_LOSS_RATE):
+    if not simulate_loss(DATA_LOSS_RATE):  # Introduce bit errors randomly
         packet = introduce_bit_error(packet, BIT_ERROR_RATE)
 
-    if not verify_checksum(packet):
+    if not verify_checksum(packet):  # Verify checksum
         print("rdt_rcv: Checksum error, discarding packet")
         ack_packet = make_packet(expectedsegnum, b'', packet_type=ACK_SIGNAL)
         sock.sendto(ack_packet, address)
@@ -119,10 +130,10 @@ def rdt_rcv(sock, N, expectedsegnum):
     seq_num = extract_sequence_number(packet)
     packet_type = extract_packet_type(packet)
 
-    if packet_type == ACK_SIGNAL:
+    if packet_type == ACK_SIGNAL:  # Handle acknowledgment packets
         return seq_num, address, expectedsegnum
 
-    if seq_num == expectedsegnum:
+    if seq_num == expectedsegnum:  # Correct and in-order packet
         print(f"rdt_rcv: Received expected packet {seq_num}")
         data = extract_data(packet)
         ack_packet = make_packet(expectedsegnum, b'', packet_type=ACK_SIGNAL)
@@ -131,14 +142,15 @@ def rdt_rcv(sock, N, expectedsegnum):
         else:
             print(f"rdt_rcv: Simulating loss of ACK for packet {expectedsegnum}")
         return data, address, expectedsegnum + 1
-    else:
+    else:  # Out-of-order packet
         print(f"rdt_rcv: Out-of-order packet {seq_num}, expected {expectedsegnum}")
         ack_packet = make_packet(expectedsegnum, b'', packet_type=ACK_SIGNAL)
         sock.sendto(ack_packet, address)
         return None, address, expectedsegnum
 
+# Sender function for Go-Back-N protocol
 def run_go_back_n_sender(host, port, file_path, N):
-    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)  # Create UDP socket
     address = (host, port)
     timer = Timer()
     base = 0
@@ -147,7 +159,7 @@ def run_go_back_n_sender(host, port, file_path, N):
     file_size = 0
 
     try:
-        with open(file_path, 'rb') as file:
+        with open(file_path, 'rb') as file:  # Read file to send
             while True:
                 data = file.read(PACKET_SIZE)
                 if not data:
@@ -155,6 +167,7 @@ def run_go_back_n_sender(host, port, file_path, N):
                 file_size += len(data)
                 nextsegnum = rdt_send(sock, address, data, base, nextsegnum, N, sndpkt, timer)
 
+                # Handle retransmissions and acknowledgments
                 while base < nextsegnum:
                     if timer.is_expired():
                         print("Sender: Timeout, retransmitting packets")
@@ -182,14 +195,15 @@ def run_go_back_n_sender(host, port, file_path, N):
         sock.close()
     return file_size
 
+# Receiver function for Go-Back-N protocol
 def run_go_back_n_receiver(host, port, output_file):
-    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)  # Create UDP socket
     sock.bind((host, port))
     expectedsegnum = 0
     received_data = b''
 
     try:
-        with open(output_file, 'wb') as file:
+        with open(output_file, 'wb') as file:  # Write received data to file
             while True:
                 data, _, expectedsegnum = rdt_rcv(sock, 1, expectedsegnum)
                 if data:

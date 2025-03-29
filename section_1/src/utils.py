@@ -1,84 +1,97 @@
-import random
-import time
-import struct
+import random  # For generating random numbers and simulating randomness
+import time  # For tracking elapsed time and implementing timers
+import struct  # For packing and unpacking binary data
 
+# Function to simulate packet loss
 def simulate_loss(probability):
-    return random.random() < probability
+    return random.random() < probability  # Returns True if a packet is lost (based on probability)
 
+# Function to introduce bit errors into a packet
 def introduce_bit_error(packet, error_probability):
-    if random.random() < error_probability:
-        index = random.randint(0, len(packet) - 1)
-        bit_index = random.randint(0, 7)
-        byte_array = bytearray(packet)
-        byte_array[index] ^= (1 << bit_index)# Flips a random bit
-        return bytes(byte_array)
-    return packet
+    if random.random() < error_probability:  # Simulate error probability
+        index = random.randint(0, len(packet) - 1)  # Select a random byte in the packet
+        bit_index = random.randint(0, 7)  # Select a random bit in the byte
+        byte_array = bytearray(packet)  # Convert packet to mutable bytearray
+        byte_array[index] ^= (1 << bit_index)  # Flip the chosen bit in the byte
+        return bytes(byte_array)  # Convert back to immutable bytes
+    return packet  # Return the original packet if no error is introduced
 
+# Function to read the contents of a BMP file
 def read_bmp_file(file_path):
-    with open(file_path, 'rb') as bmp_file:
-        return bmp_file.read()
+    with open(file_path, 'rb') as bmp_file:  # Open the file in binary read mode
+        return bmp_file.read()  # Return the file contents as bytes
 
+# Function to write data to a BMP file
 def write_bmp_file(file_path, data):
-    with open(file_path, 'wb') as bmp_file:
-        bmp_file.write(data)
+    with open(file_path, 'wb') as bmp_file:  # Open the file in binary write mode
+        bmp_file.write(data)  # Write the data (bytes) to the file
 
+# Function to calculate a checksum for data integrity
 def calculate_checksum(data):
     checksum = 0
-    for byte in data:
-        checksum += byte
-        checksum &= 0xFFFF
+    for byte in data:  # Iterate through each byte in the data
+        checksum += byte  # Add the byte value to the checksum
+        checksum &= 0xFFFF  # Limit the checksum to 16 bits
     return checksum
 
+# Function to verify the checksum of a packet
 def verify_checksum(packet):
-    header_format = "!II4sH"
-    header_size = struct.calcsize(header_format)
-    header = packet[:header_size]
-    data = packet[header_size:-2]
-    received_checksum = struct.unpack("!H", packet[-2:])[0]
-    calculated_checksum = calculate_checksum(header + data)
-    return received_checksum == calculated_checksum
+    header_format = "!II4sH"  # Header format: sequence number, data length, packet type, checksum
+    header_size = struct.calcsize(header_format)  # Calculate the size of the header
+    header = packet[:header_size]  # Extract the header
+    data = packet[header_size:-2]  # Extract the data (excluding checksum)
+    received_checksum = struct.unpack("!H", packet[-2:])[0]  # Extract the received checksum
+    calculated_checksum = calculate_checksum(header + data)  # Calculate the checksum for header + data
+    return received_checksum == calculated_checksum  # Compare calculated and received checksums
 
+# Function to extract the sequence number from a packet
 def extract_sequence_number(packet):
-    header_format = "!II4sH"
-    header_size = struct.calcsize(header_format)
-    header = packet[:header_size]
-    seq_num, _, _, _ = struct.unpack(header_format, header)
+    header_format = "!II4sH"  # Header format
+    header_size = struct.calcsize(header_format)  # Calculate header size
+    header = packet[:header_size]  # Extract the header
+    seq_num, _, _, _ = struct.unpack(header_format, header)  # Unpack the sequence number from the header
     return seq_num
 
+# Function to extract the data from a packet
 def extract_data(packet):
-    header_format = "!II4sH"
-    header_size = struct.calcsize(header_format)
-    return packet[header_size:-2]
+    header_format = "!II4sH"  # Header format
+    header_size = struct.calcsize(header_format)  # Calculate header size
+    return packet[header_size:-2]  # Extract the data (excluding header and checksum)
 
+# Function to create a packet with a header, data, and checksum
 def make_packet(sequence_number, data, packet_type=b'DATA'):
-    header_format = "!II4sH"
-    header_size = struct.calcsize(header_format)
+    header_format = "!II4sH"  # Header format for struct packing
+    header_size = struct.calcsize(header_format)  # Calculate header size
 
-    if not isinstance(data, bytes):
-        data = data.encode()
+    if not isinstance(data, bytes):  # Ensure the data is in bytes format
+        data = data.encode()  # Convert string data to bytes
 
+    # Prepare data for checksum calculation
     checksum_data = packet_type + struct.pack("!II", sequence_number, len(data)) + data
-    checksum = calculate_checksum(checksum_data)
-    header = struct.pack(header_format, sequence_number, len(data), packet_type, checksum)
-    return header + data + struct.pack("!H", checksum)
+    checksum = calculate_checksum(checksum_data)  # Calculate the checksum for the packet
 
+    # Pack the header and combine with data and checksum
+    header = struct.pack(header_format, sequence_number, len(data), packet_type, checksum)
+    return header + data + struct.pack("!H", checksum)  # Combine header, data, and checksum into a packet
+
+# Timer class for managing timeouts and intervals
 class Timer:
     def __init__(self):
-        self.start_time = None
-        self.interval = None
+        self.start_time = None  # Tracks when the timer started
+        self.interval = None  # Interval duration for the timer
 
     def start(self, interval):
-        self.start_time = time.time()
-        self.interval = interval
+        self.start_time = time.time()  # Record the current time as the start time
+        self.interval = interval  # Set the interval duration
 
     def stop(self):
-        self.start_time = None
-        self.interval = None
+        self.start_time = None  # Clear the start time
+        self.interval = None  # Clear the interval duration
 
     def is_expired(self):
-        if self.start_time is None:
+        if self.start_time is None:  # Check if the timer is running
             return False
-        return (time.time() - self.start_time) > self.interval
+        return (time.time() - self.start_time) > self.interval  # Check if the interval has passed
 
     def restart(self):
-        self.start(self.interval)
+        self.start(self.interval)  # Restart the timer with the same interval
