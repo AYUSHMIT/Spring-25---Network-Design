@@ -22,12 +22,24 @@ def calculate_checksum(data):
     return checksum
 
 def verify_checksum(packet):
-    # Verifies the checksum of a received packet
-    received_checksum = struct.unpack("!H", packet[-2:])[0]
-    data = packet[:-2]
-    calculated_checksum = calculate_checksum(data)
-    return calculated_checksum == received_checksum
-
+    header_format = "!II4sH"  # Header format: sequence number, data length, packet type, checksum
+    header_size = struct.calcsize(header_format)  # Calculate the size of the header
+    
+    # Extract header and data
+    header = packet[:header_size]  # Extract the header
+    data = packet[header_size:]  # Extract the data (everything after the header)
+    
+    # Extract the checksum from the header
+    unpacked_header = struct.unpack(header_format, header)  # Unpack the header into its components
+    received_checksum = unpacked_header[-1]  # The last field is the checksum
+    
+    # Calculate the checksum for the header + data (excluding the received checksum)
+    checksum_data = struct.pack("!II4s", unpacked_header[0], unpacked_header[1], unpacked_header[2]) + data
+    calculated_checksum = calculate_checksum(checksum_data)
+    
+    # Return whether the received checksum matches the calculated checksum
+    return received_checksum == calculated_checksum
+'''
 # Constructs a packet with a sequence number, data, and checksum
 def make_packet(sequence_number, data, packet_type=b'DATA'):
     header_format = "!II4sH"
@@ -40,17 +52,49 @@ def make_packet(sequence_number, data, packet_type=b'DATA'):
     checksum = calculate_checksum(checksum_data)
     header = struct.pack(header_format, sequence_number, len(data), packet_type, checksum)
     return header + data + struct.pack("!H", checksum)
+'''
+
+# Function to create a packet with a header, data, and checksum
+def make_packet(sequence_number, data, packet_type=b'DATA'):
+    # Header format: sequence number, data length, packet type, checksum
+    header_format = "!II4sH"  # Header format for struct packing
+
+    if not isinstance(data, bytes):  # Ensure the data is in bytes format
+        data = data.encode()  # Convert string data to bytes
+
+    # Prepare data for checksum calculation
+    checksum_data = struct.pack("!II4s", sequence_number, len(data), packet_type) + data
+
+    # Calculate the checksum for the packet
+    checksum = calculate_checksum(checksum_data)
+
+    # Pack the header and combine with data
+    header = struct.pack(header_format, sequence_number, len(data), packet_type, checksum)
+    return header + data  # Combine header and data into a packet
 
 # Extracts various components from a packet
 def extract_sequence_number(packet):
     return struct.unpack("!I", packet[:4])[0]
 
 def extract_data(packet):
-    data_length = struct.unpack("!I", packet[4:8])[0]
-    return packet[12:12 + data_length]
+    # Header format matches the make_packet function
+    header_format = "!II4sH"
+    
+    # Calculate the size of the header
+    header_size = struct.calcsize(header_format)
+    
+    # Extract and return the data portion of the packet
+    return packet[header_size:]
 
 def extract_packet_type(packet):
-    return packet[8:12]
+    # Header format matches the make_packet function
+    header_format = "!II4sH"
+    
+    # Extract and unpack the header to retrieve the packet type
+    unpacked_header = struct.unpack(header_format, packet[:struct.calcsize(header_format)])
+    packet_type = unpacked_header[2]  # The packet type is the third field in the header
+    
+    return packet_type
 
 # Introduces a bit error to a packet with a given probability
 def introduce_bit_error(packet, error_probability):

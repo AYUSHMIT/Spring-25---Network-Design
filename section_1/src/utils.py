@@ -38,11 +38,21 @@ def calculate_checksum(data):
 def verify_checksum(packet):
     header_format = "!II4sH"  # Header format: sequence number, data length, packet type, checksum
     header_size = struct.calcsize(header_format)  # Calculate the size of the header
+    
+    # Extract header and data
     header = packet[:header_size]  # Extract the header
-    data = packet[header_size:-2]  # Extract the data (excluding checksum)
-    received_checksum = struct.unpack("!H", packet[-2:])[0]  # Extract the received checksum
-    calculated_checksum = calculate_checksum(header + data)  # Calculate the checksum for header + data
-    return received_checksum == calculated_checksum  # Compare calculated and received checksums
+    data = packet[header_size:]  # Extract the data (everything after the header)
+    
+    # Extract the checksum from the header
+    unpacked_header = struct.unpack(header_format, header)  # Unpack the header into its components
+    received_checksum = unpacked_header[-1]  # The last field is the checksum
+    
+    # Calculate the checksum for the header + data (excluding the received checksum)
+    checksum_data = struct.pack("!II4s", unpacked_header[0], unpacked_header[1], unpacked_header[2]) + data
+    calculated_checksum = calculate_checksum(checksum_data)
+    
+    # Return whether the received checksum matches the calculated checksum
+    return received_checksum == calculated_checksum
 
 # Function to extract the sequence number from a packet
 def extract_sequence_number(packet):
@@ -56,23 +66,25 @@ def extract_sequence_number(packet):
 def extract_data(packet):
     header_format = "!II4sH"  # Header format
     header_size = struct.calcsize(header_format)  # Calculate header size
-    return packet[header_size:-2]  # Extract the data (excluding header and checksum)
+    return packet[header_size:]  # Extract the data
 
 # Function to create a packet with a header, data, and checksum
 def make_packet(sequence_number, data, packet_type=b'DATA'):
+    # Header format: sequence number, data length, packet type, checksum
     header_format = "!II4sH"  # Header format for struct packing
-    header_size = struct.calcsize(header_format)  # Calculate header size
 
     if not isinstance(data, bytes):  # Ensure the data is in bytes format
         data = data.encode()  # Convert string data to bytes
 
     # Prepare data for checksum calculation
-    checksum_data = packet_type + struct.pack("!II", sequence_number, len(data)) + data
-    checksum = calculate_checksum(checksum_data)  # Calculate the checksum for the packet
+    checksum_data = struct.pack("!II4s", sequence_number, len(data), packet_type) + data
 
-    # Pack the header and combine with data and checksum
+    # Calculate the checksum for the packet
+    checksum = calculate_checksum(checksum_data)
+
+    # Pack the header and combine with data
     header = struct.pack(header_format, sequence_number, len(data), packet_type, checksum)
-    return header + data + struct.pack("!H", checksum)  # Combine header, data, and checksum into a packet
+    return header + data  # Combine header and data into a packet
 
 # Timer class for managing timeouts and intervals
 class Timer:

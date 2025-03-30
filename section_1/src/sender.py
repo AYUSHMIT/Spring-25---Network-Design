@@ -1,5 +1,5 @@
 # Import required libraries
-from utils import Timer, calculate_checksum, verify_checksum, introduce_bit_error, simulate_loss, make_packet, extract_sequence_number, extract_data
+from .utils import Timer, calculate_checksum, verify_checksum, introduce_bit_error, simulate_loss, make_packet, extract_sequence_number, extract_data
 import socket  # Used for network communication
 import struct  # Helps with packing/unpacking binary data
 import time  # Used for timing functionalities
