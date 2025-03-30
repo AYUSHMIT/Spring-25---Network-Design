@@ -27,31 +27,30 @@ def write_bmp_file(file_path, data):
         bmp_file.write(data)  # Write the data (bytes) to the file
 
 # Function to calculate a checksum for data integrity
-def calculate_checksum(data):
+def calculate_checksum(data): #1
+    # Simple checksum: sum all byte values, limited to 16 bits
     checksum = 0
-    for byte in data:  # Iterate through each byte in the data
-        checksum += byte  # Add the byte value to the checksum
-        checksum &= 0xFFFF  # Limit the checksum to 16 bits
+    for byte in data: # Iterate through each byte in the data
+        checksum = (checksum + byte) & 0xFFFF # Add the byte value to the checksum & Limit the checksum to 16 bits
     return checksum
+
 
 # Function to verify the checksum of a packet
 def verify_checksum(packet):
     header_format = "!II4sH"  # Header format: sequence number, data length, packet type, checksum
-    header_size = struct.calcsize(header_format)  # Calculate the size of the header
+    header_size = struct.calcsize(header_format)  # Compute header size
+    header = packet[:header_size]  # Extract header
+    seq, length, ptype, received_checksum = struct.unpack(header_format, header)
     
-    # Extract header and data
-    header = packet[:header_size]  # Extract the header
-    data = packet[header_size:]  # Extract the data (everything after the header)
+    # Slice exactly the number of data bytes specified by the header
+    data = packet[header_size:header_size + length]
     
-    # Extract the checksum from the header
-    unpacked_header = struct.unpack(header_format, header)  # Unpack the header into its components
-    received_checksum = unpacked_header[-1]  # The last field is the checksum
-    
-    # Calculate the checksum for the header + data (excluding the received checksum)
-    checksum_data = struct.pack("!II4s", unpacked_header[0], unpacked_header[1], unpacked_header[2]) + data
+    # Recreate the checksum data exactly the same as in make_packet
+    checksum_data = struct.pack("!II4s", seq, length, ptype) + data
     calculated_checksum = calculate_checksum(checksum_data)
     
-    # Return whether the received checksum matches the calculated checksum
+    # For debugging, you might print:
+    # print(f"Received: {received_checksum}, Calculated: {calculated_checksum}")
     return received_checksum == calculated_checksum
 
 # Function to extract the sequence number from a packet
@@ -66,25 +65,24 @@ def extract_sequence_number(packet):
 def extract_data(packet):
     header_format = "!II4sH"  # Header format
     header_size = struct.calcsize(header_format)  # Calculate header size
-    return packet[header_size:]  # Extract the data
+    # It is better to obtain the data length from the header to ensure correctness.
+    _, data_length, _, _ = struct.unpack(header_format, packet[:header_size])
+    return packet[header_size:header_size + data_length]
 
 # Function to create a packet with a header, data, and checksum
 def make_packet(sequence_number, data, packet_type=b'DATA'):
-    # Header format: sequence number, data length, packet type, checksum
-    header_format = "!II4sH"  # Header format for struct packing
+    header_format = "!II4sH"  # Header: sequence number, data length, packet type, checksum
 
-    if not isinstance(data, bytes):  # Ensure the data is in bytes format
-        data = data.encode()  # Convert string data to bytes
+    if not isinstance(data, bytes):
+        data = data.encode()  # Ensure data is in bytes
 
-    # Prepare data for checksum calculation
+    # Prepare the bytes used for checksum calculation (without including a slot for checksum)
     checksum_data = struct.pack("!II4s", sequence_number, len(data), packet_type) + data
-
-    # Calculate the checksum for the packet
-    checksum = calculate_checksum(checksum_data)
-
-    # Pack the header and combine with data
+    checksum = calculate_checksum(checksum_data)  # Calculate checksum
+    
+    # Pack the header including the computed checksum
     header = struct.pack(header_format, sequence_number, len(data), packet_type, checksum)
-    return header + data  # Combine header and data into a packet
+    return header + data  # Return the final packet
 
 # Timer class for managing timeouts and intervals
 class Timer:
@@ -107,3 +105,27 @@ class Timer:
 
     def restart(self):
         self.start(self.interval)  # Restart the timer with the same interval
+
+    ########################3
+
+'''
+# Example usage for testing:
+if __name__ == '__main__':
+    # Create a packet with known content
+    data = b"Test packet data"
+    packet = make_packet(1, data)
+    
+    # Verify sequence number extraction
+    seq_num = extract_sequence_number(packet)
+    print("Sequence number:", seq_num)  # Should print 1
+
+    # Verify data extraction
+    extracted_data = extract_data(packet)
+    print("Extracted data:", extracted_data)  # Should print b"Test packet data"
+
+    # Check if checksum is valid
+    if verify_checksum(packet):
+        print("Checksum verification passed!")
+    else:
+        print("Checksum verification failed!")'
+'''

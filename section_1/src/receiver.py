@@ -5,10 +5,11 @@ from .utils import calculate_checksum, verify_checksum, introduce_bit_error, sim
 
 # Constants for the program
 PACKET_SIZE = 1024  # Size of data packets to be received
+HEADER_SIZE = struct.calcsize("!II4sH")  # Calculate header size
 ACK_SIGNAL = b'ACK'  # Identifier for acknowledgment packets
-DATA_LOSS_RATE = 0.2  # Probability of losing a data packet
-ACK_LOSS_RATE = 0.2  # Probability of losing an acknowledgment packet
-BIT_ERROR_RATE = 0.1  # Probability of introducing bit errors in packets
+DATA_LOSS_RATE = 0.0  # Probability of losing a data packet
+ACK_LOSS_RATE = 0.0  # Probability of losing an acknowledgment packet
+BIT_ERROR_RATE = 0.0  # Probability of introducing bit errors in packets
 
 # Function to implement the Go-Back-N receiver
 def run_go_back_n_receiver(host, port, output_file):
@@ -21,11 +22,20 @@ def run_go_back_n_receiver(host, port, output_file):
     try:
         # Open the output file to write received data
         with open(output_file, 'wb') as file:
+            print(f"Receiver is listening on {host}:{port}")
             while True:
                 # Receive a packet (buffer size includes header and data)
-                packet, address = sock.recvfrom(PACKET_SIZE + 12)
-                if not packet:  # Exit loop if no packet is received
+                try:
+                    packet, address = sock.recvfrom(PACKET_SIZE + HEADER_SIZE)
+                except Exception as e:
+                    print(f"Socket receive error: {e}")
                     break
+
+                if not packet:  # Exit loop if no packet is received
+                    print("Empty packet received, exiting.")
+                    break
+
+                print(f"Packet received: {packet[:10]}... (size: {len(packet)})")
 
                 # Simulate packet corruption by introducing bit errors
                 if not simulate_loss(DATA_LOSS_RATE):
@@ -34,7 +44,6 @@ def run_go_back_n_receiver(host, port, output_file):
                 # Verify checksum to ensure data integrity
                 if not verify_checksum(packet):
                     print("Checksum error, discarding packet")
-                    # Send acknowledgment for the last correctly received packet
                     ack_packet = make_packet(expectedsegnum, b'', packet_type=ACK_SIGNAL)
                     sock.sendto(ack_packet, address)
                     continue
@@ -58,7 +67,6 @@ def run_go_back_n_receiver(host, port, output_file):
                 # Handle out-of-order packets
                 else:
                     print(f"Out-of-order packet {seq_num}, expected {expectedsegnum}")
-                    # Send acknowledgment for the last correctly received packet
                     ack_packet = make_packet(expectedsegnum, b'', packet_type=ACK_SIGNAL)
                     sock.sendto(ack_packet, address)
 
@@ -68,6 +76,7 @@ def run_go_back_n_receiver(host, port, output_file):
     finally:
         # Ensure the socket is closed at the end
         sock.close()
+    print(f"Total data received: {len(received_data)} bytes")
     return len(received_data)  # Return the total number of bytes received
 
 # Main function to run the receiver
