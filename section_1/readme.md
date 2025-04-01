@@ -33,7 +33,7 @@ go-back-n-bmp-transfer
 
 1. Clone the repository:
    ```
-   git clone <repository-url>
+   git clone https://github.com/AYUSHMIT/Spring-25---Network-Design/tree/phase_4/section_1
    cd go-back-n-bmp-transfer
    ```
 
