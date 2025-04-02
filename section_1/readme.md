@@ -48,12 +48,16 @@ go-back-n-bmp-transfer
 
 To transfer a BMP image file, run the receiver in one terminal:
 ```
-python src/receiver.py <host> <port> <output_file>
+python -m section_1.src.receiver <host> <port> <output_file>
+
+e.g: python -m section_1.src.receiver received.bmp
 ```
 
 Then, in another terminal, run the sender:
 ```
-python src/sender.py <host> <port> <input_file>
+python -m section_1.src.sender <host> <port> <input_file>
+
+e.g: python -m section_1.src.sender section_1\src\example.bmp
 ```
 
 Replace `<host>`, `<port>`, `<output_file>`, and `<input_file>` with appropriate values.
@@ -66,7 +70,3 @@ pytest tests/
 ```
 
 This will execute all unit tests for the Go-Back-N protocol implementation, ensuring that the functionality works as expected.
-
-## License
-
-This project is licensed under the MIT License. See the LICENSE file for details.

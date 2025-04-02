@@ -105,27 +105,3 @@ class Timer:
 
     def restart(self):
         self.start(self.interval)  # Restart the timer with the same interval
-
-    ########################3
-
-'''
-# Example usage for testing:
-if __name__ == '__main__':
-    # Create a packet with known content
-    data = b"Test packet data"
-    packet = make_packet(1, data)
-    
-    # Verify sequence number extraction
-    seq_num = extract_sequence_number(packet)
-    print("Sequence number:", seq_num)  # Should print 1
-
-    # Verify data extraction
-    extracted_data = extract_data(packet)
-    print("Extracted data:", extracted_data)  # Should print b"Test packet data"
-
-    # Check if checksum is valid
-    if verify_checksum(packet):
-        print("Checksum verification passed!")
-    else:
-        print("Checksum verification failed!")'
-'''

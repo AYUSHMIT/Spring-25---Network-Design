@@ -39,20 +39,6 @@ def verify_checksum(packet):
     
     # Return whether the received checksum matches the calculated checksum
     return received_checksum == calculated_checksum
-'''
-# Constructs a packet with a sequence number, data, and checksum
-def make_packet(sequence_number, data, packet_type=b'DATA'):
-    header_format = "!II4sH"
-    header_size = struct.calcsize(header_format)
-
-    if not isinstance(data, bytes):
-        data = data.encode()  # Convert data to bytes if it is not already
-
-    checksum_data = packet_type + struct.pack("!II", sequence_number, len(data)) + data
-    checksum = calculate_checksum(checksum_data)
-    header = struct.pack(header_format, sequence_number, len(data), packet_type, checksum)
-    return header + data + struct.pack("!H", checksum)
-'''
 
 # Function to create a packet with a header, data, and checksum
 def make_packet(sequence_number, data, packet_type=b'DATA'):
