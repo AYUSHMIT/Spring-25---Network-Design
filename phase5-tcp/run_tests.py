@@ -1,0 +1,11 @@
+import unittest
+import sys
+import os
+
+# Add the src folder to the Python path
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'src'))
+
+from tests import *
+
+if __name__ == "__main__":
+    unittest.main()

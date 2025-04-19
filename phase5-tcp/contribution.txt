@@ -1,0 +1,19 @@
+# Individual Contributions to the Phase5 TCP Project
+
+## Ayush
+- Designed and implemented the `TCPSegment` class for handling TCP segment packing/unpacking and checksum calculations in `tcp_segment.py`.
+- Developed the `RTTEstimator` class for estimating round-trip time (RTT) and managing RTT variance in `rtt_estimator.py`.
+- Created the `CongestionControl` class and the `CCState` enum for managing congestion control algorithms in `congestion_control.py`.
+- Implemented the `SimpleTCPConnection` class, which encapsulates the TCP logic and state machine in `tcp_connection.py`.
+- Wrote the main executable scripts for the TCP client and server applications in `client.py` and `server.py`, respectively.
+- Contributed to the shared utility functions in `utils.py`.
+##Parthaw
+##Luis
+##Joseph
+## Team Contributions
+- Collaborated on writing unit tests for all major components in the `tests` directory to ensure functionality and reliability.
+- Assisted in creating performance plots and visualizations in the `plots` directory to analyze TCP behavior under various conditions.
+- Participated in the documentation process, including the `README.md` and `Design_Document.pdf`, to provide clear instructions and project overview.
+
+## Acknowledgments
+- Special thanks to all team members for their contributions and support throughout the project development.
