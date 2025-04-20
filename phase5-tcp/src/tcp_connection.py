@@ -129,12 +129,33 @@ class SimpleTCPConnection:
     def _handle_ack(self, ack_num, peer_rwnd=None):
         """Handles incoming acknowledgments."""
         if ack_num > self.send_base:
+            # Check if the segment was retransmitted
+            was_retransmitted = ack_num - 1 in self.retransmitted_segments
+
+            # Update RTT if the segment was not retransmitted
+            if ack_num in self.sent_timestamps and not was_retransmitted:
+                sample_rtt = time.time() - self.sent_timestamps.pop(ack_num, None)
+                if sample_rtt is not None:
+                    self.rtt_estimator.update(sample_rtt)
+            elif was_retransmitted:
+                print(f"Ignoring RTT sample for retransmitted segment ACK {ack_num}")
+
+            # Update send_base and peer_rwnd
             self.send_base = ack_num
             if peer_rwnd is not None:
                 self.peer_rwnd = peer_rwnd
+
+            # Remove acknowledged segments from unacked_segments
             for seq in list(self.unacked_segments.keys()):
                 if seq < ack_num:
                     del self.unacked_segments[seq]
+
+            # Notify congestion control
+            self.congestion_control.on_ack_received(is_new_ack=True)
+        elif ack_num == self.send_base:
+            # Handle duplicate ACKs
+            print(f"Duplicate ACK received: {ack_num}")
+            self.congestion_control.on_duplicate_ack()
 
 
 
@@ -236,15 +257,15 @@ class SimpleTCPConnection:
         # self._send_raw_segment(packed_segment)  # Example send call
     def _send_window(self):
         """Calculates the effective send window size."""
-        return min(self.congestion_control.get_congestion_window(), self.peer_rwnd)
-
+        return min(self.cwnd, self.peer_rwnd)
     def _check_timers(self):
         """Checks for retransmission timeouts and retransmits if necessary."""
-        rto = self.rtt_estimator.get_timeout()  # Get the current RTO
-        print(f"Current RTO: {rto}")
-        # Logic to check timers and retransmit unacknowledged segments
-        # If a timeout occurs:
-        self.congestion_control.on_timeout()
+        current_time = time.time()
+        for seq, timestamp in list(self.sent_timestamps.items()):
+            if current_time - timestamp > self.rto:
+                print(f"Timeout for segment {seq}, retransmitting...")
+                self.congestion_control.on_timeout()
+                self._send_segment(seq_to_retransmit=seq, is_retransmission=True)
 
     def _trigger_fast_retransmit(self):
         """Triggers fast retransmission on duplicate ACKs."""
