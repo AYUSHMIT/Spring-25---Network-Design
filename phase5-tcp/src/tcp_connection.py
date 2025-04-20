@@ -126,6 +126,7 @@ class SimpleTCPConnection:
         if not is_retransmission:
             self.seq_num += len(data or b'')
 
+
     def _handle_ack(self, ack_num, peer_rwnd=None):
         """Handles incoming acknowledgments."""
         if ack_num > self.send_base:
@@ -156,9 +157,6 @@ class SimpleTCPConnection:
             # Handle duplicate ACKs
             print(f"Duplicate ACK received: {ack_num}")
             self.congestion_control.on_duplicate_ack()
-
-
-
 
 
 

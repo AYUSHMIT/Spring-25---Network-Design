@@ -43,8 +43,9 @@ class TCPSegment:
         if calculated_checksum != checksum:
             raise ValueError("Checksum verification failed!")
 
-        return TCPSegment(seq_num, ack_num, data, flags, rwnd)
-
+        segment = TCPSegment(seq_num, ack_num, data, flags, rwnd)
+        segment.checksum = checksum  # Store the checksum in the object
+        return segment
     @staticmethod
     def calculate_checksum(segment_bytes):
         """Calculate the checksum for the TCP segment, including pseudo-header if provided."""
