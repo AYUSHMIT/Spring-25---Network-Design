@@ -17,9 +17,9 @@ class TestSimpleTCPConnection(unittest.TestCase):
         """Test sending and receiving data."""
         self.tcp_connection.state = 'ESTABLISHED'
         data_to_send = b'Test data'
-        self.tcp_connection.send_buffer = data_to_send
+        self.tcp_connection.send_buffer = bytearray(data_to_send)  # Ensure send_buffer is a bytearray
         self.tcp_connection.send(data_to_send)
-        self.assertEqual(self.tcp_connection.send_buffer, b'')  # Ensure buffer is cleared
+        self.assertEqual(self.tcp_connection.send_buffer, bytearray())  # Ensure buffer is cleared
 
     def test_connection_closure(self):
         """Test closing the TCP connection."""
@@ -32,9 +32,9 @@ class TestSimpleTCPConnection(unittest.TestCase):
         self.tcp_connection.state = 'ESTABLISHED'
         self.tcp_connection.unacked_segments = {1: b'Segment 1'}
         self.tcp_connection.sent_timestamps = {1: time.time() - 2}  # Simulate timeout
-        with patch('src.tcp_connection.SimpleTCPConnection._send_raw_segment') as mock_send:
+        with patch('src.tcp_connection.SimpleTCPConnection._send_segment') as mock_send:
             self.tcp_connection._check_timers()
-            mock_send.assert_called_once_with(b'Segment 1')
+            mock_send.assert_called_once_with(seq_to_retransmit=1, is_retransmission=True)
 
     def test_karns_algorithm(self):
         """Test Karn's algorithm for RTT estimation."""
@@ -57,7 +57,7 @@ class TestSimpleTCPConnection(unittest.TestCase):
         self.tcp_connection.state = 'ESTABLISHED'
         with patch('src.congestion_control.CongestionControl.on_ack_received') as mock_on_ack:
             self.tcp_connection._handle_ack(ack_num=1)
-            mock_on_ack.assert_called_once()
+            mock_on_ack.assert_called_once_with(is_new_ack=True)
 
     def test_congestion_control_on_timeout(self):
         """Test congestion control integration on timeout."""
@@ -69,8 +69,9 @@ class TestSimpleTCPConnection(unittest.TestCase):
     def test_receive_data(self):
         """Test receiving data and appending to the receive buffer."""
         self.tcp_connection.state = 'ESTABLISHED'
-        self.tcp_connection._handle_data(b'Test data')
-        self.assertEqual(self.tcp_connection.receive_buffer, b'Test data')
+        segment = MagicMock(seq_num=0, data=b'Test data')  # Mock segment
+        self.tcp_connection._handle_data(segment)
+        self.assertEqual(self.tcp_connection.receive_buffer, bytearray(b'Test data'))
 
     def test_acknowledgment_handling(self):
         """Test handling of ACKs and updating send_base."""

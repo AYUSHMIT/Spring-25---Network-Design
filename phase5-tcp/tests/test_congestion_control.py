@@ -16,7 +16,7 @@ class TestCongestionControl(unittest.TestCase):
         """Test congestion window increase in Slow Start."""
         self.cc.state = CCState.SLOW_START
         initial_cwnd = self.cc.congestion_window
-        self.cc.on_ack_received()
+        self.cc.on_ack_received(is_new_ack=True)  # Pass required argument
         self.assertEqual(self.cc.congestion_window, initial_cwnd + 1)
 
     def test_congestion_window_increase_congestion_avoidance(self):
@@ -24,14 +24,14 @@ class TestCongestionControl(unittest.TestCase):
         self.cc.state = CCState.CONGESTION_AVOIDANCE
         self.cc.congestion_window = 10
         initial_cwnd = self.cc.congestion_window
-        self.cc.on_ack_received()
+        self.cc.on_ack_received(is_new_ack=True)  # Pass required argument
         self.assertGreater(self.cc.congestion_window, initial_cwnd)
         self.assertAlmostEqual(self.cc.congestion_window, initial_cwnd + 1 / initial_cwnd, places=5)
 
     def test_congestion_window_decrease_on_loss(self):
         """Test congestion window decrease on packet loss."""
         self.cc.congestion_window = 10
-        self.cc.on_packet_loss()
+        self.cc.on_timeout()  # Use on_timeout for packet loss
         self.assertEqual(self.cc.ssthresh, 5)  # ssthresh = cwnd / 2
         self.assertEqual(self.cc.congestion_window, 1)  # cwnd resets to 1
 
@@ -39,17 +39,18 @@ class TestCongestionControl(unittest.TestCase):
         """Test state transition from Slow Start to Congestion Avoidance."""
         self.cc.state = CCState.SLOW_START
         self.cc.congestion_window = self.cc.ssthresh
-        self.cc.on_ack_received()
+        self.cc.on_ack_received(is_new_ack=True)  # Pass required argument
         self.assertEqual(self.cc.state, CCState.CONGESTION_AVOIDANCE)
 
     def test_fast_recovery_on_triple_duplicate_acks(self):
         """Test Fast Recovery behavior on triple duplicate ACKs."""
         self.cc.state = CCState.CONGESTION_AVOIDANCE
         self.cc.congestion_window = 10
-        self.cc.on_packet_loss()  # Simulate triple duplicate ACKs
-        self.assertEqual(self.cc.state, CCState.SLOW_START)
+        for _ in range(3):  # Simulate triple duplicate ACKs
+            self.cc.on_duplicate_ack()
+        self.assertEqual(self.cc.state, CCState.FAST_RECOVERY)
         self.assertEqual(self.cc.ssthresh, 5)  # ssthresh = cwnd / 2
-        self.assertEqual(self.cc.congestion_window, 1)  # cwnd resets to 1
+        self.assertEqual(self.cc.congestion_window, 8)  # cwnd = ssthresh + 3
 
     def test_cwnd_reset_on_timeout(self):
         """Test congestion window reset on timeout."""
@@ -61,7 +62,7 @@ class TestCongestionControl(unittest.TestCase):
     def test_state_persistence(self):
         """Test that the state persists correctly across operations."""
         self.cc.state = CCState.CONGESTION_AVOIDANCE
-        self.cc.on_ack_received()
+        self.cc.on_ack_received(is_new_ack=True)  # Pass required argument
         self.assertEqual(self.cc.state, CCState.CONGESTION_AVOIDANCE)
 
 if __name__ == '__main__':

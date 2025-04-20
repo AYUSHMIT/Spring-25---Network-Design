@@ -9,23 +9,22 @@ class SimpleTCPConnection:
         self.send_buffer = bytearray()
         self.receive_buffer = bytearray()
         self.remote_address = None
-        self.seq_num = 0  # Current sequence number
-        self.send_base = 0  # Base of the send window
-        self.ack_num = 0  # Next expected acknowledgment number
-        self.rto = 1.0  # Default retransmission timeout
-        self.window_size = 1024  # Example window size
-        self.unacked_segments = {}  # Tracks unacknowledged segments for retransmission
-        self.rtt_estimator = RTTEstimator()  # RTT estimator instance
-        self.sent_timestamps = {}  # Tracks timestamps of sent segments for RTT calculation
-        self.cwnd = 1024  # Congestion window size (example value)
-        self.peer_rwnd = 1024  # Peer receive window size (example value)
-        self.rwnd = 1024  # Receiver window size (example value)
-        self.congestion_control = CongestionControl()  # Congestion control instance
-        self.receive_buffer = bytearray()
-        self.expected_seq_num = 0  # Sequence number expected from the peer
-        self.out_of_order_buffer = {}  # Buffer for out-of-order segments {seq_num: data}
-        self.max_receive_buffer_size = 4096  # Example max size
-        self.retransmitted_segments = set()  # Track seq numbers that have been retransmitted
+        self.seq_num = 0
+        self.send_base = 0
+        self.ack_num = 0
+        self.rto = 1.0
+        self.window_size = 1024
+        self.unacked_segments = {}
+        self.rtt_estimator = RTTEstimator()
+        self.sent_timestamps = {}
+        self.cwnd = 1024
+        self.peer_rwnd = 1024
+        self.rwnd = 1024
+        self.congestion_control = CongestionControl()
+        self.expected_seq_num = 0
+        self.out_of_order_buffer = {}
+        self.max_receive_buffer_size = 4096
+        self.retransmitted_segments = set()
 
     def connect(self, address):
         """Initiates a connection by sending a SYN packet."""
@@ -60,7 +59,6 @@ class SimpleTCPConnection:
         """Reads data from the receive buffer for the application."""
         data_to_return = self.receive_buffer[:max_bytes]
         self.receive_buffer = self.receive_buffer[max_bytes:]
-        # Update advertised window if needed (optional enhancement)
         return data_to_return
 
     def close(self):
@@ -75,11 +73,9 @@ class SimpleTCPConnection:
     def handle_segment(self, segment_bytes, pseudo_header=b''):
         """Handles incoming TCP segments and manages state transitions."""
         try:
-            # Unpack the segment using the TCPSegment class
             segment = TCPSegment.unpack(segment_bytes, pseudo_header)
             print(f"Received segment: seq={segment.seq_num}, ack={segment.ack_num}, flags={segment.flags}, data={segment.data}")
 
-            # Process the segment based on flags and current state
             if self.state == 'SYN_SENT' and (segment.flags & 0x12) == 0x12:  # SYN-ACK
                 self.state = 'ESTABLISHED'
                 self.ack_num = segment.seq_num + 1
@@ -103,95 +99,42 @@ class SimpleTCPConnection:
             elif segment.flags & 0x10:  # ACK
                 self._handle_ack(segment.ack_num, peer_rwnd=segment.rwnd)
             if segment.data:
-                self._handle_data(segment.data)
+                self._handle_data(segment)
         except ValueError as e:
             print(f"Error processing segment: {e}")
 
-def _send_segment(self, syn=False, ack=False, fin=False, data=None, is_retransmission=False, seq_to_retransmit=None):
-    """Sends a TCP segment, optionally marking it as a retransmission."""
-    flags = 0
-    if syn:
-        flags |= 0x02  # SYN flag
-    if ack:
-        flags |= 0x10  # ACK flag
-    if fin:
-        flags |= 0x01  # FIN flag
+    def _send_segment(self, syn=False, ack=False, fin=False, data=None, is_retransmission=False, seq_to_retransmit=None):
+        """Sends a TCP segment."""
+        flags = 0
+        if syn:
+            flags |= 0x02
+        if ack:
+            flags |= 0x10
+        if fin:
+            flags |= 0x01
 
-    current_seq_num = seq_to_retransmit if is_retransmission else self.seq_num
+        seq_num = seq_to_retransmit if is_retransmission else self.seq_num
+        segment = TCPSegment(
+            seq_num=seq_num,
+            ack_num=self.expected_seq_num,
+            data=data or b'',
+            flags=flags,
+            rwnd=self._calculate_rwnd()
+        )
+        packed_segment = segment.pack()
+        self.sent_timestamps[seq_num] = time.time()
+        if not is_retransmission:
+            self.seq_num += len(data or b'')
 
-    segment = TCPSegment(
-        seq_num=current_seq_num,
-        ack_num=self.expected_seq_num,  # Use expected_seq_num for ACKs
-        data=data or b'',
-        flags=flags,
-        rwnd=self._calculate_rwnd()  # Always include current rwnd
-    )
-    packed_segment = segment.pack()
-
-    if not ack or data:  # Only track segments that consume sequence numbers or are SYNs/FINs
-        self.unacked_segments[current_seq_num] = packed_segment
-        if current_seq_num not in self.sent_timestamps:
-            self.sent_timestamps[current_seq_num] = time.time()
-        if is_retransmission:
-            self.retransmitted_segments.add(current_seq_num)
-            print(f"Retransmitting segment: seq={current_seq_num}")
-        else:
-            print(f"Sending segment: seq={current_seq_num}, ack={segment.ack_num}, flags={flags}, len={len(data or b'')}")
-            if data:
-                self.seq_num += len(data)
-            elif syn or fin:
-                self.seq_num += 1
-    else:  # Pure ACK
-        print(f"Sending ACK: ack={segment.ack_num}, rwnd={segment.rwnd}")
-
-    # Simulate sending the packed_segment via UDP socket
-    # self._send_raw_segment(packed_segment)
-
-
-    
     def _handle_ack(self, ack_num, peer_rwnd=None):
-        """Handles incoming acknowledgments and updates the send buffer."""
+        """Handles incoming acknowledgments."""
         if ack_num > self.send_base:
-            # New data acknowledged
-            print(f"New ACK received: {ack_num}")
-            is_new_ack = True
-            acked_seq_num = ack_num - 1  # Assuming ACK acknowledges data up to ack_num - 1
-            was_retransmitted = acked_seq_num in self.retransmitted_segments
-
-            if ack_num in self.sent_timestamps:  # Check if timestamp exists
-                sample_rtt = time.time() - self.sent_timestamps.pop(ack_num, None)  # Safely pop
-                if sample_rtt is not None and not was_retransmitted:  # Karn's Algorithm check
-                    print(f"Updating RTT with sample {sample_rtt:.4f} for ACK {ack_num}")
-                    self.rtt_estimator.update(sample_rtt)
-                elif was_retransmitted:
-                    print(f"Ignoring RTT sample for retransmitted segment ACK {ack_num}")
-
-            # Clear retransmitted flag for acknowledged segment
-            if acked_seq_num in self.retransmitted_segments:
-                self.retransmitted_segments.remove(acked_seq_num)
-
             self.send_base = ack_num
             if peer_rwnd is not None:
                 self.peer_rwnd = peer_rwnd
-            # Remove acknowledged segments from unacked_segments
             for seq in list(self.unacked_segments.keys()):
                 if seq < ack_num:
                     del self.unacked_segments[seq]
-
-            # Inform congestion control about the new ACK
-            self.congestion_control.on_ack_received(is_new_ack=True)
-
-        elif ack_num == self.send_base:
-            # Duplicate ACK
-            print(f"Duplicate ACK received: {ack_num}")
-            needs_retransmit = self.congestion_control.on_duplicate_ack()
-            if needs_retransmit:
-                print(f"Triple Duplicate ACK detected. Triggering Fast Retransmit for seq {self.send_base}")
-                self._retransmit_segment(self.send_base)
-        else:
-            # ACK for old data, likely harmless
-            print(f"Old ACK received: {ack_num}")
-
 
 
 

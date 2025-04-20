@@ -12,6 +12,7 @@ class TCPSegment:
             self.seq_num.to_bytes(4, 'big') +
             self.ack_num.to_bytes(4, 'big') +
             self.flags.to_bytes(2, 'big') +
+            self.rwnd.to_bytes(2, 'big') +
             b'\x00\x00' +  # Placeholder for checksum
             self.data
         )
@@ -20,6 +21,7 @@ class TCPSegment:
             self.seq_num.to_bytes(4, 'big') +
             self.ack_num.to_bytes(4, 'big') +
             self.flags.to_bytes(2, 'big') +
+            self.rwnd.to_bytes(2, 'big') +
             self.checksum.to_bytes(2, 'big') +
             self.data
         )
@@ -30,15 +32,18 @@ class TCPSegment:
         seq_num = int.from_bytes(segment_bytes[0:4], 'big')
         ack_num = int.from_bytes(segment_bytes[4:8], 'big')
         flags = int.from_bytes(segment_bytes[8:10], 'big')
-        checksum = int.from_bytes(segment_bytes[10:12], 'big')
-        data = segment_bytes[12:]
+        rwnd = int.from_bytes(segment_bytes[10:12], 'big')
+        checksum = int.from_bytes(segment_bytes[12:14], 'big')
+        data = segment_bytes[14:]
 
         # Verify checksum
-        calculated_checksum = TCPSegment.calculate_checksum(pseudo_header + segment_bytes[:10] + b'\x00\x00' + data)
+        calculated_checksum = TCPSegment.calculate_checksum(
+            pseudo_header + segment_bytes[:12] + b'\x00\x00' + data
+        )
         if calculated_checksum != checksum:
             raise ValueError("Checksum verification failed!")
 
-        return TCPSegment(seq_num, ack_num, data, flags, checksum)
+        return TCPSegment(seq_num, ack_num, data, flags, rwnd)
 
     @staticmethod
     def calculate_checksum(segment_bytes):
