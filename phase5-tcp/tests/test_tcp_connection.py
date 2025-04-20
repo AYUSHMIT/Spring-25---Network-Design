@@ -36,14 +36,23 @@ class TestSimpleTCPConnection(unittest.TestCase):
             self.tcp_connection._check_timers()
             mock_send.assert_called_once_with(seq_to_retransmit=1, is_retransmission=True)
 
-    def test_karns_algorithm(self):
+    @patch('src.tcp_connection.RTTEstimator.update')
+    def test_karns_algorithm(self, mock_update):
         """Test Karn's algorithm for RTT estimation."""
         self.tcp_connection.state = 'ESTABLISHED'
         self.tcp_connection.sent_timestamps = {1: time.time()}
-        self.tcp_connection.unacked_segments = {1: b'Segment 1'}
-        with patch('src.rtt_estimator.RTTEstimator.update') as mock_update:
-            self.tcp_connection._handle_ack(ack_num=2)
-            mock_update.assert_called_once()  # Ensure RTT is updated
+        self.tcp_connection.retransmitted_segments.add(1)  # Simulate retransmission
+
+        # Simulate receiving an ACK for a retransmitted segment
+        self.tcp_connection._handle_ack(ack_num=2)
+        mock_update.assert_not_called()  # Ensure RTT is not updated for retransmitted segments
+
+        # Simulate receiving an ACK for a non-retransmitted segment
+        self.tcp_connection.sent_timestamps = {2: time.time()}
+        self.tcp_connection.retransmitted_segments.discard(2)  # Ensure it's not marked as retransmitted
+        self.tcp_connection._handle_ack(ack_num=3)
+        mock_update.assert_called_once()  # Ensure RTT is updated for non-retransmitted segments
+
 
     def test_window_size_calculation(self):
         """Test window size calculation in _send_window."""
@@ -52,19 +61,32 @@ class TestSimpleTCPConnection(unittest.TestCase):
         effective_window = self.tcp_connection._send_window()
         self.assertEqual(effective_window, 512)
 
-    def test_congestion_control_on_ack(self):
+    @patch('src.tcp_connection.CongestionControl.on_ack_received')
+    def test_congestion_control_on_ack(self, mock_on_ack):
         """Test congestion control integration on ACK."""
         self.tcp_connection.state = 'ESTABLISHED'
-        with patch('src.congestion_control.CongestionControl.on_ack_received') as mock_on_ack:
-            self.tcp_connection._handle_ack(ack_num=1)
-            mock_on_ack.assert_called_once_with(is_new_ack=True)
+        self.tcp_connection.send_base = 0
+        self.tcp_connection.sent_timestamps = {1: time.time()}
 
-    def test_congestion_control_on_timeout(self):
+        # Simulate receiving an ACK
+        self.tcp_connection._handle_ack(ack_num=2)
+
+        # Verify that on_ack_received was called
+        mock_on_ack.assert_called_once_with(is_new_ack=True)
+
+    @patch('src.tcp_connection.CongestionControl.on_timeout')
+    def test_congestion_control_on_timeout(self, mock_on_timeout):
         """Test congestion control integration on timeout."""
         self.tcp_connection.state = 'ESTABLISHED'
-        with patch('src.congestion_control.CongestionControl.on_timeout') as mock_on_timeout:
-            self.tcp_connection._check_timers()
-            mock_on_timeout.assert_called_once()
+        self.tcp_connection.sent_timestamps = {1: time.time() - 2}  # Simulate a timeout
+
+        # Check timers
+        self.tcp_connection._check_timers()
+
+        # Verify that on_timeout was called
+        mock_on_timeout.assert_called_once()
+
+
 
     def test_receive_data(self):
         """Test receiving data and appending to the receive buffer."""
