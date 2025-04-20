@@ -21,6 +21,11 @@ class SimpleTCPConnection:
         self.peer_rwnd = 1024  # Peer receive window size (example value)
         self.rwnd = 1024  # Receiver window size (example value)
         self.congestion_control = CongestionControl()  # Congestion control instance
+        self.receive_buffer = bytearray()
+        self.expected_seq_num = 0  # Sequence number expected from the peer
+        self.out_of_order_buffer = {}  # Buffer for out-of-order segments {seq_num: data}
+        self.max_receive_buffer_size = 4096  # Example max size
+        self.retransmitted_segments = set()  # Track seq numbers that have been retransmitted
 
     def connect(self, address):
         """Initiates a connection by sending a SYN packet."""
@@ -51,14 +56,12 @@ class SimpleTCPConnection:
         else:
             print("Cannot send data, connection not established.")
 
-    def receive(self):
-        """Receives data if the connection is established."""
-        if self.state == 'ESTABLISHED':
-            print("Receiving data...")
-            return self.receive_buffer
-        else:
-            print("Cannot receive data, connection not established.")
-            return None
+    def receive(self, max_bytes):
+        """Reads data from the receive buffer for the application."""
+        data_to_return = self.receive_buffer[:max_bytes]
+        self.receive_buffer = self.receive_buffer[max_bytes:]
+        # Update advertised window if needed (optional enhancement)
+        return data_to_return
 
     def close(self):
         """Initiates the closing sequence by sending a FIN packet."""
@@ -104,68 +107,190 @@ class SimpleTCPConnection:
         except ValueError as e:
             print(f"Error processing segment: {e}")
 
-    def _send_segment(self, syn=False, ack=False, fin=False, data=None):
-        """Simulates sending a TCP segment with the specified flags."""
-        flags = 0
-        if syn:
-            flags |= 0x02  # SYN flag
-        if ack:
-            flags |= 0x10  # ACK flag
-        if fin:
-            flags |= 0x01  # FIN flag
+def _send_segment(self, syn=False, ack=False, fin=False, data=None, is_retransmission=False, seq_to_retransmit=None):
+    """Sends a TCP segment, optionally marking it as a retransmission."""
+    flags = 0
+    if syn:
+        flags |= 0x02  # SYN flag
+    if ack:
+        flags |= 0x10  # ACK flag
+    if fin:
+        flags |= 0x01  # FIN flag
 
-        segment = TCPSegment(
-            seq_num=self.seq_num,
-            ack_num=self.ack_num,
-            data=data or b'',
-            flags=flags
-        )
-        segment.rwnd = self.rwnd  # Set the receiver window size
-        packed_segment = segment.pack()
-        self.unacked_segments[self.seq_num] = packed_segment
-        self.sent_timestamps[self.seq_num] = time.time()  # Track send time
-        self.seq_num += len(data) if data else 1
-        print(f"Sending segment: {packed_segment}")
+    current_seq_num = seq_to_retransmit if is_retransmission else self.seq_num
 
+    segment = TCPSegment(
+        seq_num=current_seq_num,
+        ack_num=self.expected_seq_num,  # Use expected_seq_num for ACKs
+        data=data or b'',
+        flags=flags,
+        rwnd=self._calculate_rwnd()  # Always include current rwnd
+    )
+    packed_segment = segment.pack()
+
+    if not ack or data:  # Only track segments that consume sequence numbers or are SYNs/FINs
+        self.unacked_segments[current_seq_num] = packed_segment
+        if current_seq_num not in self.sent_timestamps:
+            self.sent_timestamps[current_seq_num] = time.time()
+        if is_retransmission:
+            self.retransmitted_segments.add(current_seq_num)
+            print(f"Retransmitting segment: seq={current_seq_num}")
+        else:
+            print(f"Sending segment: seq={current_seq_num}, ack={segment.ack_num}, flags={flags}, len={len(data or b'')}")
+            if data:
+                self.seq_num += len(data)
+            elif syn or fin:
+                self.seq_num += 1
+    else:  # Pure ACK
+        print(f"Sending ACK: ack={segment.ack_num}, rwnd={segment.rwnd}")
+
+    # Simulate sending the packed_segment via UDP socket
+    # self._send_raw_segment(packed_segment)
+
+
+    
     def _handle_ack(self, ack_num, peer_rwnd=None):
         """Handles incoming acknowledgments and updates the send buffer."""
         if ack_num > self.send_base:
-            print(f"ACK received: {ack_num}")
-            self.congestion_control.on_ack_received()  # Update congestion control
-            sample_rtt = time.time() - self.sent_timestamps.pop(ack_num, time.time())  # Calculate SampleRTT
-            self.rtt_estimator.update(sample_rtt)  # Update RTT estimator
+            # New data acknowledged
+            print(f"New ACK received: {ack_num}")
+            is_new_ack = True
+            acked_seq_num = ack_num - 1  # Assuming ACK acknowledges data up to ack_num - 1
+            was_retransmitted = acked_seq_num in self.retransmitted_segments
+
+            if ack_num in self.sent_timestamps:  # Check if timestamp exists
+                sample_rtt = time.time() - self.sent_timestamps.pop(ack_num, None)  # Safely pop
+                if sample_rtt is not None and not was_retransmitted:  # Karn's Algorithm check
+                    print(f"Updating RTT with sample {sample_rtt:.4f} for ACK {ack_num}")
+                    self.rtt_estimator.update(sample_rtt)
+                elif was_retransmitted:
+                    print(f"Ignoring RTT sample for retransmitted segment ACK {ack_num}")
+
+            # Clear retransmitted flag for acknowledged segment
+            if acked_seq_num in self.retransmitted_segments:
+                self.retransmitted_segments.remove(acked_seq_num)
+
             self.send_base = ack_num
-            # Update peer receive window if provided
             if peer_rwnd is not None:
                 self.peer_rwnd = peer_rwnd
-            # Remove acknowledged segments
+            # Remove acknowledged segments from unacked_segments
             for seq in list(self.unacked_segments.keys()):
                 if seq < ack_num:
                     del self.unacked_segments[seq]
-        else:
-            print("Duplicate or out-of-order ACK received.")
 
-    def _handle_data(self, data):
-        """Processes incoming data and appends it to the receive buffer."""
-        if len(self.receive_buffer) + len(data) > self.rwnd:
-            print("Receive buffer overflow, dropping data.")
+            # Inform congestion control about the new ACK
+            self.congestion_control.on_ack_received(is_new_ack=True)
+
+        elif ack_num == self.send_base:
+            # Duplicate ACK
+            print(f"Duplicate ACK received: {ack_num}")
+            needs_retransmit = self.congestion_control.on_duplicate_ack()
+            if needs_retransmit:
+                print(f"Triple Duplicate ACK detected. Triggering Fast Retransmit for seq {self.send_base}")
+                self._retransmit_segment(self.send_base)
+        else:
+            # ACK for old data, likely harmless
+            print(f"Old ACK received: {ack_num}")
+
+
+
+
+
+
+
+
+
+    def _retransmit_segment(self, seq_num):
+        """Retransmits the segment with the given sequence number."""
+        if seq_num in self.unacked_segments:
+            segment = self.unacked_segments[seq_num]
+            print(f"Retransmitting segment with seq {seq_num}")
+            # Simulate sending the segment again
+            self.sent_timestamps[seq_num] = time.time()  # Update timestamp
+            # Logic to send the segment (e.g., via a socket) can be added here
+            self._send_segment(is_retransmission=True, seq_to_retransmit=seq_num)
+
+
+
+    def _handle_data(self, segment):
+        """Processes incoming data segments, handles order and duplicates."""
+        seq_num = segment.seq_num
+        data = segment.data
+        data_len = len(data)
+
+        if seq_num < self.expected_seq_num:
+            # Duplicate data for already acknowledged segment, just ACK again
+            print(f"Received duplicate segment: seq={seq_num}, expected={self.expected_seq_num}")
+            self._send_ack_segment()
             return
-        self.receive_buffer.extend(data)
-        print(f"Data received: {data}")
-        self._send_ack_segment()  # Send an ACK with updated rwnd
+
+        if seq_num == self.expected_seq_num:
+            # In-order segment
+            print(f"Received in-order segment: seq={seq_num}")
+            # Check if buffer has space
+            if len(self.receive_buffer) + data_len <= self.max_receive_buffer_size:
+                self.receive_buffer.extend(data)
+                self.expected_seq_num += data_len
+
+                # Check if buffered segments can now be added
+                while self.expected_seq_num in self.out_of_order_buffer:
+                    buffered_data = self.out_of_order_buffer.pop(self.expected_seq_num)
+                    if len(self.receive_buffer) + len(buffered_data) <= self.max_receive_buffer_size:
+                        self.receive_buffer.extend(buffered_data)
+                        self.expected_seq_num += len(buffered_data)
+                    else:
+                        # Buffer full, put it back (or handle differently)
+                        self.out_of_order_buffer[self.expected_seq_num - len(buffered_data)] = buffered_data
+                        break  # Stop processing buffered data for now
+
+                self._send_ack_segment()  # Send ACK for the contiguous block received
+            else:
+                # Buffer overflow, drop segment and rely on sender timeout/retransmit
+                print("Receive buffer overflow, dropping in-order segment.")
+                # Consider sending ACK for previously received data if not done recently
+
+        elif seq_num > self.expected_seq_num:
+            # Out-of-order segment
+            print(f"Received out-of-order segment: seq={seq_num}, expected={self.expected_seq_num}")
+            # Buffer it if space available and not already buffered
+            if seq_num not in self.out_of_order_buffer and \
+            (self._calculate_buffered_size() + data_len) <= self.max_receive_buffer_size:
+                self.out_of_order_buffer[seq_num] = data
+                print(f"Buffered out-of-order segment {seq_num}")
+            else:
+                print(f"Dropping out-of-order segment {seq_num} (duplicate or buffer full)")
+            # Send duplicate ACK for the last in-order sequence number received
+            self._send_ack_segment()  # ACK indicates expected_seq_num
+
+
+    def _calculate_buffered_size(self):
+        """Calculates the total size of data in the out-of-order buffer."""
+        return sum(len(data) for data in self.out_of_order_buffer.values())
+
+    def _calculate_rwnd(self):
+        """Calculates the current available receiver window size."""
+        # Consider both main buffer and out-of-order buffer occupancy
+        occupied_buffer = len(self.receive_buffer) + self._calculate_buffered_size()
+        available_space = self.max_receive_buffer_size - occupied_buffer
+        return max(0, available_space)  # Ensure rwnd is not negative
+
+
+
 
     def _send_ack_segment(self):
         """Sends an ACK segment with the current receiver window size."""
+        current_rwnd = self._calculate_rwnd()
         segment = TCPSegment(
-            seq_num=self.seq_num,
-            ack_num=self.ack_num,
+            seq_num=self.seq_num,  # Sender's sequence number (usually static for pure ACKs)
+            ack_num=self.expected_seq_num,  # Acknowledging up to this received sequence number
             data=b'',
             flags=0x10  # ACK flag
         )
-        segment.rwnd = self.rwnd  # Set the receiver window size
-        packed_segment = segment.pack()
-        print(f"Sending ACK with rwnd={self.rwnd}: {packed_segment}")
-
+        segment.rwnd = current_rwnd  # Set the receiver window size in the segment
+        packed_segment = segment.pack()  # Assuming TCPSegment.pack handles the rwnd field
+        print(f"Sending ACK for seq {self.expected_seq_num} with rwnd={current_rwnd}")
+        # Simulate sending the packed_segment via UDP socket
+        # self._send_raw_segment(packed_segment)  # Example send call
     def _send_window(self):
         """Calculates the effective send window size."""
         return min(self.congestion_control.get_congestion_window(), self.peer_rwnd)
