@@ -1,10 +1,10 @@
 class TCPSegment:
-    def __init__(self, seq_num, ack_num, data, flags=0, checksum=0):
+    def __init__(self, seq_num, ack_num, data, flags, rwnd=0):
         self.seq_num = seq_num
         self.ack_num = ack_num
         self.data = data
         self.flags = flags
-        self.checksum = checksum
+        self.rwnd = rwnd
 
     def pack(self, pseudo_header=b''):
         """Pack the TCP segment into bytes, including the checksum."""

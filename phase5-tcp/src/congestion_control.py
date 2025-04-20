@@ -6,11 +6,10 @@ class CCState:
 
 class CongestionControl:
     def __init__(self):
-        self.state = CCState.WAITING
-        self.congestion_window = 1  # Initial congestion window size
-        self.ssthresh = 64  # Slow start threshold
-        self.duplicate_acks = 0  # Counter for duplicate ACKs
-
+        self.state = CCState.SLOW_START
+        self.congestion_window = 1
+        self.ssthresh = 64
+        self.duplicate_acks = 0
     def on_duplicate_ack(self):
         """Handles the receipt of a duplicate ACK."""
         if self.state == CCState.CONGESTION_AVOIDANCE or self.state == CCState.SLOW_START:
@@ -55,3 +54,10 @@ class CongestionControl:
 
     def get_state(self):
         return self.state
+    
+    def on_packet_loss(self):
+        """Handles a packet loss event (timeout)."""
+        self.ssthresh = max(2, self.congestion_window // 2)
+        self.congestion_window = 1
+        self.state = CCState.SLOW_START
+        self.duplicate_acks = 0

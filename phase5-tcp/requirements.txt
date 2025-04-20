@@ -2,3 +2,5 @@ matplotlib
 numpy
 scipy
 pytest
+unittest  # For unit testing
+structlog # For structured logging
