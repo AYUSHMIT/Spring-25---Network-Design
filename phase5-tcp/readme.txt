@@ -12,15 +12,18 @@ Programming Project Phase 5 (Part 1): Implement TCP protocol over an unreliable 
 ---
 
 ### FILES SUBMITTED AND THEIR PURPOSE:
-- **src/tcp_segment.py**: Defines the `TCPSegment` class for segment packing/unpacking and checksum calculations.  
+- **src/tcp_segment.py**: Defines the `TCPSegment` class for segment packing/unpacking, checksum calculations, and includes support for the `rwnd` field.  
 - **src/rtt_estimator.py**: Implements the `RTTEstimator` class for estimating round-trip time and managing RTT variance.  
-- **src/congestion_control.py**: Contains the `CongestionControl` class and `CCState` enum for managing congestion control algorithms.  
-- **src/tcp_connection.py**: Implements the `SimpleTCPConnection` class for TCP logic and state management.  
+- **src/congestion_control.py**: Contains the `CongestionControl` class and `CCState` enum for managing congestion control algorithms, including Slow Start, Congestion Avoidance, and Fast Recovery.  
+- **src/tcp_connection.py**: Implements the `SimpleTCPConnection` class for TCP logic and state management. Includes:  
+  - Handling of retransmissions and Karn's Algorithm to prevent RTT updates for retransmitted segments.  
+  - Buffering of out-of-order segments and duplicate ACK handling.  
+  - Dynamic calculation of the receiver window (`rwnd`) and its inclusion in outgoing ACKs.  
 - **src/client.py**: Main executable script for the TCP client application.  
 - **src/server.py**: Main executable script for the TCP server application.  
 - **src/network_simulator.py**: Simulates network conditions like packet loss, delays, and bit errors.  
 - **src/utils.py**: Shared utility functions for simulations and timers.  
-- **tests/**: Contains unit tests for all major components of the project.  
+- **tests/**: Contains unit tests for all major components of the project, including congestion control and TCP connection logic.  
 - **data/transfer_file.dat**: Example large file (>= 500KB) for testing data transfer functionality.  
 - **plots/**: Directory for saving performance plots generated during testing.  
 - **Design_Document.pdf**: Detailed design document including flowcharts, code descriptions, and performance plots.  
@@ -93,6 +96,25 @@ The following scenarios can be tested by modifying the `network_simulator.py` fi
 
 ---
 
+### FEATURES IMPLEMENTED:
+1. **Congestion Control**:  
+   - Implemented Slow Start, Congestion Avoidance, and Fast Recovery states.  
+   - Added logic to handle triple duplicate ACKs and timeouts for retransmissions.  
+
+2. **Karn's Algorithm**:  
+   - Prevented RTT updates for ACKs corresponding to retransmitted segments.  
+
+3. **Out-of-Order Segment Handling**:  
+   - Buffered out-of-order segments and processed them when the missing sequence number was received.  
+
+4. **Dynamic Receiver Window (`rwnd`)**:  
+   - Calculated available buffer space dynamically and included it in outgoing ACKs.  
+
+5. **Retransmission Logic**:  
+   - Added logic to retransmit segments on triple duplicate ACKs or timeouts.  
+
+---
+
 ### RUNNING TESTS:
 Run all unit tests using the provided `run_tests.py` script:  
 ```
@@ -104,6 +126,35 @@ Alternatively, use `unittest` or `pytest`:
 python -m unittest discover tests
 pytest tests/
 ```
+
+---
+
+### PERFORMANCE PLOTS:
+The following performance plots can be generated using the project:  
+1. **TCP Performance with Varying Loss/Error Rate**:  
+   - X-axis: Intentional loss probability (0% - 70% in 5% increments).  
+   - Y-axis: File Transfer Completion Time.  
+
+2. **Completion Time vs Timeout Value**:  
+   - Fixed loss/error probability (e.g., 20%).  
+   - X-axis: Retransmission Timeout (10ms – 100ms).  
+   - Y-axis: File Transfer Completion Time.  
+
+3. **Completion Time vs Window Size**:  
+   - Fixed loss/error probability (e.g., 20%).  
+   - X-axis: Window size (1, 2, 5, 10, 20, 30, 40, 50).  
+   - Y-axis: File Transfer Completion Time.  
+
+4. **Protocol Performance Comparison**:  
+   - Compare performance under the same conditions.  
+   - X-axis: Protocols (Phase 2, Phase 3, Phase 4, TCP).  
+   - Y-axis: File Transfer Completion Time.  
+
+5. **Additional Charts**:  
+   - Window size (`cwnd`) vs time.  
+   - Sample RTT vs time.  
+   - RTO vs time.  
+   - (Optional) Fairness or throughput comparison for multi-flow experiments.  
 
 ---
 
