@@ -23,12 +23,23 @@ class TCPClient:
     def receive_loop(self):
         """Continuously receive data and process it."""
         try:
+            self.sock.settimeout(1.0)  # Set timeout (e.g., 1 second)
             while True:
-                data, addr = self.simulator.recvfrom(self.sock, 1024) if self.simulator else self.sock.recvfrom(1024)
-                if data:
-                    self.connection.handle_segment(data)
-        except Exception as e:
-            print(f"DEBUG: Error in receive loop: {e}")
+                try:
+                    # Receive data from the simulator or directly from the socket
+                    data, addr = self.simulator.recvfrom(self.sock, 1024) if self.simulator else self.sock.recvfrom(1024)
+                    if data:
+                        self.connection.handle_segment(data)
+                except socket.timeout:
+                    # No data received within timeout, just loop again
+                    continue
+                except Exception as e:
+                    # Handle other potential recvfrom errors
+                    print(f"DEBUG: Error in receive loop: {e}")
+                    break  # Exit the loop on critical errors
+        finally:
+            # Ensure socket timeout is removed if needed elsewhere
+            self.sock.settimeout(None)
 
     def close(self):
         """Close the connection."""

@@ -72,34 +72,31 @@ class SimpleTCPConnection:
         """Handles incoming TCP segments and manages state transitions."""
         try:
             segment = TCPSegment.unpack(segment_bytes, pseudo_header)
-            print(f"Received segment: seq={segment.seq_num}, ack={segment.ack_num}, flags={segment.flags}, data={segment.data}")
+            print(f"DEBUG: Received segment: seq={segment.seq_num}, ack={segment.ack_num}, flags={segment.flags}, data={segment.data}")
 
-            if self.state == 'SYN_SENT' and (segment.flags & 0x12) == 0x12:  # SYN-ACK
-                self.state = 'ESTABLISHED'
-                self.ack_num = segment.seq_num + 1
-                self._send_segment(ack=True)
-                print("Received SYN-ACK, sent ACK, connection established.")
-            elif self.state == 'LISTEN' and (segment.flags & 0x02):  # SYN
+            if self.state == 'LISTEN' and (segment.flags & 0x02):  # SYN
                 self.state = 'SYN_RCVD'
                 self.ack_num = segment.seq_num + 1
                 self._send_segment(syn=True, ack=True)
-                print("Received SYN, sent SYN-ACK, waiting for ACK.")
+                print("DEBUG: Received SYN, sent SYN-ACK, waiting for ACK.")
             elif self.state == 'SYN_RCVD' and (segment.flags & 0x10):  # ACK
                 self.state = 'ESTABLISHED'
-                print("Received ACK, connection established.")
-            elif self.state == 'FIN_WAIT_1' and (segment.flags & 0x10):  # ACK for FIN
-                self.state = 'CLOSED'
-                print("Received ACK for FIN, connection closed.")
+                print("DEBUG: Received ACK, connection established.")
+            elif self.state == 'SYN_SENT' and (segment.flags & 0x12) == 0x12:  # SYN-ACK
+                self.state = 'ESTABLISHED'
+                self.ack_num = segment.seq_num + 1
+                self._send_segment(ack=True)
+                print("DEBUG: Received SYN-ACK, sent ACK, connection established.")
             elif segment.flags & 0x01:  # FIN
                 self.state = 'CLOSE_WAIT'
                 self._send_segment(ack=True)
-                print("Received FIN, sent ACK, waiting to close.")
+                print("DEBUG: Received FIN, sent ACK, waiting to close.")
             elif segment.flags & 0x10:  # ACK
                 self._handle_ack(segment.ack_num, peer_rwnd=segment.rwnd)
             if segment.data:
                 self._handle_data(segment)
         except ValueError as e:
-            print(f"Error processing segment: {e}")
+            print(f"DEBUG: Error processing segment: {e}")
 
     def _send_segment(self, syn=False, ack=False, fin=False, data=None, is_retransmission=False, seq_to_retransmit=None):
         """Sends a TCP segment."""
@@ -131,7 +128,9 @@ class SimpleTCPConnection:
                 self.sock.sendto(packed_segment, self.remote_address)
             print(f"DEBUG: Sent segment to {self.remote_address} with seq={seq_num}, flags={flags}")
         except Exception as e:
-            print(f"Socket send error in _send_segment: {e}")
+            print(f"Socket send error in _send_segment for seq={seq_num}, flags={flags}: {e}")
+            import traceback
+            traceback.print_exc() # Add full traceback
 
     def _handle_ack(self, ack_num, peer_rwnd=None):
         if ack_num > self.send_base:
