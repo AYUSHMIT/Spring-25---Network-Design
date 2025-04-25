@@ -8,7 +8,6 @@ class SimpleTCPConnection:
         self.state = 'CLOSED'
         self.send_buffer = bytearray()
         self.receive_buffer = bytearray()
-        self.remote_address = None
         self.seq_num = 0
         self.send_base = 0
         self.ack_num = 0
@@ -26,6 +25,23 @@ class SimpleTCPConnection:
         self.max_receive_buffer_size = 4096
         self.retransmitted_segments = set()
 
+        # Logs for plotting
+        self.cwnd_log = []
+        self.rtt_log = []
+        self.rto_log = []
+        self.transfer_complete = False
+        self.total_data_sent = 0
+        self.total_data_to_send = 0
+
+        # Attributes for socket, simulator, and remote address
+        self.sock = None
+        self.simulator = None
+        self.remote_address = None
+
+    def is_transfer_complete(self):
+        """Check if the transfer is complete."""
+        return self.send_base >= self.seq_num and self.total_data_sent >= self.total_data_to_send
+
     def connect(self, address):
         """Initiates a connection by sending a SYN packet."""
         self.remote_address = address
@@ -34,32 +50,14 @@ class SimpleTCPConnection:
         self._send_segment(syn=True)
         print(f"Sent SYN to {address}, state: {self.state}")
 
-    def listen(self):
-        """Sets the connection to LISTEN state to accept incoming connections."""
-        self.state = 'LISTEN'
-        print("Listening for incoming connections...")
-
     def send(self, data):
-        """Sends data if the connection is established."""
-        if self.state == 'ESTABLISHED':
-            self.send_buffer.extend(data)
-            while len(self.send_buffer) > 0:
-                effective_window = self._send_window()
-                if effective_window == 0:
-                    print("Effective window is 0, waiting to send...")
-                    break
-                chunk = self.send_buffer[:min(self.window_size, effective_window)]
-                self.send_buffer = self.send_buffer[len(chunk):]
-                self._send_segment(data=chunk)
-                print(f"Sent data: {chunk}")
-        else:
-            print("Cannot send data, connection not established.")
-
-    def receive(self, max_bytes):
-        """Reads data from the receive buffer for the application."""
-        data_to_return = self.receive_buffer[:max_bytes]
-        self.receive_buffer = self.receive_buffer[max_bytes:]
-        return data_to_return
+        """Send data and mark transfer as complete when done."""
+        self.total_data_to_send = len(data)
+        while data:
+            chunk = data[:self.window_size]
+            data = data[self.window_size:]
+            self._send_segment(data=chunk)
+        self.transfer_complete = True
 
     def close(self):
         """Initiates the closing sequence by sending a FIN packet."""
@@ -126,40 +124,24 @@ class SimpleTCPConnection:
         if not is_retransmission:
             self.seq_num += len(data or b'')
 
+        try:
+            if self.simulator:
+                self.simulator.sendto(self.sock, packed_segment, self.remote_address)
+            else:
+                self.sock.sendto(packed_segment, self.remote_address)
+            print(f"DEBUG: Sent segment to {self.remote_address} with seq={seq_num}, flags={flags}")
+        except Exception as e:
+            print(f"Socket send error in _send_segment: {e}")
 
     def _handle_ack(self, ack_num, peer_rwnd=None):
-        """Handles incoming acknowledgments."""
         if ack_num > self.send_base:
-            # Check if the segment was retransmitted
-            seq_acked = ack_num - 1  # ACK acknowledges up to ack_num - 1
-            was_retransmitted = seq_acked in self.retransmitted_segments
-
-            # Update RTT if the segment was not retransmitted
-            if seq_acked in self.sent_timestamps and not was_retransmitted:
-                send_time = self.sent_timestamps.pop(seq_acked)
-                sample_rtt = time.time() - send_time
-                if sample_rtt >= 0:  # Ensure RTT is valid
-                    print(f"DEBUG _handle_ack: Calling rtt_estimator.update with sample_rtt={sample_rtt:.4f}")
-                    self.rtt_estimator.update(sample_rtt)
-            elif was_retransmitted:
-                # Remove timestamp even if not used for RTT calculation
-                self.sent_timestamps.pop(seq_acked, None)
-                print(f"Ignoring RTT sample for retransmitted segment ACK {ack_num}")
-
-            # Update send_base and peer_rwnd
+            if ack_num - 1 in self.sent_timestamps:
+                sample_rtt = time.time() - self.sent_timestamps.pop(ack_num - 1)
+                self.rtt_log.append((time.time(), sample_rtt))
             self.send_base = ack_num
             if peer_rwnd is not None:
                 self.peer_rwnd = peer_rwnd
-
-            # Notify congestion control about the new acknowledgment
-            print("DEBUG _handle_ack: Calling congestion_control.on_ack_received")
-            self.congestion_control.on_ack_received(is_new_ack=True)
-
-            # Remove acknowledged segments from unacked_segments
-            for seq in list(self.unacked_segments.keys()):
-                if seq < ack_num:
-                    del self.unacked_segments[seq]
-
+            self.cwnd_log.append((time.time(), self.cwnd))
     def _retransmit_segment(self, seq_num):
         """Retransmits the segment with the given sequence number."""
         if seq_num in self.unacked_segments:
@@ -169,7 +151,6 @@ class SimpleTCPConnection:
             self.sent_timestamps[seq_num] = time.time()
             # Retransmit the segment
             self._send_segment(is_retransmission=True, seq_to_retransmit=seq_num)
-
 
     def _handle_data(self, segment):
         """Processes incoming data segments, handles order and duplicates."""
@@ -265,6 +246,7 @@ class SimpleTCPConnection:
         check_rto = rto_val if rto_val is not None and rto_val > 0 else self.rto
 
         print(f"DEBUG _check_timers: Using RTO = {check_rto}")  # Debug print
+        self.rto_log.append((time.time(), check_rto))  # Log RTO
 
         for seq, timestamp in list(self.sent_timestamps.items()):
             # Use the determined RTO value for comparison
