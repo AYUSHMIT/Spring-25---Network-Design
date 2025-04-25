@@ -30,22 +30,16 @@ class NetworkSimulator:
             time.sleep(delay)  # Simulate packet delay
 
         sock.sendto(data, addr)  # Send the packet
+        print(f"[NetworkSimulator] Packet sent to {addr}")
 
+        
     def recvfrom(self, sock, buffer_size):
-        """
-        Simulates receiving data with packet loss and delay.
-        :param sock: The UDP socket.
-        :param buffer_size: The buffer size for receiving data.
-        :return: The received data and address.
-        """
-        if random.random() < self.loss_rate:
-            print("[NetworkSimulator] Incoming packet dropped.")
-            time.sleep(random.uniform(0, self.max_delay))  # Simulate delay before dropping
-            return None, None  # Simulate packet loss by returning nothing
-
-        if random.random() < self.delay_rate:
+        """Simulate receiving a packet."""
+        if self.loss_rate > 0 and random.random() < self.loss_rate:
+            print("DEBUG: Packet dropped due to loss rate.")
+            return None, None  # Simulate packet loss
+        if self.delay_rate > 0:
             delay = random.uniform(0, self.max_delay)
-            print(f"[NetworkSimulator] Incoming packet delayed by {delay:.2f} seconds.")
-            time.sleep(delay)  # Simulate packet delay
-
-        return sock.recvfrom(buffer_size)  # Receive the packet
+            print(f"DEBUG: Simulating network delay of {delay} seconds.")
+            time.sleep(delay)
+        return sock.recvfrom(buffer_size)

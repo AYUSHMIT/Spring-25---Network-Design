@@ -18,6 +18,7 @@ class TCPClient:
 
     def send_data(self, data):
         """Send application data."""
+        print("DEBUG: Client attempting to send data.")
         self.connection.send(data)
 
     def receive_loop(self):
@@ -29,6 +30,8 @@ class TCPClient:
                     # Receive data from the simulator or directly from the socket
                     data, addr = self.simulator.recvfrom(self.sock, 1024) if self.simulator else self.sock.recvfrom(1024)
                     if data:
+                        print(f"DEBUG: Client received data from {addr}")
+
                         self.connection.handle_segment(data)
                 except socket.timeout:
                     # No data received within timeout, just loop again

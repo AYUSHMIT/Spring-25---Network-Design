@@ -7,6 +7,7 @@ from network_simulator import NetworkSimulator
 
 def start_server(simulator):
     server = TCPServer(server_ip="127.0.0.1", server_port=54321, simulator=simulator)
+    server.start()  # Bind the server socket to the IP and port
     server_thread = threading.Thread(target=server.receive_loop)
     server.is_running = True  # Add a flag to control the server loop
     server_thread.start()
@@ -29,10 +30,18 @@ def run_simulation(loss_rate, delay_rate, max_delay):
     client_thread = threading.Thread(target=client.receive_loop)
     client_thread.start()
 
-    # Start the file transfer
-    start_time = time.time()
-    client.send_data(b"Large file data...")
+    # Wait for the connection to establish
+    print("Waiting for connection to establish...")
+    while client.connection.state != 'ESTABLISHED':
+        time.sleep(0.1)  # Check every 100ms
+        # Optional: Add a timeout to prevent infinite loops
+    print("Connection established.")
 
+    # Record the start time
+    start_time = time.time()
+
+    # Now send data
+    client.send_data(b"Large file data...")
     # Wait for the transfer to complete
     while not client.connection.is_transfer_complete():
         time.sleep(0.1)
@@ -62,7 +71,7 @@ def run_simulation(loss_rate, delay_rate, max_delay):
     # Save logs to a file
     with open(f"simulation_loss_{loss_rate}_delay_{delay_rate}.json", "w") as f:
         json.dump(data, f)
-
 # Run simulations with varying loss rates
-for loss_rate in [0.0, 0.1, 0.2, 0.3, 0.4, 0.5]:
-    run_simulation(loss_rate=loss_rate, delay_rate=0.1, max_delay=0.5)
+#for loss_rate in [0.0, 0.1, 0.2, 0.3, 0.4, 0.5]:
+#    run_simulation(loss_rate=loss_rate, delay_rate=0.1, max_delay=0.5)
+run_simulation(loss_rate=0.0, delay_rate=0.0, max_delay=0.0)
