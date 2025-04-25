@@ -43,6 +43,8 @@ def run_simulation(loss_rate, delay_rate, max_delay):
     # Now send data
     client.send_data(b"Large file data...")
     # Wait for the transfer to complete
+    start_time = time.time()
+    timeout = 30  # Timeout in seconds
     while not client.connection.is_transfer_complete():
         time.sleep(0.1)
 
@@ -72,6 +74,5 @@ def run_simulation(loss_rate, delay_rate, max_delay):
     with open(f"simulation_loss_{loss_rate}_delay_{delay_rate}.json", "w") as f:
         json.dump(data, f)
 # Run simulations with varying loss rates
-#for loss_rate in [0.0, 0.1, 0.2, 0.3, 0.4, 0.5]:
-#    run_simulation(loss_rate=loss_rate, delay_rate=0.1, max_delay=0.5)
-run_simulation(loss_rate=0.0, delay_rate=0.0, max_delay=0.0)
+for loss_rate in [0.0, 0.1, 0.2, 0.3, 0.4, 0.5]:
+    run_simulation(loss_rate=loss_rate, delay_rate=0.1, max_delay=0.5)

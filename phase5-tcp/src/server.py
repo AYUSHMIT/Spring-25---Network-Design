@@ -30,24 +30,16 @@ class TCPServer:
 
 
     def receive_loop(self):
-        """Continuously receive data and process it."""
-        try:
-            self.sock.settimeout(1.0)  # Set timeout (e.g., 1 second)
-            while self.is_running:
-                try:
-                    # Receive data from the simulator or directly from the socket
-                    data, addr = self.simulator.recvfrom(self.sock, 1024) if self.simulator else self.sock.recvfrom(1024)
-                    if data:
-                        print(f"DEBUG: Server received data from {addr}")
-                        self.connection.handle_segment(data, client_address=addr)  # Pass client address
-                except socket.timeout:
-                    # No data received within timeout, just loop again
-                    continue
-                except Exception as e:
-                    print(f"DEBUG: Error in server receive loop: {e}")
-                    break
-        finally:
-            self.sock.settimeout(None)
+        """Continuously receive data from the server."""
+        while self.is_running:  # Use the is_running flag to control the loop
+            try:
+                data, addr = self.sock.recvfrom(4096)
+                self.connection.handle_segment(data, addr)
+            except socket.timeout:
+                continue
+            except Exception as e:
+                print(f"ERROR in receive_loop: {e}")
+                break
 
 
 
