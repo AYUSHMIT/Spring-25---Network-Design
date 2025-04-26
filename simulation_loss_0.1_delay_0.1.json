@@ -1,8 +1,8 @@
 {
-    "loss_rate": 0.0,
+    "loss_rate": 0.1,
     "delay_rate": 0.1,
     "max_delay": 0.5,
-    "completion_time": 5.0075623989105225,
+    "completion_time": 5.005027770996094,
     "status": "success",
     "cwnd_log": [
         {
@@ -10,7 +10,7 @@
             "cwnd": 10
         },
         {
-            "time": 5.006723880767822,
+            "time": 5.004334449768066,
             "cwnd": 10
         }
     ],

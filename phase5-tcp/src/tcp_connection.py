@@ -2,7 +2,7 @@ import socket
 import time
 import threading
 import traceback # Import traceback for detailed error logging
-
+import json
 from tcp_segment import TCPSegment
 from rtt_estimator import RTTEstimator
 from congestion_control import CongestionControl
@@ -37,6 +37,22 @@ class SimpleTCPConnection:
         self.lock = threading.Lock()
         self._timer_thread = None
         self._start_timer_thread()
+
+
+    def log_cwnd(self):
+        """Logs the current congestion window size with a timestamp."""
+        if not hasattr(self, 'cwnd_log'):
+            self.cwnd_log = []  # Initialize cwnd_log if it doesn't exist
+        if not hasattr(self, 'start_time'):
+            self.start_time = time.time()  # Initialize start_time if it doesn't exist
+        self.cwnd_log.append({
+            "time": time.time() - self.start_time,
+            "cwnd": self.congestion_control.get_congestion_window()
+        })
+        print(f"DEBUG log_cwnd: Logged cwnd={self.congestion_control.get_congestion_window()} at time={self.cwnd_log[-1]['time']:.2f}s")
+
+
+
 
     def _send_segment(self, segment: TCPSegment, is_retransmission=False):
         """Packs and sends a TCP segment using the simulator or socket."""
@@ -149,6 +165,7 @@ class SimpleTCPConnection:
         if segment_to_send:
             self._send_segment(segment_to_send)
 
+
     def send(self, data):
         """Appends data to the send buffer and tries to send it."""
         if not data:
@@ -156,36 +173,42 @@ class SimpleTCPConnection:
 
         print("DEBUG: send() method called.")
         should_try_sending = False
-        with self.lock: # Lock needed to modify shared buffer and counters
-            if self.total_data_to_send == 0: # Assume one call to send() with all data
-                 self.total_data_to_send = len(data)
-                 print(f"DEBUG: Total data to send set to {self.total_data_to_send}")
+        with self.lock:  # Lock needed to modify shared buffer and counters
+            if self.total_data_to_send == 0:  # Assume one call to send() with all data
+                self.total_data_to_send = len(data)
+                print(f"DEBUG: Total data to send set to {self.total_data_to_send}")
 
             self.send_buffer.extend(data)
             print(f"DEBUG: Appended {len(data)} bytes to send buffer. Total in buffer: {len(self.send_buffer)}")
 
             # Check if we can send immediately
             if self.state == 'ESTABLISHED':
-                 should_try_sending = True
+                should_try_sending = True
+
+            # Log the initial cwnd
+            self.log_cwnd()
 
         if should_try_sending:
             print("DEBUG: Connection established, attempting to send from buffer via send().")
-            self._send_from_buffer() # Try sending (handles locking internally)
+            self._send_from_buffer()  # Try sending (handles locking internally)
+
+
+
 
     def _send_from_buffer(self):
         """Send segments from the send buffer based on available window."""
         print("DEBUG _send_from_buffer: Attempting to send.")
-        while True: # Loop to send multiple segments if window allows
+        while True:  # Loop to send multiple segments if the window allows
             segment_to_send = None
             chunk_size_sent = 0
             next_seq_num_after_send = 0
 
-            with self.lock: # Acquire lock to read state and prepare segment
+            with self.lock:  # Acquire lock to read state and prepare segment
                 current_state = self.state
                 if current_state != 'ESTABLISHED' and current_state != 'CLOSE_WAIT':
-                    if current_state != 'CLOSED': # Avoid logging if intentionally closed
+                    if current_state != 'CLOSED':  # Avoid logging if intentionally closed
                         print(f"DEBUG _send_from_buffer: Connection state {current_state}. Cannot send.")
-                    break # Exit loop and function
+                    break  # Exit loop and function
 
                 current_cwnd = self.congestion_control.get_congestion_window()
                 peer_window = self.peer_rwnd
@@ -207,14 +230,17 @@ class SimpleTCPConnection:
 
                 # Check conditions to stop sending
                 if sendable_bytes <= 0 or available_in_buffer <= 0:
-                    if sendable_bytes <= 0: print("DEBUG _send_from_buffer: Window is full or closed.")
+                    if sendable_bytes <= 0:
+                        print("DEBUG _send_from_buffer: Window is full or closed.")
                     if available_in_buffer <= 0:
-                        if buffer_len == 0 : print("DEBUG _send_from_buffer: Send buffer is empty.")
-                        else: print(f"WARN _send_from_buffer: No data available at index {buffer_start_index} (seq={current_seq_num}, base={current_send_base}). Buffer len={buffer_len}")
-                    break # Exit loop
+                        if buffer_len == 0:
+                            print("DEBUG _send_from_buffer: Send buffer is empty.")
+                        else:
+                            print(f"WARN _send_from_buffer: No data available at index {buffer_start_index} (seq={current_seq_num}, base={current_send_base}). Buffer len={buffer_len}")
+                    break  # Exit loop
 
                 # Determine chunk size
-                chunk_size = min(self.mss, sendable_bytes, available_in_buffer)
+                chunk_size = min(1024, sendable_bytes, available_in_buffer)  # Send up to 1 KB at a time
                 if chunk_size <= 0:
                     print(f"DEBUG _send_from_buffer: Calculated chunk_size={chunk_size}. Breaking.")
                     break
@@ -226,31 +252,31 @@ class SimpleTCPConnection:
 
                 # Prepare segment
                 segment_to_send = TCPSegment(
-                     seq_num=current_seq_num,
-                     ack_num=self.expected_seq_num, # ACK peer's data
-                     data=bytes(chunk),
-                     flags=0,
-                     rwnd=self._calculate_rwnd_locked() # Our receive window
+                    seq_num=current_seq_num,
+                    ack_num=self.expected_seq_num,  # ACK peer's data
+                    data=bytes(chunk),
+                    flags=0,
+                    rwnd=self._calculate_rwnd_locked()  # Our receive window
                 )
                 # --- Update state *immediately* after deciding to send ---
                 self.seq_num += chunk_size
-                chunk_size_sent = chunk_size # Store size for logging
-                next_seq_num_after_send = self.seq_num # Store new seq num for logging
+                chunk_size_sent = chunk_size  # Store size for logging
+                next_seq_num_after_send = self.seq_num  # Store new seq num for logging
                 # ----------------------------------------------------------
 
             # --- Release lock before sending ---
             if segment_to_send:
-                 print(f"DEBUG _send_from_buffer: Sending chunk size={chunk_size_sent}, next seq_num will be {next_seq_num_after_send}")
-                 self._send_segment(segment_to_send) # Send segment (handles its own locking for storing)
-                 # Loop continues automatically to check if more can be sent
+                print(f"DEBUG _send_from_buffer: Sending chunk size={chunk_size_sent}, next seq_num will be {next_seq_num_after_send}")
+                self._send_segment(segment_to_send)  # Send segment (handles its own locking for storing)
+                # Loop continues automatically to check if more can be sent
             else:
-                break # Exit loop if no segment was prepared (e.g., window full)
+                break  # Exit loop if no segment was prepared (e.g., window full)
 
     def close(self):
         """Initiates the closing sequence by sending a FIN packet."""
         fin_segment_to_send = None
         next_seq_num = 0
-        with self.lock: # Needs lock to read/write state and check resources
+        with self.lock:  # Needs lock to read/write state and check resources
             buffer_empty = not self.send_buffer
             no_unacked = not self.unacked_segments
             is_established = self.state == 'ESTABLISHED'
@@ -264,35 +290,60 @@ class SimpleTCPConnection:
                     seq_num=current_seq,
                     ack_num=self.expected_seq_num,
                     data=b'',
-                    flags=0x01, # FIN flag
+                    flags=0x01,  # FIN flag
                     rwnd=self._calculate_rwnd_locked()
                 )
-                self.seq_num += 1 # FIN consumes one sequence number
+                self.seq_num += 1  # FIN consumes one sequence number
                 next_seq_num = self.seq_num
                 print(f"DEBUG close(): State -> FIN_WAIT_1, prepared FIN seq={fin_segment_to_send.seq_num}, next seq={next_seq_num}")
+
             # Handle other states if needed (e.g., CLOSE_WAIT -> LAST_ACK)
             elif self.state == 'CLOSE_WAIT':
-                 # Application indicated close after receiving peer's FIN
-                 self.state = 'LAST_ACK'
-                 fin_segment_to_send = TCPSegment(
+                # Application indicated close after receiving peer's FIN
+                self.state = 'LAST_ACK'
+                fin_segment_to_send = TCPSegment(
                     seq_num=current_seq,
                     ack_num=self.expected_seq_num,
                     data=b'',
-                    flags=0x01, # FIN flag
+                    flags=0x01,  # FIN flag
                     rwnd=self._calculate_rwnd_locked()
-                 )
-                 self.seq_num += 1
-                 next_seq_num = self.seq_num
-                 print(f"DEBUG close(): State -> LAST_ACK, prepared FIN seq={fin_segment_to_send.seq_num}, next seq={next_seq_num}")
+                )
+                self.seq_num += 1
+                next_seq_num = self.seq_num
+                print(f"DEBUG close(): State -> LAST_ACK, prepared FIN seq={fin_segment_to_send.seq_num}, next seq={next_seq_num}")
+
             elif not is_established and self.state != 'CLOSE_WAIT':
-                 print(f"WARN: Close called in invalid state: {self.state}")
-            else: # Established but buffer/unacked not empty
-                 print(f"DEBUG close(): Cannot send FIN yet. State={self.state}, Buffer Empty={buffer_empty}, Unacked Empty={no_unacked}")
+                print(f"WARN: Close called in invalid state: {self.state}")
+            else:  # Established but buffer/unacked not empty
+                print(f"DEBUG close(): Cannot send FIN yet. State={self.state}, Buffer Empty={buffer_empty}, Unacked Empty={no_unacked}")
+
+            # Log the final congestion window before closing
+            self.log_cwnd()
 
         # Send FIN outside the lock
         if fin_segment_to_send:
-             self._send_segment(fin_segment_to_send)
-             print(f"Sent FIN, state changed.")
+            self._send_segment(fin_segment_to_send)
+            print(f"DEBUG close(): Sent FIN, state changed.")
+
+        # Save cwnd_log to a file for analysis
+        try:
+            with open("cwnd_log.json", "w") as f:
+                json.dump(self.cwnd_log, f, indent=4)
+            print("DEBUG close(): Saved cwnd_log to cwnd_log.json")
+        except Exception as e:
+            print(f"ERROR close(): Failed to save cwnd_log: {e}")
+
+
+
+
+
+
+
+
+
+
+
+
 
     def handle_segment(self, segment_bytes, pseudo_header=b'', client_address=None):
         """Handles incoming TCP segments, unpacks, and directs to state handlers."""
@@ -472,7 +523,7 @@ class SimpleTCPConnection:
                         sample_rtt = time.time() - self.sent_timestamps.pop(acked_seq)  # Pop timestamp
                         print(f"DEBUG _handle_ack_locked: RTT sample for {acked_seq}: {sample_rtt:.4f}")
                         self.rtt_estimator.update(sample_rtt)
-                        self.rtt_log.append((time.time(), sample_rtt))
+                        self.rtt_log.append((time.time(), sample_rtt))  # Log RTT
                         print(f"DEBUG: rtt_log updated: {self.rtt_log[-1]}")
                     else:
                         # It was retransmitted, just pop timestamp, don't update RTT
@@ -497,8 +548,7 @@ class SimpleTCPConnection:
             # Congestion control: Increase cwnd
             self.congestion_control.on_ack_received(is_new_ack=True)
             new_cwnd = self.congestion_control.get_congestion_window()
-            self.cwnd_log.append((time.time(), new_cwnd))
-            print(f"DEBUG: cwnd_log updated: {self.cwnd_log[-1]}")
+            self.log_cwnd()  # Log the updated cwnd
             print(f"DEBUG _handle_ack_locked: CC: New ACK -> cwnd = {new_cwnd:.2f}")
 
             processed = True
@@ -512,8 +562,7 @@ class SimpleTCPConnection:
             # Congestion control: Handle duplicate ACKs
             fast_retransmit_needed = self.congestion_control.on_duplicate_ack()
             new_cwnd = self.congestion_control.get_congestion_window()
-            self.cwnd_log.append((time.time(), new_cwnd))  # Log cwnd changes
-            print(f"DEBUG: cwnd_log updated: {self.cwnd_log[-1]}")
+            self.log_cwnd()  # Log the updated cwnd
             print(f"DEBUG _handle_ack_locked: CC: Dup ACK -> cwnd = {new_cwnd:.2f}")
 
             processed = True  # ACK was processed (as duplicate)
@@ -535,8 +584,6 @@ class SimpleTCPConnection:
         self._send_from_buffer()
 
         return processed, True  # Always return True for can_send_more
-
-
 
     def _handle_data_locked(self, segment):
         """
@@ -654,8 +701,6 @@ class SimpleTCPConnection:
         self.rto_log.append((current_time, rto_val))
         print(f"DEBUG: rto_log updated: {self.rto_log[-1]}")
 
-
-
         seq_to_retransmit = None
         timestamps_to_remove = []
 
@@ -691,5 +736,9 @@ class SimpleTCPConnection:
             with self.lock:
                 segment = self.unacked_segments.get(seq_to_retransmit)
                 if segment:
-                    print(f"DEBUG _check_timers: Retransmitting seq={seq_to_retransmit}.")
+                    print(f"DEBUG _check_timers: Timeout detected for seq={seq_to_retransmit}. Applying congestion control and retransmitting.")
+                    self.congestion_control.on_timeout()
+                    new_cwnd = self.congestion_control.get_congestion_window()
+                    self.log_cwnd()  # Log the updated cwnd
+                    print(f"DEBUG _check_timers: After timeout, CC cwnd={new_cwnd}")
                     self._retransmit_segment_external(segment)

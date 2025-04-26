@@ -13,10 +13,11 @@ def plot_single_simulation(json_file):
     # --- Plot 1: Congestion Window vs Time ---
     if data.get("cwnd_log"):
         times, cwnds = zip(*data["cwnd_log"])
+        times = [float(t) for t in times]  # Convert times to float
         base_time = times[0]
         times = [t - base_time for t in times]  # Normalize to start from 0
 
-        plt.figure(figsize=(10,6))
+        plt.figure(figsize=(10, 6))
         plt.plot(times, cwnds, marker='o', linestyle='-', linewidth=2)
         plt.xlabel("Time (s)", fontsize=14)
         plt.ylabel("Congestion Window Size", fontsize=14)
@@ -29,10 +30,11 @@ def plot_single_simulation(json_file):
     # --- Plot 2: RTT vs Time ---
     if data.get("rtt_log"):
         times, rtts = zip(*data["rtt_log"])
+        times = [float(t) for t in times]  # Convert times to float
         base_time = times[0]
         times = [t - base_time for t in times]  # Normalize to start from 0
 
-        plt.figure(figsize=(10,6))
+        plt.figure(figsize=(10, 6))
         plt.plot(times, rtts, marker='s', linestyle='-', linewidth=2, color='orange')
         plt.xlabel("Time (s)", fontsize=14)
         plt.ylabel("Sample RTT (seconds)", fontsize=14)
@@ -45,10 +47,11 @@ def plot_single_simulation(json_file):
     # --- Plot 3: RTO vs Time ---
     if data.get("rto_log"):
         times, rtos = zip(*data["rto_log"])
+        times = [float(t) for t in times]  # Convert times to float
         base_time = times[0]
         times = [t - base_time for t in times]  # Normalize to start from 0
 
-        plt.figure(figsize=(10,6))
+        plt.figure(figsize=(10, 6))
         plt.plot(times, rtos, marker='^', linestyle='-', linewidth=2, color='green')
         plt.xlabel("Time (s)", fontsize=14)
         plt.ylabel("Retransmission Timeout (seconds)", fontsize=14)
@@ -58,12 +61,12 @@ def plot_single_simulation(json_file):
         plt.savefig("rto_vs_time.png")
         plt.show()
 
-# Example:
 import os
 
-# Smart auto path
-current_dir = os.path.dirname(__file__)
-json_path = os.path.abspath(os.path.join(current_dir, "../../simulation_loss_0.0_delay_0.1.json"))
+# Absolute path to the correct file
+json_path = r"C:\Users\Ayush_pandey\OneDrive - UMass Lowell\Documents\GitHub\Spring-25---Network-Design\simulation_loss_0.0_delay_0.0.json"
 
-plot_single_simulation(json_path)
-
+if not os.path.exists(json_path):
+    print(f"Error: File not found at {json_path}")
+else:
+    plot_single_simulation(json_path)

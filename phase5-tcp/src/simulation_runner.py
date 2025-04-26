@@ -3,150 +3,163 @@ import time
 import threading
 import os
 import traceback
-from client import TCPClient
-from server import TCPServer
+import socket
+from tcp_connection import SimpleTCPConnection
 from network_simulator import NetworkSimulator
 
-# Debug: Print the current working directory
 print(f"DEBUG: Current working directory: {os.getcwd()}")
-
-def start_server(simulator):
-    """Start the server and its receive loop in a separate thread."""
-    server = TCPServer(server_ip="127.0.0.1", server_port=54321, simulator=simulator)
-    server.start()  # Bind the server socket to the IP and port
-    server_thread = threading.Thread(target=server.receive_loop)
-    server.is_running = True  # Add a flag to control the server loop
-    server_thread.start()
-    return server, server_thread
 
 def run_simulation(loss_rate, delay_rate, max_delay):
     """Run a single simulation with the given parameters."""
-    simulator = NetworkSimulator(loss_rate=loss_rate, delay_rate=delay_rate, max_delay=max_delay)
-    server = client = client_thread = server_thread = None  # Initialize to None
+    simulator = NetworkSimulator(
+        loss_rate=loss_rate,        # <-- from function argument
+        delay_rate=delay_rate,      # <-- from function argument
+        max_delay=max_delay,        # <-- from function argument
+        burst_loss_rate=0.3,        # Increased burst loss rate
+        burst_length=5              # Increased burst length
+    )
+
+    server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    server_socket.bind(("127.0.0.1", 54321))
+    server_socket.listen(1)
+
+    server_conn = None
+    client_conn = None
 
     try:
-        # Start the server
-        server, server_thread = start_server(simulator)
+        # Server accept thread
+        def accept_server():
+            nonlocal server_conn
+            conn, addr = server_socket.accept()
+            server_conn = SimpleTCPConnection()
+            server_conn.simulator = simulator
+            server_conn.sock = conn
+            server_conn.is_running = True
+            server_conn.state = "ESTABLISHED"
+            server_conn.remote_address = addr
+            print(f"Server: Accepted connection from {addr}")
 
-        # Set up the client
-        client = TCPClient(server_ip="127.0.0.1", server_port=54321, simulator=simulator)
+            # Start a thread to receive and ACK data
+            def server_receive_loop():
+                try:
+                    while True:
+                        data = conn.recv(2048)
+                        if not data:
+                            break
+                        server_conn.handle_segment(data)  # Process incoming data and send ACKs
+                except Exception as e:
+                    print(f"Server receive error: {e}")
 
-        # Connect the client to the server
-        client.connect()
+            threading.Thread(target=server_receive_loop, daemon=True).start()
 
-        # Start the client receive loop in a separate thread
-        client_thread = threading.Thread(target=client.receive_loop)
-        client_thread.start()
+        accept_thread = threading.Thread(target=accept_server)
+        accept_thread.start()
 
-        # Wait for the connection to establish
-        print("Waiting for connection to establish...")
-        while client.connection.state != 'ESTABLISHED':
-            time.sleep(0.1)
+        # Create client
+        client_conn = SimpleTCPConnection()
+        client_conn.simulator = simulator
+        client_conn.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        client_conn.sock.connect(("127.0.0.1", 54321))
+        client_conn.remote_address = ("127.0.0.1", 54321)
+        client_conn.is_running = True
+        client_conn.state = "ESTABLISHED"
+
+        accept_thread.join()
+
         print("Connection established.")
 
-        # Record the start time
+        # Start sending data
         start_time = time.time()
 
-        # Now send data (smaller size for faster runs)
-        print("DEBUG: Calling client.send_data()")
-        client.send_data(b"A" * 1024)  # Sending only 1KB instead of 10KB
-        print("DEBUG: Returned from client.send_data()")
+        data = b"A" * 500_000  # Sending 500 KB of data
+        print("DEBUG: Calling client.send()")
+        client_conn.send(data)
+        print("DEBUG: Returned from client.send()")
 
-        # Wait for the transfer to complete with a timeout
-        print("DEBUG: Entering completion check loop...")
-        timeout_duration = 30  # 30 seconds timeout
-        completion_check_start_time = time.time()
-        timed_out = False
+        # Wait for congestion control to take effect
+        sleep_time = max(10, len(data) / 5000)  # At least 10 seconds, or based on data volume
+        print(f"DEBUG: Sleeping for {sleep_time:.2f} seconds to allow transfer completion.")
+        time.sleep(sleep_time)
 
-        while not client.connection.is_transfer_complete():
-            time.sleep(0.1)
-            elapsed_time = time.time() - completion_check_start_time
-            if elapsed_time > timeout_duration:
-                print(f"ERROR: Simulation timed out after {timeout_duration} seconds waiting for completion.")
-                timed_out = True
-                break
+        end_time = time.time()
 
-        if not timed_out:
-            end_time = time.time()
-
-        # No need to forcefully join stuck threads if timed out
-        if client_thread and client_thread.is_alive():
-            client_thread.join(timeout=2)
-        if server_thread and server_thread.is_alive():
-            server_thread.join(timeout=2)
-
-        # Now close the sockets
-        if client:
-            client.close()
-        if server:
-            server.close()
+        client_conn.close()
+        server_socket.close()
 
     except Exception as e:
-        print(f"ERROR: Unhandled exception during simulation run: {e}")
+        print(f"ERROR: Unhandled exception: {e}")
         traceback.print_exc()
 
     finally:
         print("--- Entering FINALLY block ---")
-        data = {}
         try:
-            if client and hasattr(client, 'connection'):
-                connection = client.connection
-                data = {
-                    "cwnd_log": getattr(connection, "cwnd_log", []),
-                    "rtt_log": getattr(connection, "rtt_log", []),
-                    "rto_log": getattr(connection, "rto_log", []),
-                    "completion_time": (end_time - start_time) if 'end_time' in locals() else None,
-                    "status": "success" if not timed_out else "timeout"
-                }
-                print(f"DEBUG: Data dictionary prepared: {str(data)[:500]}...")
-            else:
-                print("WARNING: Client object or connection not available. Saving empty logs.")
-                data = {
-                    "cwnd_log": [],
-                    "rtt_log": [],
-                    "rto_log": [],
-                    "completion_time": None,
-                    "status": "no_connection"
-                }
-        except Exception as e:
-            print(f"ERROR: Exception during preparing data dictionary: {e}")
-            traceback.print_exc()
+            duration = (end_time - start_time) if client_conn else None
+        except:
+            duration = None
 
-        # Always attempt to save
+        # Save all logs (RTT, CWND, RTO) in the JSON output
+        simulation_log = {
+            "loss_rate": loss_rate,
+            "delay_rate": delay_rate,
+            "max_delay": max_delay,
+            "completion_time": duration,
+            "status": "success" if duration else "failure",
+            "cwnd_log": getattr(client_conn, "cwnd_log", []),  # Save cwnd_log
+            "rtt_log": getattr(client_conn, "rtt_log", []),    # Save rtt_log (optional)
+            "rto_log": getattr(client_conn, "rto_log", [])     # Save rto_log (optional)
+        }
+
         output_file = f"simulation_loss_{loss_rate}_delay_{delay_rate}.json"
-        absolute_path = os.path.abspath(output_file)
         try:
             with open(output_file, "w") as f:
-                json.dump(data, f, indent=4)
-            print(f"INFO: Logs saved successfully to {absolute_path}")
+                json.dump(simulation_log, f, indent=4)
+            print(f"INFO: Saved logs to {output_file}")
         except Exception as e:
-            print(f"ERROR: Failed to save JSON to {absolute_path}: {e}")
-            traceback.print_exc()
+            print(f"ERROR: Failed to save logs: {e}")
 
-        # Append to summary.json
+        # Update summary.json
         try:
             summary_file = "summary.json"
             if os.path.exists(summary_file):
                 with open(summary_file, "r") as f:
-                    summary_data = json.load(f)
+                    summary = json.load(f)
             else:
-                summary_data = []
+                summary = []
 
-            summary_entry = {
+            summary.append({
                 "loss_rate": loss_rate,
                 "delay_rate": delay_rate,
                 "max_delay": max_delay,
-                "completion_time": data.get("completion_time"),
-                "status": data.get("status"),
-            }
-            summary_data.append(summary_entry)
+                "completion_time": duration,
+                "status": simulation_log["status"]
+            })
 
             with open(summary_file, "w") as f:
-                json.dump(summary_data, f, indent=4)
-            print(f"INFO: Appended result to summary.json")
+                json.dump(summary, f, indent=4)
+            print("INFO: Updated summary.json")
         except Exception as e:
-            print(f"ERROR: Failed to update summary.json: {e}")
-            traceback.print_exc()
+            print(f"ERROR: Failed updating summary: {e}")
 
-# === Run a Single Simulation Example ===
-run_simulation(loss_rate=0.0, delay_rate=0.1, max_delay=0.5)
+
+def run_batch():
+    """Run multiple simulations with different network conditions."""
+    loss_rates = [0.0, 0.1, 0.3, 0.5]  # Add higher loss rates
+    delay_rates = [0.0, 0.1, 0.5, 0.7]  # Add higher delay rates
+    max_delays = [0.1, 0.5, 1.0]  # Increase max delays
+
+    for loss in loss_rates:
+        for delay in delay_rates:
+            for max_delay in max_delays:
+                print(f"\n===== Running simulation: loss={loss}, delay={delay}, max_delay={max_delay} =====")
+                run_simulation(loss_rate=loss, delay_rate=delay, max_delay=max_delay)
+                print(f"===== Completed simulation: loss={loss}, delay={delay}, max_delay={max_delay} =====\n")
+                time.sleep(2)  # brief pause between runs
+
+# ====== QUICK TEST RUN ======
+if __name__ == "__main__":
+    # Uncomment this to run just ONE simulation:
+    # run_simulation(loss_rate=0.0, delay_rate=0.1, max_delay=0.5)
+
+    # Comment out above line and instead run BATCH:
+    run_batch()

@@ -44,5 +44,5 @@ def plot_summary(summary_file):
     plt.show()
 
 # Example:
-plot_summary("../../summary.json")
+plot_summary("summary.json")
 

@@ -28,6 +28,8 @@ class TCPServer:
     def receive_loop(self):
         """Continuously receive data from the server."""
         print("DEBUG: Server receive_loop starting.")
+        BUFFER_SIZE = 4096  # Define the buffer size for each recv() call
+
         while self.is_running:
             try:
                 # Check if the socket is still valid before receiving
@@ -36,39 +38,44 @@ class TCPServer:
                     break
 
                 # Use simulator if available
-                data, addr = self.simulator.recvfrom(self.sock, 4096) if self.simulator else self.sock.recvfrom(4096)
+                data, addr = self.simulator.recvfrom(self.sock, BUFFER_SIZE) if self.simulator else self.sock.recvfrom(BUFFER_SIZE)
 
                 if data:
-                    print(f"DEBUG: Server received data from {addr}")
-                    # Diagnostic check
-                    print(f"DEBUG: Checking attributes for self.connection (type: {type(self.connection)}):")
+                    print(f"DEBUG: Server received {len(data)} bytes from {addr}.")
+                    # Process the received data
                     if hasattr(self.connection, 'handle_segment'):
-                        print("DEBUG: Server found handle_segment method.")
                         self.connection.handle_segment(segment_bytes=data, client_address=addr)
                     else:
-                        print("ERROR: Server COULD NOT FIND handle_segment method on self.connection.")
-                        print(f"Available attributes: {dir(self.connection)}")
-                        raise AttributeError("'SimpleTCPConnection' object has no attribute 'handle_segment'")
+                        raise AttributeError("'SimpleTCPConnection' object missing 'handle_segment'")
 
             except socket.timeout:
-                continue
+                continue  # Optionally handle timeout without closing connection
             except OSError as e:
-                # Handle specific socket errors
-                if e.winerror == 10038:  # WSAENOTSOCK (Socket operation on non-socket)
-                    print(f"DEBUG: Server receive_loop caught OSError {e.winerror}: Socket was likely closed. Exiting loop.")
+                if e.winerror == 10054:  # Connection reset by peer
+                    print(f"WARNING: Connection reset by peer (expected in UDP). Continuing receive loop...")
+                    continue  # <== KEY CHANGE: just continue instead of crashing
+                elif e.winerror == 10038:  # WSAENOTSOCK (Socket operation on non-socket)
+                    print("DEBUG: Socket not valid anymore, exiting.")
+                    self.is_running = False
+                    break
                 elif e.winerror == 10022:  # WSAEINVAL (Invalid argument)
-                    print(f"DEBUG: Server receive_loop caught OSError {e.winerror}: Invalid argument, possibly closed socket. Exiting loop.")
+                    print("DEBUG: Invalid socket (10022), exiting.")
+                    self.is_running = False
+                    break
                 else:
                     print(f"ERROR in receive_loop (OSError): {e}")
                     traceback.print_exc()
-                self.is_running = False  # Stop the loop on socket errors
-                break
+                    self.is_running = False
+                    break
             except Exception as e:
                 print(f"ERROR in receive_loop (Other Exception): {e}")
                 traceback.print_exc()
-                self.is_running = False  # Stop the loop on other critical errors
+                self.is_running = False
                 break
+
         print("DEBUG: Server receive_loop finished.")
+
+
 
     def close(self):
         """Close the server socket."""
