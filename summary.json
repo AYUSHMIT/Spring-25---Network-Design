@@ -1,0 +1,16 @@
+[
+    {
+        "loss_rate": 0.0,
+        "delay_rate": 0.1,
+        "max_delay": 0.5,
+        "completion_time": null,
+        "status": "timeout"
+    },
+    {
+        "loss_rate": 0.0,
+        "delay_rate": 0.1,
+        "max_delay": 0.5,
+        "completion_time": 13.74843454360962,
+        "status": "success"
+    }
+]

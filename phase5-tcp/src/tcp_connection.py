@@ -443,35 +443,33 @@ class SimpleTCPConnection:
                 print(f"WARN handle_segment: Segment (seq={segment.seq_num}, ack={segment.ack_num}, flags={segment.flags}) not processed in state {current_state} -> {final_state}.")
 
 
-
     def _handle_ack_locked(self, ack_num, peer_rwnd):
         """
         Handles ACK processing. Must be called with lock held.
         Returns tuple: (ack_was_processed, can_send_more)
         """
         processed = False
-        can_send = False
-        current_send_base = self.send_base # Read under lock
+        current_send_base = self.send_base  # Read under lock
 
-        if ack_num > current_send_base: # New ACK
+        if ack_num > current_send_base:  # New ACK
             print(f"DEBUG _handle_ack_locked: New ACK received: ack={ack_num}")
             newly_acked_bytes = ack_num - current_send_base
 
             # Remove acknowledged data from the send buffer
             if newly_acked_bytes > 0:
-                 if len(self.send_buffer) >= newly_acked_bytes:
-                     self.send_buffer = self.send_buffer[newly_acked_bytes:]
-                     print(f"DEBUG _handle_ack_locked: Removed {newly_acked_bytes} bytes from send_buffer. Remaining: {len(self.send_buffer)}")
-                 else:
-                     print(f"WARN _handle_ack_locked: Trying to remove {newly_acked_bytes} bytes, but buffer only has {len(self.send_buffer)}. Clearing buffer.")
-                     self.send_buffer = bytearray()
+                if len(self.send_buffer) >= newly_acked_bytes:
+                    self.send_buffer = self.send_buffer[newly_acked_bytes:]
+                    print(f"DEBUG _handle_ack_locked: Removed {newly_acked_bytes} bytes from send_buffer. Remaining: {len(self.send_buffer)}")
+                else:
+                    print(f"WARN _handle_ack_locked: Trying to remove {newly_acked_bytes} bytes, but buffer only has {len(self.send_buffer)}. Clearing buffer.")
+                    self.send_buffer = bytearray()
 
             # Remove acknowledged segments from tracking and update RTT
             acked_seq_nums = [seq for seq in self.unacked_segments if seq < ack_num]
             for acked_seq in sorted(acked_seq_nums):
-                if acked_seq in self.sent_timestamps: # Check if timestamp exists
-                    if acked_seq not in self.retransmitted_segments: # Karn's Algorithm check
-                        sample_rtt = time.time() - self.sent_timestamps.pop(acked_seq) # Pop timestamp
+                if acked_seq in self.sent_timestamps:  # Check if timestamp exists
+                    if acked_seq not in self.retransmitted_segments:  # Karn's Algorithm check
+                        sample_rtt = time.time() - self.sent_timestamps.pop(acked_seq)  # Pop timestamp
                         print(f"DEBUG _handle_ack_locked: RTT sample for {acked_seq}: {sample_rtt:.4f}")
                         self.rtt_estimator.update(sample_rtt)
                         self.rtt_log.append((time.time(), sample_rtt))
@@ -479,26 +477,22 @@ class SimpleTCPConnection:
                     else:
                         # It was retransmitted, just pop timestamp, don't update RTT
                         self.sent_timestamps.pop(acked_seq)
-                        self.retransmitted_segments.discard(acked_seq) # Clear retransmit flag
+                        self.retransmitted_segments.discard(acked_seq)  # Clear retransmit flag
                         print(f"DEBUG _handle_ack_locked: Ignoring RTT for retransmitted segment {acked_seq}")
-                # else: # Don't warn if timestamp already gone
-                     # print(f"WARN _handle_ack_locked: Timestamp for acknowledged seq {acked_seq} not found.")
 
                 # Remove from unacked segments dictionary
                 removed_segment = self.unacked_segments.pop(acked_seq, None)
                 if removed_segment:
-                     print(f"DEBUG _handle_ack_locked: Removed segment {acked_seq} from unacked_segments.")
-                # else: # Don't warn if segment already removed
-                    # print(f"WARN _handle_ack_locked: Tried to remove segment {acked_seq} but it wasn't found.")
+                    print(f"DEBUG _handle_ack_locked: Removed segment {acked_seq} from unacked_segments.")
 
             # Update send_base
             self.send_base = ack_num
             print(f"DEBUG _handle_ack_locked: Updated send_base to {self.send_base}")
 
             # Update peer window
-            if peer_rwnd is not None: # Check if rwnd was provided
-                 self.peer_rwnd = peer_rwnd
-                 print(f"DEBUG _handle_ack_locked: Updated peer_rwnd to {self.peer_rwnd}")
+            if peer_rwnd is not None:  # Check if rwnd was provided
+                self.peer_rwnd = peer_rwnd
+                print(f"DEBUG _handle_ack_locked: Updated peer_rwnd to {self.peer_rwnd}")
 
             # Congestion control: Increase cwnd
             self.congestion_control.on_ack_received(is_new_ack=True)
@@ -508,34 +502,39 @@ class SimpleTCPConnection:
             print(f"DEBUG _handle_ack_locked: CC: New ACK -> cwnd = {new_cwnd:.2f}")
 
             processed = True
-            can_send = True # New ACK might open window
 
-        elif ack_num == current_send_base: # Duplicate ACK
+        elif ack_num == current_send_base:  # Duplicate ACK
             print(f"DEBUG _handle_ack_locked: Duplicate ACK received: ack={ack_num}")
             # Update peer window even on duplicate ACK
-            if peer_rwnd is not None: self.peer_rwnd = peer_rwnd
+            if peer_rwnd is not None:
+                self.peer_rwnd = peer_rwnd
 
             # Congestion control: Handle duplicate ACKs
             fast_retransmit_needed = self.congestion_control.on_duplicate_ack()
             new_cwnd = self.congestion_control.get_congestion_window()
-            self.cwnd_log.append((time.time(), new_cwnd)) # Log cwnd changes
+            self.cwnd_log.append((time.time(), new_cwnd))  # Log cwnd changes
             print(f"DEBUG: cwnd_log updated: {self.cwnd_log[-1]}")
             print(f"DEBUG _handle_ack_locked: CC: Dup ACK -> cwnd = {new_cwnd:.2f}")
 
-            processed = True # ACK was processed (as duplicate)
+            processed = True  # ACK was processed (as duplicate)
             if fast_retransmit_needed:
-                 print("DEBUG _handle_ack_locked: Fast Retransmit Triggered for seq {current_send_base}.")
-                 # We need a way to signal the retransmission *after* releasing the lock
-                 # For now, just logging. The timer will eventually handle it if needed,
-                 # but Fast Retransmit would be faster. Implementation deferred.
+                print(f"DEBUG _handle_ack_locked: Fast Retransmit Triggered for seq {current_send_base}.")
+                # Retransmit the segment immediately
+                if current_send_base in self.unacked_segments:
+                    self._retransmit_segment_external(self.unacked_segments[current_send_base])
 
-        else: # Old ACK (ack_num < send_base)
-             print(f"DEBUG _handle_ack_locked: Old ACK received: ack={ack_num}, base={current_send_base}. Ignoring.")
-             # Still update peer window if provided
-             if peer_rwnd is not None: self.peer_rwnd = peer_rwnd
-             processed = True # Processed as "old"
+        else:  # Old ACK (ack_num < send_base)
+            print(f"DEBUG _handle_ack_locked: Old ACK received: ack={ack_num}, base={current_send_base}. Ignoring.")
+            # Still update peer window if provided
+            if peer_rwnd is not None:
+                self.peer_rwnd = peer_rwnd
+            processed = True  # Processed as "old"
 
-        return processed, can_send
+        # Trigger sending from buffer if new data can be sent
+        print("DEBUG _handle_ack_locked: Triggering _send_from_buffer after ACK.")
+        self._send_from_buffer()
+
+        return processed, True  # Always return True for can_send_more
 
 
 
