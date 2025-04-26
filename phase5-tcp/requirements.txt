@@ -1,6 +1,14 @@
-matplotlib
-numpy
-scipy
-pytest
-unittest  # For unit testing
-structlog # For structured logging
+# Core libraries
+matplotlib  # For plotting graphs
+numpy       # For numerical computations
+scipy       # For scientific computations
+
+# Testing libraries
+pytest      # For running unit tests
+unittest    # For unit testing (built-in, no need to install)
+
+# Logging
+structlog   # For structured logging
+
+# Additional utilities (if needed)
+pandas      # For data manipulation (optional, if working with tabular data)

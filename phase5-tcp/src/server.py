@@ -8,6 +8,7 @@ class TCPServer:
         self.server_port = server_port
         self.simulator = simulator
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        self.sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)  # Enable SO_REUSEADDR
         self.connection = SimpleTCPConnection()
         self.connection.sock = self.sock
         self.connection.simulator = self.simulator
