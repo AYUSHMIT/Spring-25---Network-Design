@@ -1,4 +1,12 @@
 class TCPSegment:
+    # Add these flag constants
+    FIN = 0x01
+    SYN = 0x02
+    RST = 0x04
+    PSH = 0x08
+    ACK = 0x10
+    URG = 0x20
+
     def __init__(self, seq_num, ack_num, data, flags, rwnd=0):
         self.seq_num = seq_num
         self.ack_num = ack_num
@@ -29,6 +37,10 @@ class TCPSegment:
     @staticmethod
     def unpack(segment_bytes, pseudo_header=b''):
         """Unpack bytes into a TCP segment and verify the checksum."""
+        # Ensure pseudo_header is a bytes object
+        if not isinstance(pseudo_header, bytes):
+            raise TypeError("pseudo_header must be a bytes object")
+
         seq_num = int.from_bytes(segment_bytes[0:4], 'big')
         ack_num = int.from_bytes(segment_bytes[4:8], 'big')
         flags = int.from_bytes(segment_bytes[8:10], 'big')
@@ -46,6 +58,7 @@ class TCPSegment:
         segment = TCPSegment(seq_num, ack_num, data, flags, rwnd)
         segment.checksum = checksum  # Store the checksum in the object
         return segment
+
     @staticmethod
     def calculate_checksum(segment_bytes):
         """Calculate the checksum for the TCP segment, including pseudo-header if provided."""

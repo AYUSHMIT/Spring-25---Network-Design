@@ -12,40 +12,75 @@ class SimpleTCPConnection:
         self.state = 'CLOSED'
         self.send_buffer = bytearray()
         self.receive_buffer = bytearray()
-        self.seq_num = 0  # Next sequence number to send
-        self.send_base = 0 # First sequence number of unacknowledged data
-        self.ack_num = 0  # Not strictly needed like this; use expected_seq_num for ACKs we send
-        self.rto = 1.0 # Initial RTO
-        self.unacked_segments = {} # Store segment objects: {seq_num: TCPSegment}
+        self.seq_num = 0
+        self.send_base = 0
+        self.ack_num = 0
+        self.rto = 1.0
+        self.unacked_segments = {}
         self.rtt_estimator = RTTEstimator()
-        self.sent_timestamps = {} # Store timestamps: {seq_num: timestamp}
-        self.peer_rwnd = 1024 # Assume initial peer receiver window
-        self.rwnd = 4096 # Our receiver window size (can be adjusted)
+        self.sent_timestamps = {}
+        self.peer_rwnd = 1024
+        self.rwnd = 4096
         self.congestion_control = CongestionControl()
-        self.expected_seq_num = 0 # Next sequence number expected from the peer
-        self.out_of_order_buffer = {} # Buffer for out-of-order segments: {seq_num: data}
-        self.max_receive_buffer_size = 4096 # Max size of receive_buffer + out_of_order_buffer
-        self.retransmitted_segments = set() # Track seq nums of retransmitted segments for Karn's Algorithm
-        self.mss = 1024  # Maximum Segment Size
-
-        # Logs for plotting
+        self.expected_seq_num = 0
+        self.out_of_order_buffer = {}
+        self.max_receive_buffer_size = 4096
+        self.retransmitted_segments = set()
+        self.mss = 1024
         self.cwnd_log = []
         self.rtt_log = []
         self.rto_log = []
-        self.total_data_to_send = 0 # Total application data bytes given to send()
-
-        # Attributes for socket, simulator, and remote address
+        self.total_data_to_send = 0
         self.sock = None
         self.simulator = None
         self.remote_address = None
-
-        # --- Threading Lock ---
         self.lock = threading.Lock()
-        # ---------------------
+        self._timer_thread = None
+        self._start_timer_thread()
 
-        # Timer management
-        self._timer_thread = None # To manage timers in a separate thread
-        self._start_timer_thread() # Start the timer thread
+    def _send_segment(self, segment: TCPSegment, is_retransmission=False):
+        """Packs and sends a TCP segment using the simulator or socket."""
+        print(f"DEBUG _send_segment: Preparing: seq={segment.seq_num}, ack={segment.ack_num}, flags={segment.flags}, data_len={len(segment.data)}, retransmit={is_retransmission}")
+
+        try:
+            packed_segment = segment.pack()
+        except Exception as e:
+            print(f"ERROR: Failed to pack segment seq={segment.seq_num}: {e}")
+            return
+
+        consumes_seq = segment.data or (segment.flags & 0x02) or (segment.flags & 0x01)
+        if consumes_seq:
+            with self.lock:
+                if not is_retransmission:
+                    self.unacked_segments[segment.seq_num] = segment
+                    self.sent_timestamps[segment.seq_num] = time.time()
+                    print(f"DEBUG _send_segment: Stored segment {segment.seq_num} in unacked_segments.")
+                else:
+                    if segment.seq_num in self.sent_timestamps:
+                        self.sent_timestamps[segment.seq_num] = time.time()
+                        print(f"DEBUG _send_segment: Updated timestamp for retransmitted segment {segment.seq_num}.")
+
+        try:
+            dest_addr = self.remote_address
+            if not dest_addr:
+                print(f"ERROR _send_segment: No remote address set for seq={segment.seq_num}")
+                return
+
+            if self.simulator:
+                self.simulator.sendto(self.sock, packed_segment, dest_addr)
+            else:
+                self.sock.sendto(packed_segment, dest_addr)
+            print(f"DEBUG _send_segment: Sent to {dest_addr} - seq={segment.seq_num}, flags={segment.flags}")
+        except Exception as e:
+            print(f"ERROR _send_segment: Socket send error for seq={segment.seq_num}, flags={segment.flags}: {e}")
+            traceback.print_exc()
+
+
+
+
+
+
+
 
     def _start_timer_thread(self):
         """Starts a separate thread to check timers periodically."""
@@ -53,6 +88,16 @@ class SimpleTCPConnection:
             self._timer_thread = threading.Thread(target=self._timer_loop, daemon=True)
             self._timer_thread.start()
             print("DEBUG: Timer thread started.")
+
+    def _calculate_rwnd_locked(self):
+        """Calculates the available receive window size. Assumes lock is held."""
+        max_receive_buffer_size = 4096
+        occupied = len(self.receive_buffer) + sum(len(data) for data in self.out_of_order_buffer.values())
+        available = max_receive_buffer_size - occupied
+        return max(0, available)
+
+
+
 
     def _timer_loop(self):
         """Timer thread for handling retransmissions."""
@@ -249,37 +294,37 @@ class SimpleTCPConnection:
              self._send_segment(fin_segment_to_send)
              print(f"Sent FIN, state changed.")
 
-
     def handle_segment(self, segment_bytes, pseudo_header=b'', client_address=None):
         """Handles incoming TCP segments, unpacks, and directs to state handlers."""
         try:
+            # Unpack the segment
             segment = TCPSegment.unpack(segment_bytes, pseudo_header)
             print(f"DEBUG handle_segment: Received segment: seq={segment.seq_num}, ack={segment.ack_num}, flags={segment.flags}, data_len={len(segment.data)}")
         except ValueError as e:
             print(f"DEBUG handle_segment: Checksum error or unpack failed: {e}")
-            return # Discard segment
+            return  # Discard segment
 
         segment_to_send = None
         next_state = None
         trigger_send_buffer = False
-        processed = False # Flag to track if segment was handled
+        processed = False  # Flag to track if segment was handled
 
-        with self.lock: # Lock for state checks and modifications
+        with self.lock:  # Lock for state checks and modifications
             current_state = self.state
 
             # --- State Machine Logic ---
 
             # Server: LISTEN state expects SYN
-            if current_state == 'LISTEN' and (segment.flags & 0x02): # SYN
+            if current_state == 'LISTEN' and (segment.flags & TCPSegment.SYN):  # SYN
                 print("DEBUG handle_segment: Server received SYN")
                 if client_address:
                     self.remote_address = client_address
                     next_state = 'SYN_RCVD'
                     self.expected_seq_num = segment.seq_num + 1
-                    self.seq_num = 0 # Server's ISN
+                    self.seq_num = 0  # Server's ISN
                     current_rwnd = self._calculate_rwnd_locked()
-                    segment_to_send = TCPSegment(seq_num=self.seq_num, ack_num=self.expected_seq_num, data=b'', flags=0x12, rwnd=current_rwnd) # SYN+ACK
-                    self.seq_num += 1 # Increment for the SYN
+                    segment_to_send = TCPSegment(seq_num=self.seq_num, ack_num=self.expected_seq_num, data=b'', flags=TCPSegment.SYN | TCPSegment.ACK, rwnd=current_rwnd)  # SYN+ACK
+                    self.seq_num += 1  # Increment for the SYN
                     print(f"DEBUG handle_segment: Server LISTEN -> SYN_RCVD. Prepared SYN-ACK.")
                     processed = True
                 else:
@@ -287,124 +332,116 @@ class SimpleTCPConnection:
                     # Cannot proceed without address
 
             # Server: SYN_RCVD state expects ACK
-            elif current_state == 'SYN_RCVD' and (segment.flags & 0x10): # ACK
-                 if segment.ack_num == self.seq_num: # Check if ACK is for our SYN-ACK
-                     print(f"DEBUG handle_segment: Server received valid ACK for SYN-ACK. State SYN_RCVD -> ESTABLISHED.")
-                     next_state = 'ESTABLISHED'
-                     self.peer_rwnd = segment.rwnd # Update peer window
-                     processed = True
-                 else:
-                     print(f"DEBUG handle_segment: Server received ACK in SYN_RCVD, but ack num {segment.ack_num} != expected {self.seq_num}. Ignoring.")
-                     # Consider sending RST? For now, ignore.
+            elif current_state == 'SYN_RCVD':
+                # Server expecting ACK for its SYN-ACK
+                if segment.flags & TCPSegment.ACK:
+                    if segment.ack_num == self.seq_num:  # Correct ACK for our SYN-ACK
+                        print("DEBUG handle_segment: Server received valid ACK for SYN-ACK. State SYN_RCVD -> ESTABLISHED.")
+                        # Update state and clean up SYN-ACK timer
+                        self.state = 'ESTABLISHED'
+                        self.send_base = segment.ack_num  # Update send_base
+                        self.unacked_segments.pop(0, None)  # Assuming SYN-ACK was seq 0
+                        self.sent_timestamps.pop(0, None)
+
+                        # Now, immediately check if the current segment has data OR if buffered data can be processed
+                        if len(segment.data) > 0 and segment.seq_num == self.expected_seq_num:
+                            print(f"DEBUG handle_segment: Processing data piggybacked on final ACK (seq={segment.seq_num}).")
+                            self._handle_data_locked(segment)  # Process piggybacked data
+                        else:
+                            # Process any buffered out-of-order data
+                            print(f"DEBUG handle_segment: Checking out-of-order buffer after ACK. Expecting {self.expected_seq_num}")
+                            while self.expected_seq_num in self.out_of_order_buffer:
+                                buffered_data = self.out_of_order_buffer.pop(self.expected_seq_num)
+                                self.receive_buffer.extend(buffered_data)
+                                self.expected_seq_num += len(buffered_data)
+                                print(f"DEBUG handle_segment: Processed buffered segment. Updated expected_seq_num to {self.expected_seq_num}")
+
+                        self.peer_rwnd = segment.rwnd  # Update peer window
+                        processed = True
+                    else:
+                        print(f"DEBUG handle_segment: Server received ACK in SYN_RCVD, but ack num {segment.ack_num} != expected {self.seq_num}. Ignoring.")
+                elif len(segment.data) > 0 and segment.seq_num == self.expected_seq_num:
+                    # Data arrived before final ACK. Buffer it.
+                    print(f"DEBUG handle_segment: Received data segment (seq={segment.seq_num}) in SYN_RCVD state. Buffering.")
+                    if segment.seq_num not in self.out_of_order_buffer:  # Avoid buffering duplicates
+                        self.out_of_order_buffer[segment.seq_num] = segment.data
+                        print(f"DEBUG handle_segment: Buffered segment seq={segment.seq_num}.")
+                    processed = True  # Mark as processed (buffered)
+                else:
+                    # Handle other flags if necessary (e.g., client resends SYN?)
+                    print(f"WARN handle_segment: Unexpected segment (seq={segment.seq_num}, flags={segment.flags}) received in SYN_RCVD. Ignoring.")
 
             # Client: SYN_SENT state expects SYN-ACK
-            elif current_state == 'SYN_SENT' and (segment.flags & 0x12) == 0x12: # SYN-ACK
+            elif current_state == 'SYN_SENT' and (segment.flags & (TCPSegment.SYN | TCPSegment.ACK)) == (TCPSegment.SYN | TCPSegment.ACK):  # SYN-ACK
                 print("DEBUG handle_segment: Client received SYN-ACK")
-                # Check if it ACKs our SYN (our current seq_num is 1, SYN was 0)
-                if segment.ack_num == self.seq_num:
+                if segment.ack_num == self.seq_num:  # Check if it ACKs our SYN
                     print("DEBUG handle_segment: Client SYN acknowledged by SYN-ACK.")
-                    self.send_base = segment.ack_num # Our SYN (seq=0) is acked, base becomes 1
+                    self.send_base = segment.ack_num  # Our SYN (seq=0) is acked, base becomes 1
                     print(f"DEBUG handle_segment: Client send_base updated to {self.send_base}")
                     # Remove original SYN from tracking
                     original_syn_seq = self.send_base - 1
-                    if original_syn_seq in self.unacked_segments: self.unacked_segments.pop(original_syn_seq); print(f"DEBUG handle_segment: Removed SYN {original_syn_seq} from unacked.")
-                    if original_syn_seq in self.sent_timestamps: self.sent_timestamps.pop(original_syn_seq); print(f"DEBUG handle_segment: Removed SYN {original_syn_seq} timestamp.")
+                    if original_syn_seq in self.unacked_segments:
+                        self.unacked_segments.pop(original_syn_seq)
+                        print(f"DEBUG handle_segment: Removed SYN {original_syn_seq} from unacked.")
+                    if original_syn_seq in self.sent_timestamps:
+                        self.sent_timestamps.pop(original_syn_seq)
+                        print(f"DEBUG handle_segment: Removed SYN {original_syn_seq} timestamp.")
 
                     next_state = 'ESTABLISHED'
-                    self.expected_seq_num = segment.seq_num + 1 # Expect byte after server's SYN
-                    self.peer_rwnd = segment.rwnd # Update peer window from SYN-ACK
+                    self.expected_seq_num = segment.seq_num + 1  # Expect byte after server's SYN
+                    self.peer_rwnd = segment.rwnd  # Update peer window from SYN-ACK
                     print(f"DEBUG handle_segment: Client updated peer_rwnd to {self.peer_rwnd}")
                     # Prepare final ACK
                     client_rwnd = self._calculate_rwnd_locked()
-                    segment_to_send = TCPSegment(seq_num=self.seq_num, ack_num=self.expected_seq_num, data=b'', flags=0x10, rwnd=client_rwnd) # ACK
+                    segment_to_send = TCPSegment(seq_num=self.seq_num, ack_num=self.expected_seq_num, data=b'', flags=TCPSegment.ACK, rwnd=client_rwnd)  # ACK
                     print(f"DEBUG handle_segment: Client SYN_SENT -> ESTABLISHED. Prepared final ACK.")
-                    if self.send_buffer: trigger_send_buffer = True # Signal to send data after ACK
+                    if self.send_buffer:
+                        trigger_send_buffer = True  # Signal to send data after ACK
                     processed = True
                 else:
                     print(f"DEBUG handle_segment: Client received SYN-ACK but ack num {segment.ack_num} != expected {self.seq_num}. Ignoring.")
 
-            # --- Segment Processing in Established or Closing States ---
-            else:
-                 # Check for FIN first (takes precedence over ACK/Data processing in some states)
-                 if segment.flags & 0x01: # FIN received
-                     print(f"DEBUG handle_segment: Received FIN in state {current_state}")
-                     fin_processed = False
-                     if current_state in ['ESTABLISHED', 'SYN_RCVD']: # SYN_RCVD case for simultaneous open/close? Rare.
-                         next_state = 'CLOSE_WAIT'
-                         self.expected_seq_num = segment.seq_num + 1
-                         segment_to_send = self._create_ack_segment_locked()
-                         print(f"DEBUG handle_segment: State {current_state} -> CLOSE_WAIT. Prepared ACK for FIN.")
-                         fin_processed = True
-                     elif current_state == 'FIN_WAIT_1':
-                         if segment.ack_num == self.seq_num: # FIN acked our previous FIN
-                             next_state = 'TIME_WAIT'
-                             self.expected_seq_num = segment.seq_num + 1 # Ack the FIN
-                             segment_to_send = self._create_ack_segment_locked()
-                             print(f"DEBUG handle_segment: State FIN_WAIT_1 -> TIME_WAIT (Simultaneous close). Prepared ACK.")
-                         else: # FIN without ACK for our FIN
-                             next_state = 'CLOSING'
-                             self.expected_seq_num = segment.seq_num + 1 # Ack the FIN
-                             segment_to_send = self._create_ack_segment_locked()
-                             print(f"DEBUG handle_segment: State FIN_WAIT_1 -> CLOSING. Prepared ACK for FIN.")
-                         fin_processed = True
-                     elif current_state == 'FIN_WAIT_2':
-                         next_state = 'TIME_WAIT'
-                         self.expected_seq_num = segment.seq_num + 1 # Ack the FIN
-                         segment_to_send = self._create_ack_segment_locked()
-                         print(f"DEBUG handle_segment: State FIN_WAIT_2 -> TIME_WAIT. Prepared ACK for FIN.")
-                         fin_processed = True
-                     # Ignore FIN in other states like LISTEN, SYN_SENT, CLOSED, TIME_WAIT etc.
-                     else: print(f"WARN handle_segment: Received FIN in unexpected state {current_state}. Ignoring.")
-                     if fin_processed: processed = True # Mark as processed if FIN logic applied
+            # Server: ESTABLISHED state processes data and ACKs
+            elif current_state == 'ESTABLISHED':
+                ack_to_send = None  # Variable to hold potential ACK
+                if len(segment.data) > 0:  # Segment contains data
+                    print(f"DEBUG handle_segment: Processing data segment in ESTABLISHED state (seq={segment.seq_num}).")
+                    ack_to_send = self._handle_data_locked(segment)  # Capture the ACK segment
+                    processed = True
+                elif segment.flags & TCPSegment.ACK:  # Segment contains an ACK
+                    print(f"DEBUG handle_segment: Processing ACK in ESTABLISHED state (ack={segment.ack_num}).")
+                    ack_processed, can_send_more = self._handle_ack_locked(segment.ack_num, segment.rwnd)
+                    processed = ack_processed
+                    if can_send_more:
+                        trigger_send_buffer = True
 
-                 # Process ACK if not overridden by FIN logic or if no FIN flag
-                 if not processed and (segment.flags & 0x10): # ACK flag set
-                     ack_handled, can_send_more = self._handle_ack_locked(segment.ack_num, segment.rwnd)
-                     if ack_handled: processed = True # Mark as processed
-                     if can_send_more: trigger_send_buffer = True # ACK may have opened window
-
-                     # Check for state transitions based on ACK after FINs
-                     if current_state == 'FIN_WAIT_1' and self.send_base == self.seq_num: # Our FIN is now ACKed
-                         next_state = 'FIN_WAIT_2'
-                         print(f"DEBUG handle_segment: State FIN_WAIT_1 -> FIN_WAIT_2 (Our FIN ACKed).")
-                     elif current_state == 'CLOSING' and self.send_base == self.seq_num: # Our FIN ACKed
-                         next_state = 'TIME_WAIT'
-                         print(f"DEBUG handle_segment: State CLOSING -> TIME_WAIT (Our FIN ACKed).")
-                     elif current_state == 'LAST_ACK' and self.send_base == self.seq_num: # Our FIN ACKed
-                         next_state = 'CLOSED'
-                         print(f"DEBUG handle_segment: State LAST_ACK -> CLOSED (Our FIN ACKed). Connection Closed.")
-
-                 # Process Data if present and state allows
-                 if segment.data and current_state in ['ESTABLISHED', 'FIN_WAIT_1', 'FIN_WAIT_2']:
-                     print(f"DEBUG handle_segment: Received {len(segment.data)} bytes data in state {current_state}")
-                     ack_segment = self._handle_data_locked(segment)
-                     if ack_segment:
-                         segment_to_send = ack_segment # Override previous ACK if needed
-                     processed = True # Mark as processed
+                # Assign the ACK segment to be sent
+                if ack_to_send:
+                    segment_to_send = ack_to_send
 
             # --- Update State Safely ---
             if next_state and next_state != current_state:
-                 print(f"DEBUG handle_segment: Updating state from {self.state} to {next_state}")
-                 self.state = next_state
+                print(f"DEBUG handle_segment: Updating state from {self.state} to {next_state}")
+                self.state = next_state
             elif next_state and next_state == current_state:
-                 print(f"DEBUG handle_segment: State remains {current_state}")
+                print(f"DEBUG handle_segment: State remains {current_state}")
 
         # --- Release lock before sending ---
         if segment_to_send:
-             self._send_segment(segment_to_send) # Handles its own lock for storing if needed
+            self._send_segment(segment_to_send)  # Handles its own lock for storing if needed
         if trigger_send_buffer:
-             print("DEBUG handle_segment: Triggering send from buffer.")
-             # Check state again before sending, in case it changed (e.g., closed)
-             with self.lock: current_state_for_send = self.state
-             if current_state_for_send == 'ESTABLISHED':
-                 self._send_from_buffer()
+            print("DEBUG handle_segment: Triggering send from buffer.")
+            with self.lock:
+                current_state_for_send = self.state
+            if current_state_for_send == 'ESTABLISHED':
+                self._send_from_buffer()
 
         if not processed:
-            # Log if the segment didn't match any processing rules for the state
-            # Avoid logging this if state changed significantly (e.g., to CLOSED)
-            with self.lock: final_state = self.state
-            if final_state not in ['CLOSED', 'TIME_WAIT']: # Don't warn if connection effectively closed
-                 print(f"WARN handle_segment: Segment (seq={segment.seq_num}, ack={segment.ack_num}, flags={segment.flags}) not processed in state {current_state} -> {final_state}.")
+            with self.lock:
+                final_state = self.state
+            if final_state not in ['CLOSED', 'TIME_WAIT']:
+                print(f"WARN handle_segment: Segment (seq={segment.seq_num}, ack={segment.ack_num}, flags={segment.flags}) not processed in state {current_state} -> {final_state}.")
+
 
 
     def _handle_ack_locked(self, ack_num, peer_rwnd):
@@ -438,6 +475,7 @@ class SimpleTCPConnection:
                         print(f"DEBUG _handle_ack_locked: RTT sample for {acked_seq}: {sample_rtt:.4f}")
                         self.rtt_estimator.update(sample_rtt)
                         self.rtt_log.append((time.time(), sample_rtt))
+                        print(f"DEBUG: rtt_log updated: {self.rtt_log[-1]}")
                     else:
                         # It was retransmitted, just pop timestamp, don't update RTT
                         self.sent_timestamps.pop(acked_seq)
@@ -466,6 +504,7 @@ class SimpleTCPConnection:
             self.congestion_control.on_ack_received(is_new_ack=True)
             new_cwnd = self.congestion_control.get_congestion_window()
             self.cwnd_log.append((time.time(), new_cwnd))
+            print(f"DEBUG: cwnd_log updated: {self.cwnd_log[-1]}")
             print(f"DEBUG _handle_ack_locked: CC: New ACK -> cwnd = {new_cwnd:.2f}")
 
             processed = True
@@ -480,6 +519,7 @@ class SimpleTCPConnection:
             fast_retransmit_needed = self.congestion_control.on_duplicate_ack()
             new_cwnd = self.congestion_control.get_congestion_window()
             self.cwnd_log.append((time.time(), new_cwnd)) # Log cwnd changes
+            print(f"DEBUG: cwnd_log updated: {self.cwnd_log[-1]}")
             print(f"DEBUG _handle_ack_locked: CC: Dup ACK -> cwnd = {new_cwnd:.2f}")
 
             processed = True # ACK was processed (as duplicate)
@@ -498,6 +538,7 @@ class SimpleTCPConnection:
         return processed, can_send
 
 
+
     def _handle_data_locked(self, segment):
         """
         Processes incoming data. Must be called with lock held.
@@ -508,31 +549,35 @@ class SimpleTCPConnection:
         data_len = len(data)
 
         # Check against expected sequence number
-        current_expected = self.expected_seq_num # Read under lock
+        current_expected = self.expected_seq_num  # Read under lock
 
         # --- Buffer Check ---
         occupied_buffer = len(self.receive_buffer) + self._calculate_buffered_size_locked()
         if occupied_buffer + data_len > self.max_receive_buffer_size:
-             print(f"DEBUG _handle_data_locked: Receive buffer overflow for seg seq={seq_num}. Dropping.")
-             return self._create_ack_segment_locked() # Send ACK for last in-order byte
+            print(f"DEBUG _handle_data_locked: Receive buffer overflow for seg seq={seq_num}. Dropping.")
+            return self._create_ack_segment_locked()  # Resend ACK
 
         # --- Process Data ---
         if seq_num < current_expected:
             print(f"DEBUG _handle_data_locked: Received duplicate data: seq={seq_num}, expected={current_expected}")
-            return self._create_ack_segment_locked() # Resend ACK
+            return self._create_ack_segment_locked()  # Resend ACK
 
         elif seq_num == current_expected:
             print(f"DEBUG _handle_data_locked: Received in-order segment: seq={seq_num}")
             self.receive_buffer.extend(data)
-            self.expected_seq_num += data_len # Advance expected number
+            self.expected_seq_num += data_len  # Advance expected number
 
             # Check buffer for contiguous segments
             while self.expected_seq_num in self.out_of_order_buffer:
-                 print(f"DEBUG _handle_data_locked: Processing buffered segment seq={self.expected_seq_num}")
-                 buffered_data = self.out_of_order_buffer.pop(self.expected_seq_num)
-                 self.receive_buffer.extend(buffered_data)
-                 self.expected_seq_num += len(buffered_data)
-                 print(f"DEBUG _handle_data_locked: Advanced expected_seq_num to {self.expected_seq_num}")
+                print(f"DEBUG _handle_data_locked: Processing buffered segment seq={self.expected_seq_num}")
+                buffered_data = self.out_of_order_buffer.pop(self.expected_seq_num)
+                self.receive_buffer.extend(buffered_data)
+                self.expected_seq_num += len(buffered_data)
+                print(f"DEBUG _handle_data_locked: Advanced expected_seq_num to {self.expected_seq_num}")
+
+            # Simulate application layer consuming the data
+            print(f"DEBUG _handle_data_locked: Simulating consumption of {len(self.receive_buffer)} bytes.")
+            self.receive_buffer.clear()  # Clear the buffer to free up space
 
             # Send cumulative ACK
             return self._create_ack_segment_locked()
@@ -547,24 +592,31 @@ class SimpleTCPConnection:
             # Send duplicate ACK for the current expected sequence number
             return self._create_ack_segment_locked()
 
-        return None # Should not be reached if logic covers all cases
+        return None  # Should not be reached if logic covers all cases
+
+
+
+
+
+    def _calculate_rwnd(self):
+        """Calculates available receive window size. Acquires lock."""
+        with self.lock:
+            # Option 1: Call the existing _locked helper method
+            # return self._calculate_rwnd_locked()
+
+            # Option 2: Perform calculation directly here (more self-contained)
+            occupied = len(self.receive_buffer) + self._calculate_buffered_size_locked()
+            available = self.max_receive_buffer_size - occupied
+            return max(0, available)
+
 
 
     def _calculate_buffered_size_locked(self):
         """Calculates out-of-order buffer size. Assumes lock is held."""
+        # Ensure this method is present in your file
         return sum(len(d) for d in self.out_of_order_buffer.values())
 
-    def _calculate_rwnd_locked(self):
-        """Calculates available receive window size. Assumes lock is held."""
-        occupied = len(self.receive_buffer) + self._calculate_buffered_size_locked()
-        available = self.max_receive_buffer_size - occupied
-        return max(0, available)
 
-    # Wrapper for external calls if needed, though internal calls use _locked version
-    def _calculate_rwnd(self):
-        """Calculates available receive window size. Acquires lock."""
-        with self.lock:
-            return self._calculate_rwnd_locked()
 
     def _create_ack_segment_locked(self):
          """Creates an ACK segment. Assumes lock is held."""
@@ -577,54 +629,11 @@ class SimpleTCPConnection:
              rwnd=current_rwnd
          )
 
-    def _send_segment(self, segment: TCPSegment, is_retransmission=False):
-        """Packs and sends a TCP segment using the simulator or socket."""
-        # Log preparation outside the lock if needed
-        print(f"DEBUG _send_segment: Preparing: seq={segment.seq_num}, ack={segment.ack_num}, flags={segment.flags}, data_len={len(segment.data)}, retransmit={is_retransmission}")
 
-        # Packing doesn't modify shared state, do outside lock
-        try:
-            packed_segment = segment.pack()
-        except Exception as e:
-            print(f"ERROR: Failed to pack segment seq={segment.seq_num}: {e}")
-            return # Cannot send if packing fails
 
-        # --- Logic to conditionally store/update tracking info ---
-        consumes_seq = segment.data or (segment.flags & 0x02) or (segment.flags & 0x01)
-        if consumes_seq:
-            with self.lock: # Lock required for dictionary access
-                if not is_retransmission:
-                    # First transmission: Store segment and timestamp
-                    self.unacked_segments[segment.seq_num] = segment
-                    self.sent_timestamps[segment.seq_num] = time.time()
-                    print(f"DEBUG _send_segment: Stored segment {segment.seq_num} in unacked_segments.")
-                else:
-                    # Retransmission: Just update the timestamp
-                    if segment.seq_num in self.sent_timestamps:
-                        self.sent_timestamps[segment.seq_num] = time.time()
-                        print(f"DEBUG _send_segment: Updated timestamp for retransmitted segment {segment.seq_num}.")
-                    # else: # Segment might have been ACKed just before retransmit trigger
-                        # print(f"WARN _send_segment: Retransmitting {segment.seq_num}, but timestamp was missing.")
 
-        # --- Sending Logic (outside lock) ---
-        try:
-            # Get remote address safely (might change? unlikely here)
-            # with self.lock: dest_addr = self.remote_address
-            dest_addr = self.remote_address # Assume stable for this send
 
-            if not dest_addr:
-                 print(f"ERROR _send_segment: No remote address set for seq={segment.seq_num}")
-                 return
 
-            if self.simulator:
-                self.simulator.sendto(self.sock, packed_segment, dest_addr)
-            else:
-                self.sock.sendto(packed_segment, dest_addr)
-            # Log successful send attempt
-            # print(f"DEBUG _send_segment: Sent to {dest_addr} - seq={segment.seq_num}, flags={segment.flags}")
-        except Exception as e:
-            print(f"ERROR _send_segment: Socket send error for seq={segment.seq_num}, flags={segment.flags}: {e}")
-            traceback.print_exc()
 
 
     def _retransmit_segment_external(self, segment):
@@ -636,46 +645,52 @@ class SimpleTCPConnection:
          # Call send_segment (which handles its own lock for timestamp update)
          self._send_segment(segment, is_retransmission=True)
 
-def _check_timers(self):
-    """Checks for retransmission timeouts and cleans up expired timestamps."""
-    current_time = time.time()
-    rto_val = self.rtt_estimator.get_timeout()
-    check_rto = max(1.0, rto_val) if rto_val is not None and rto_val > 0 else 1.0  # Ensure RTO is reasonable
+    def _check_timers(self):
+        """Checks for retransmission timeouts and cleans up expired timestamps."""
+        current_time = time.time()
+        rto_val = self.rtt_estimator.get_timeout()
+        check_rto = max(1.0, rto_val) if rto_val is not None and rto_val > 0 else 1.0  # Ensure RTO is reasonable
 
-    seq_to_retransmit = None
-    timestamps_to_remove = []
+        # Log the current RTO value
+        self.rto_log.append((current_time, rto_val))
+        print(f"DEBUG: rto_log updated: {self.rto_log[-1]}")
 
-    # --- Read shared state under lock ---
-    with self.lock:
-        current_unacked_keys = set(self.unacked_segments.keys())
-        items_to_check = list(self.sent_timestamps.items())
-    # --- Lock released ---
 
-    # Find all expired sequence numbers
-    expired_seqs = [seq for seq, ts in items_to_check if (current_time - ts) > check_rto]
 
-    if not expired_seqs:  # No timers expired
-        return
+        seq_to_retransmit = None
+        timestamps_to_remove = []
 
-    # Identify segments needing retransmission vs. just timestamp cleanup
-    for seq in expired_seqs:
-        if seq in current_unacked_keys:
-            seq_to_retransmit = seq  # Candidate for retransmission
-        else:
-            timestamps_to_remove.append(seq)  # Mark timestamp for removal
-
-    # --- Perform Timestamp Cleanup (lock needed) ---
-    if timestamps_to_remove:
+        # --- Read shared state under lock ---
         with self.lock:
-            for seq in timestamps_to_remove:
-                if seq in self.sent_timestamps:  # Check if still exists
-                    print(f"DEBUG _check_timers: Removing expired timestamp for seq={seq}.")
-                    self.sent_timestamps.pop(seq, None)
+            current_unacked_keys = set(self.unacked_segments.keys())
+            items_to_check = list(self.sent_timestamps.items())
+        # --- Lock released ---
 
-    # --- Prepare for Retransmission if needed ---
-    if seq_to_retransmit is not None:
-        with self.lock:
-            segment = self.unacked_segments.get(seq_to_retransmit)
-            if segment:
-                print(f"DEBUG _check_timers: Retransmitting seq={seq_to_retransmit}.")
-                self._retransmit_segment_external(segment)
+        # Find all expired sequence numbers
+        expired_seqs = [seq for seq, ts in items_to_check if (current_time - ts) > check_rto]
+
+        if not expired_seqs:  # No timers expired
+            return
+
+        # Identify segments needing retransmission vs. just timestamp cleanup
+        for seq in expired_seqs:
+            if seq in current_unacked_keys:
+                seq_to_retransmit = seq  # Candidate for retransmission
+            else:
+                timestamps_to_remove.append(seq)  # Mark timestamp for removal
+
+        # --- Perform Timestamp Cleanup (lock needed) ---
+        if timestamps_to_remove:
+            with self.lock:
+                for seq in timestamps_to_remove:
+                    if seq in self.sent_timestamps:  # Check if still exists
+                        print(f"DEBUG _check_timers: Removing expired timestamp for seq={seq}.")
+                        self.sent_timestamps.pop(seq, None)
+
+        # --- Prepare for Retransmission if needed ---
+        if seq_to_retransmit is not None:
+            with self.lock:
+                segment = self.unacked_segments.get(seq_to_retransmit)
+                if segment:
+                    print(f"DEBUG _check_timers: Retransmitting seq={seq_to_retransmit}.")
+                    self._retransmit_segment_external(segment)
