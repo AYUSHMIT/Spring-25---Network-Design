@@ -1,12 +1,18 @@
 import unittest
 from src.tcp_connection import SimpleTCPConnection
 from unittest.mock import patch, MagicMock
+import socket
 import time
 
 class TestSimpleTCPConnection(unittest.TestCase):
 
     def setUp(self):
-        self.tcp_connection = SimpleTCPConnection()
+        # Create a mock socket and dummy address
+        mock_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        dummy_address = ("127.0.0.1", 12345)
+        
+        # Initialize SimpleTCPConnection with mock values
+        self.tcp_connection = SimpleTCPConnection(sock=mock_socket, addr=dummy_address)
 
     def test_connection_establishment(self):
         """Test the establishment of a TCP connection."""
@@ -53,7 +59,6 @@ class TestSimpleTCPConnection(unittest.TestCase):
         self.tcp_connection._handle_ack(ack_num=3)
         mock_update.assert_called_once()  # Ensure RTT is updated for non-retransmitted segments
 
-
     def test_window_size_calculation(self):
         """Test window size calculation in _send_window."""
         self.tcp_connection.cwnd = 512
@@ -85,8 +90,6 @@ class TestSimpleTCPConnection(unittest.TestCase):
 
         # Verify that on_timeout was called
         mock_on_timeout.assert_called_once()
-
-
 
     def test_receive_data(self):
         """Test receiving data and appending to the receive buffer."""

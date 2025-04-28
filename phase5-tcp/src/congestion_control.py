@@ -8,8 +8,8 @@ class CongestionControl:
     def __init__(self, logger=None):
         """Initialize congestion control parameters."""
         self.state = CCState.SLOW_START
-        self.congestion_window = 100  # Start with a larger initial congestion window (10 segments)
-        self.ssthresh = 1000  # Slow start threshold (can be tuned for your simulation)
+        self.congestion_window = 1  # Start with an initial congestion window of 1 segment
+        self.ssthresh = 64  # Default slow start threshold
         self.duplicate_acks = 0
         self.logger = logger  # Logger to track cwnd and state changes
 
@@ -48,8 +48,10 @@ class CongestionControl:
             # 🚀 Congestion avoidance: linear growth
             self.congestion_window += 1 / self.congestion_window
 
-
-
+        # Log the updated congestion window and state
+        if self.logger:
+            self.logger.log_cwnd(self.congestion_window)
+            self.logger.log_state(self.state)
 
     def on_ack_received(self, is_new_ack):
         """Handles receipt of a new ACK."""

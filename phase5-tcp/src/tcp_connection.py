@@ -1,5 +1,3 @@
-# Full Final Corrected SimpleTCPConnection (April 2025)
-
 import socket
 import time
 import threading
@@ -82,6 +80,15 @@ class SimpleTCPConnection:
             "cwnd": self.congestion_control.get_congestion_window()
         })
 
+    def connect(self, remote_address):
+        """Initiate a connection to the remote address."""
+        with self.lock:
+            self.remote_address = remote_address
+            self.state = self.SYN_SENT
+            syn_segment = TCPSegment(seq_num=self.seq_num, ack_num=0, flags=TCPSegment.SYN, data=b'')
+            self._send_segment(syn_segment)
+            print(f"DEBUG: Sent SYN to {remote_address}")
+
     def send(self, data):
         if not data:
             return
@@ -132,6 +139,10 @@ class SimpleTCPConnection:
                 buffer_start = current_seq - 1
                 available_data = len(self.send_buffer) - buffer_start
 
+            if available_window <= 0 or available_data <= 0:
+                self.send_buffer = bytearray()  # Clear the buffer
+                print(f"DEBUG: _send_from_buffer: Done sending, window full or buffer empty.")
+
     def _send_segment(self, segment, is_retransmission=False):
         try:
             packed_segment = segment.pack()
@@ -143,64 +154,8 @@ class SimpleTCPConnection:
             print(f"ERROR: Failed to send segment {segment.seq_num}: {e}")
             traceback.print_exc()
 
-    def handle_segment(self, raw_data: bytes):
-        """Handle incoming TCP segment."""
-        with self.lock:
-            segment = TCPSegment.unpack(raw_data)
-
-            if segment.flags & TCPSegment.SYN:
-                # Handle SYN during connection setup if needed
-                print(f"DEBUG handle_segment: Received SYN segment seq={segment.seq_num}")
-                # You could send SYN-ACK here if doing full handshake (optional)
-
-            elif segment.flags & TCPSegment.ACK:
-                # Handle incoming ACK segments
-                print(f"DEBUG handle_segment: Received ACK segment ack={segment.ack_num}")
-                self._handle_ack_locked(segment.ack_num)
-
-            elif segment.flags == 0:
-                # Handle **pure data** segments
-                print(f"DEBUG handle_segment: Got data segment seq={segment.seq_num}")
-
-                if segment.seq_num == self.expected_seq_num:
-                    # In-order segment
-                    self.receive_buffer.extend(segment.data)
-                    self.expected_seq_num += len(segment.data)
-                    print(f"DEBUG handle_segment: Received in-order data, updated expected_seq={self.expected_seq_num}")
-
-                    # ✅ Immediately send ACK for the received data
-                    self._send_ack_locked()
-
-                    # Also check if buffered out-of-order data can be consumed
-                    while self.expected_seq_num in self.out_of_order_buffer:
-                        data = self.out_of_order_buffer.pop(self.expected_seq_num)
-                        self.receive_buffer.extend(data)
-                        self.expected_seq_num += len(data)
-                        self._send_ack_locked()
-
-                elif segment.seq_num > self.expected_seq_num:
-                    # Out-of-order: buffer it
-                    print(f"DEBUG handle_segment: Buffering out-of-order segment seq={segment.seq_num}")
-                    self.out_of_order_buffer[segment.seq_num] = segment.data
-                    # Send duplicate ACK for current expected seq
-                    self._send_ack_locked()
-
-                else:
-                    # Duplicate old data segment
-                    print(f"DEBUG handle_segment: Duplicate segment seq={segment.seq_num}, expected={self.expected_seq_num}")
-                    self._send_ack_locked()
-
-            elif segment.flags & TCPSegment.FIN:
-                # Handle FIN segment
-                print(f"DEBUG handle_segment: Received FIN segment seq={segment.seq_num}")
-                self._handle_fin_locked(segment)
-
-            else:
-                print(f"WARN handle_segment: Unknown flags {segment.flags}, ignoring.")
-
-
-
     def _handle_ack_locked(self, ack_num):
+        """Handle incoming ACKs."""
         if ack_num > self.send_base:
             now = time.time()
             if ack_num - 1 in self.sent_timestamps:
@@ -220,69 +175,8 @@ class SimpleTCPConnection:
 
             self._send_from_buffer()
 
-    def _send_from_buffer(self):
-        with self.lock:
-            if self.state != self.ESTABLISHED:
-                return
-
-            current_seq = self.seq_num
-            current_base = self.send_base
-            current_cwnd = self.congestion_control.get_congestion_window()
-            peer_window = self.peer_rwnd
-
-            effective_window = min(current_cwnd, peer_window)
-            inflight = current_seq - current_base
-            available_window = int(effective_window - inflight)
-
-            buffer_start = current_seq - 1  # ✅ Because app data starts at seq=1
-            available_data = len(self.send_buffer) - buffer_start
-
-            print(f"DEBUG: _send_from_buffer: seq={current_seq}, base={current_base}, inflight={inflight}, cwnd={current_cwnd}, available_window={available_window}, available_data={available_data}")
-
-            while available_window > 0 and available_data > 0:
-                chunk_size = min(available_window, available_data, self.mss)
-
-                if chunk_size <= 0:
-                    break  # Nothing to send
-
-                chunk = self.send_buffer[buffer_start : buffer_start + chunk_size]
-
-                if not chunk:
-                    break  # No data chunk available
-
-                # Create and send TCP segment
-                segment = TCPSegment(
-                    seq_num=current_seq,
-                    ack_num=self.expected_seq_num,
-                    flags=0,
-                    rwnd=self._calculate_rwnd_locked(),
-                    data=chunk
-                )
-                self._send_segment(segment)
-
-                # Track unacknowledged segments
-                self.unacked_segments[segment.seq_num] = segment
-                self.sent_timestamps[segment.seq_num] = time.time()
-
-                # Update internal pointers
-                self.seq_num += len(chunk)
-                current_seq = self.seq_num
-
-                inflight = current_seq - self.send_base
-                available_window = int(min(self.congestion_control.get_congestion_window(), self.peer_rwnd) - inflight)
-                buffer_start = current_seq - 1
-                available_data = len(self.send_buffer) - buffer_start
-
-                print(f"DEBUG: _send_from_buffer: Sent chunk size={len(chunk)}, new seq={current_seq}, inflight={inflight}, window={available_window}")
-
-            if available_window <= 0 or available_data <= 0:
-                print(f"DEBUG: _send_from_buffer: Done sending, window full or buffer empty.")
-
-
-
-
-
     def _handle_data_locked(self, segment):
+        """Handle incoming data segments."""
         if segment.seq_num == self.expected_seq_num:
             self.receive_buffer.extend(segment.data)
             self.expected_seq_num += len(segment.data)
@@ -293,11 +187,11 @@ class SimpleTCPConnection:
             self._send_ack_locked()
 
     def _send_ack_locked(self):
-        """Send an ACK for the next expected sequence number. Assumes lock is held."""
+        """Send an ACK for the next expected sequence number."""
         ack_segment = TCPSegment(
             seq_num=self.seq_num,
             ack_num=self.expected_seq_num,
-            flags=0x10,  # ACK flag
+            flags=TCPSegment.ACK,
             rwnd=self._calculate_rwnd_locked(),
             data=b''
         )
@@ -312,24 +206,15 @@ class SimpleTCPConnection:
             print(f"ERROR _send_ack_locked: Failed to send ACK: {e}")
             traceback.print_exc()
 
-
     def _calculate_rwnd_locked(self):
         occupied = len(self.receive_buffer) + sum(len(d) for d in self.out_of_order_buffer.values())
         available = self.max_receive_buffer_size - occupied
         return max(0, available)
 
-    def is_transfer_complete(self):
-        with self.lock:
-            all_data_acked = (self.send_base - 1) >= self.total_data_to_send
-            buffer_empty = not self.send_buffer
-            no_unacked = not self.unacked_segments
-            no_pending_timers = not self.sent_timestamps
-            return all_data_acked and buffer_empty and no_unacked and no_pending_timers
-
     def close(self):
         with self.lock:
             self.is_running = False
-            self.state = self.CLOSED
+            self.state = self.FIN_WAIT_1  # Update state to FIN_WAIT_1
 
         if self._timer_thread and self._timer_thread.is_alive():
             self._timer_thread.join()
@@ -341,6 +226,7 @@ class SimpleTCPConnection:
             print(f"ERROR saving cwnd_log: {e}")
 
     def _check_timers(self):
+        """Check for retransmission timeouts and handle expired segments."""
         now = time.time()
         rto_val = self.rtt_estimator.get_timeout()
         check_rto = max(self.rto, rto_val) if rto_val is not None else self.rto
@@ -356,6 +242,8 @@ class SimpleTCPConnection:
         for seq in expired:
             segment = self.unacked_segments.get(seq)
             if segment:
-                self.congestion_control.on_timeout()
-                self.log_cwnd()
-                self._send_segment(segment, is_retransmission=True)
+                print(f"DEBUG: Retransmitting segment {seq} due to timeout.")
+                self.congestion_control.on_timeout()  # Trigger congestion control timeout handling
+                self.log_cwnd()  # Log the updated congestion window
+                self._send_segment(segment, is_retransmission=True)  # Retransmit the segment
+                self.retransmitted_segments.add(seq)  # Mark the segment as retransmitted
