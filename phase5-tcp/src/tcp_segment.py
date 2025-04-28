@@ -16,11 +16,13 @@ class TCPSegment:
 
     def pack(self, pseudo_header=b''):
         """Pack the TCP segment into bytes, including the checksum."""
+        rwnd_safe = min(self.rwnd, 65535)  # <-- Important fix!
+
         segment_without_checksum = (
             self.seq_num.to_bytes(4, 'big') +
             self.ack_num.to_bytes(4, 'big') +
             self.flags.to_bytes(2, 'big') +
-            self.rwnd.to_bytes(2, 'big') +
+            rwnd_safe.to_bytes(2, 'big') +
             b'\x00\x00' +  # Placeholder for checksum
             self.data
         )
@@ -29,7 +31,7 @@ class TCPSegment:
             self.seq_num.to_bytes(4, 'big') +
             self.ack_num.to_bytes(4, 'big') +
             self.flags.to_bytes(2, 'big') +
-            self.rwnd.to_bytes(2, 'big') +
+            rwnd_safe.to_bytes(2, 'big') +
             self.checksum.to_bytes(2, 'big') +
             self.data
         )

@@ -15,7 +15,14 @@
 This project implements a simplified version of the TCP protocol over an unreliable UDP channel. The implementation includes key TCP features such as congestion control, retransmissions, RTT estimation, and dynamic receiver window management. The goal is to simulate real-world TCP behavior under various network conditions, including packet loss, delays, and bit errors.
 
 ---
-
+### Prerequisites:
+- Python 3.8 or higher installed on your system.
+- `pip` package manager for installing dependencies.
+- Supported Operating Systems:
+  - Windows 10 or higher
+  - macOS 10.15 (Catalina) or higher
+  - Linux (Ubuntu 18.04 or higher)
+  
 ## FILES SUBMITTED AND THEIR PURPOSE:
 ### Core Source Files:
 - **`src/tcp_segment.py`**:  

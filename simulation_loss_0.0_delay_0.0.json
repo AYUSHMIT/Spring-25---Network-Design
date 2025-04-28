@@ -1,16 +1,16 @@
 {
     "loss_rate": 0.0,
     "delay_rate": 0.0,
-    "max_delay": 0.5,
-    "completion_time": 5.003480672836304,
+    "max_delay": 0.1,
+    "completion_time": 30.04646325111389,
     "status": "success",
     "cwnd_log": [
         {
-            "time": 2.384185791015625e-07,
+            "time": 4.0531158447265625e-06,
             "cwnd": 10
         },
         {
-            "time": 5.003666877746582,
+            "time": 30.046436309814453,
             "cwnd": 10
         }
     ],

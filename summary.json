@@ -565,5 +565,82 @@
         "max_delay": 0.5,
         "completion_time": 5.110865831375122,
         "status": "success"
+    },
+    {
+        "loss_rate": 0.0,
+        "delay_rate": 0.0,
+        "max_delay": 0.1,
+        "completion_time": 100.0036244392395,
+        "status": "success"
+    },
+    {
+        "loss_rate": 0.0,
+        "delay_rate": 0.0,
+        "max_delay": 0.5,
+        "completion_time": 100.00551342964172,
+        "status": "success"
+    },
+    {
+        "loss_rate": 0.0,
+        "delay_rate": 0.0,
+        "max_delay": 1.0,
+        "completion_time": 100.01178097724915,
+        "status": "success"
+    },
+    {
+        "loss_rate": 0.0,
+        "delay_rate": 0.1,
+        "max_delay": 0.1,
+        "completion_time": 100.00210428237915,
+        "status": "success"
+    },
+    {
+        "loss_rate": 0.0,
+        "delay_rate": 0.1,
+        "max_delay": 0.5,
+        "completion_time": null,
+        "status": "failure"
+    },
+    {
+        "loss_rate": 0.0,
+        "delay_rate": 0.0,
+        "max_delay": 0.1,
+        "completion_time": 100.00581526756287,
+        "status": "success"
+    },
+    {
+        "loss_rate": 0.0,
+        "delay_rate": 0.0,
+        "max_delay": 0.5,
+        "completion_time": null,
+        "status": "failure"
+    },
+    {
+        "loss_rate": 0.0,
+        "delay_rate": 0.0,
+        "max_delay": 0.1,
+        "completion_time": null,
+        "status": "failure"
+    },
+    {
+        "loss_rate": 0.0,
+        "delay_rate": 0.0,
+        "max_delay": 0.1,
+        "completion_time": null,
+        "status": "failure"
+    },
+    {
+        "loss_rate": 0.0,
+        "delay_rate": 0.0,
+        "max_delay": 0.1,
+        "completion_time": null,
+        "status": "failure"
+    },
+    {
+        "loss_rate": 0.0,
+        "delay_rate": 0.0,
+        "max_delay": 0.1,
+        "completion_time": 30.04646325111389,
+        "status": "success"
     }
 ]
