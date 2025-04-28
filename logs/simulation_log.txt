@@ -1,0 +1,21 @@
+=== New Simulation Log Started at 2025-04-28 17:13:39 ===
+[17:13:39] [TCP Receiver]: Server listening...
+[17:13:40] [TCP Sender]: Connected to server.
+[17:13:40] [TCP Receiver]: Accepted connection from ('127.0.0.1', 57274)
+[17:13:40] [TCP Sender]: Sent packet 0
+[17:13:40] [TCP Receiver]: Received packet 0
+[17:13:40] [TCP Sender]: Received ACK 0
+[17:13:40] [TCP Receiver]: Sent ACK 0
+[17:13:40] [TCP Receiver]: Received packet 1
+[17:13:40] [TCP Sender]: Sent packet 1
+[17:13:40] [Network Simulator]: Packet delayed by 63 ms
+[17:13:40] [TCP Sender]: Sent packet 2
+[17:13:40] [TCP Sender]: Sent packet 1
+[17:13:40] [TCP Sender]: Sent packet 2
+[17:13:40] [TCP Sender]: Received ACK 1
+[17:13:40] [TCP Receiver]: Sent ACK 1
+[17:13:40] [TCP Receiver]: Received packet 212
+[17:13:40] [TCP Sender]: Received ACK 212
+[17:13:40] [TCP Receiver]: Sent ACK 212
+[17:13:40] [TCP Sender]: Connection closed.
+[17:13:40] [TCP Receiver]: Server closed.

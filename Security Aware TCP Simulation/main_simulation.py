@@ -1,40 +1,31 @@
-from tcp_sender import TCPSender
-from tcp_receiver import TCPReceiver
-from network_simulator import NetworkSimulator
-from attack_module import AttackModule
-from logger import setup_logger
+import logger
+logger.reset_log()
 import threading
 import time
+import tcp_receiver
+import tcp_sender
 
-def main():
-    logger = setup_logger()
 
-    # Configure simulation parameters
-    enable_attack = True
-    attack_types = ["ack_spoofing", "duplicate_ack_flood", "rtt_manipulation"]
+def start_receiver():
+    """Start the TCP receiver (server)"""
+    tcp_receiver.main()
 
-    # Setup simulator and components
-    network = NetworkSimulator(attack_enabled=enable_attack)
-    sender = TCPSender(network)
-    receiver = TCPReceiver(network)
-    attacker = AttackModule(network, attack_types)
-
-    # Start threads
-    sender_thread = threading.Thread(target=sender.start)
-    receiver_thread = threading.Thread(target=receiver.start)
-    if enable_attack:
-        attack_thread = threading.Thread(target=attacker.start)
-        attack_thread.start()
-
-    sender_thread.start()
-    receiver_thread.start()
-
-    sender_thread.join()
-    receiver_thread.join()
-    if enable_attack:
-        attacker.stop()
-
-    logger.info("Simulation Completed.")
+def start_sender():
+    """Start the TCP sender (client)"""
+    time.sleep(1)  # small delay to ensure receiver is ready
+    tcp_sender.main()
 
 if __name__ == "__main__":
-    main()
+    # Create separate threads for receiver and sender
+    receiver_thread = threading.Thread(target=start_receiver)
+    sender_thread = threading.Thread(target=start_sender)
+
+    # Start both threads
+    receiver_thread.start()
+    sender_thread.start()
+
+    # Wait for both to complete
+    receiver_thread.join()
+    sender_thread.join()
+
+    print("[Simulation]: Sender and Receiver completed.")
